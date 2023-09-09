@@ -4,10 +4,10 @@
 - [https://iconoir.com/]
 
 ## 未解決問題
-### *dashboad/AnimationComponent.jsx*
- **irebaseからの読み込みの時間がかかりすぎるなんとかしたい**
+### dashboad/AnimationComponent.jsx
+ **firebaseからの読み込みの時間がかかりすぎるなんとかしたい**
  
-### *dashboad/clickcountPKF/KeyParsonClickCount.jsx*
+### dashboad/clickcountPKF/KeyParsonClickCount.jsx
 1. カウントダウンの未表示
 2. トグルボタン閉じた時に元の配置に戻らない
 　トグル閉じた位置をセットしてしまっている様子
