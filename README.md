@@ -1,4 +1,8 @@
 # React + Vite
+*下記使用*
+https://nextui.org/docs/guide/introduction
+https://iconoir.com/
+
 
 ### 未解決問題
 *dashboad/clickcountPKF/KeyParsonClickCount.jsx*
