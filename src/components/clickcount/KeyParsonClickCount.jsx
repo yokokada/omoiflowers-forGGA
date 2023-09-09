@@ -27,9 +27,10 @@ const KeyParsonClickCount = () => {
             <tbody>
                 <tr style={{ borderBottom: '1px solid #ddd' }}>
                 <td>omoってるよ累積</td>
-                <td>数</td>
+                <td>{count}</td>
                 </tr>
                 <tr onClick={() => setIsOpen(!isOpen)} style={{ cursor: 'pointer', borderBottom: '1px solid #ddd' }}>
+                <td>自分のomoってるよ</td>
                 <td>自分のomoってるよ</td>
                 <td>{isOpen ? '▲' : '▼'}</td>
                 </tr>
@@ -42,6 +43,7 @@ const KeyParsonClickCount = () => {
                 )}
 
                 <tr onClick={() => setIsOpen(!isOpen)} style={{ cursor: 'pointer', borderBottom: '1px solid #ddd' }}>
+                <td>押してくれた人</td>
                 <td>押してくれた人</td>
                 <td>{isOpen ? '▲' : '▼'}</td>
                 </tr>
