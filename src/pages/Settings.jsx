@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Member = () => {
+const Settings = () => {
   return (
     <div>
-      Member
+      Settings
     </div>
   )
 }
 
-export default Member
+export default Settings

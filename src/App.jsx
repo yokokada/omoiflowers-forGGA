@@ -1,11 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes,Navigate} from 'react-router-dom';
 import './App.css'
-import ErrorBoundary from './components/ErrorBoundary';
+import ErrorBoundary from './components/common/ErrorBoundary';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
-import NotFoundComponent from './components/NotFoundComponent';
+import NotFoundComponent from './components/common/NotFoundComponent';
+import AddMember from './pages/AddMember';
+import Calendar from './pages/Calendar';
+import Chat from './pages/Chat';
+import Settings from './pages/Settings';
+import Notification from './pages/Notification';
+import Member from './pages/Member';
+
 
 function App() {
   return (
@@ -15,6 +22,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/AddMember" element={<AddMember />} />
+          <Route path="/Calendar" element={<Calendar />} />
+          <Route path="/Chat" element={<Chat />} />
+          <Route path="/Settings" element={<Settings />} />
+          <Route path="/Notification" element={<Notification />} />
+          <Route path="/Member" element={<Member />} />
           <Route path="/" element={<Navigate to="/login" replace/>} /> {/* <-- Redirect to /login */}
           <Route path="*" element={<NotFoundComponent />} /> {/* Optional: Handle 404 not found */}
         </Routes>

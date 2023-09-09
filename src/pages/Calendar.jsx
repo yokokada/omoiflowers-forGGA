@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Member = () => {
+function Calendar() {
   return (
     <div>
-      Member
+      Calendar
     </div>
   )
 }
 
-export default Member
+export default Calendar

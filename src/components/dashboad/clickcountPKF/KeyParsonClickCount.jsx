@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import ClickHistory from '../ClickHistory';
 import UseFirebaseClickHistory from '../UseFirebaseClickHistory';
-import OmotteruyoButton from '../common/OmotteruyoButton';
+import OmotteruyoButton from '../../common/OmotteruyoButton';
 import Countdown from '../Countdown';
-
+import FooterPK from '../../common/FooterPK';
 
 const KeyParsonClickCount = () => {
   const { clickHistory, userDisplayName, count, recordClick,countdown } = UseFirebaseClickHistory();
@@ -18,12 +18,22 @@ const KeyParsonClickCount = () => {
     // カウントダウンが完了した時の処理
     // 現時点では何もしない
 };
+const styles = {
+  mainTable: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '100vh',  // もし全画面を意図していない場合、このプロパティを調整してください。
+  }
+};
+
   return (
     <div>
-        <Countdown initialCountdown={countdown} 
+    <Countdown initialCountdown={countdown} 
              onCountdownComplete={handleCountdownComplete}/>
         <OmotteruyoButton onClick={handleButtonClick} />
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <div style={styles.mainTable}>
+        <table style={{borderCollapse: 'collapse' }}>
             <tbody>
                 <tr style={{ borderBottom: '1px solid #ddd' }}>
                 <td>omoってるよ累積</td>
@@ -56,9 +66,10 @@ const KeyParsonClickCount = () => {
                 )}
             </tbody>
          </table>
+         <FooterPK/> 
     </div>
     
-    
+    </div> 
   );
 }
 

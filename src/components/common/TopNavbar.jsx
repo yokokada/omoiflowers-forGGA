@@ -18,10 +18,20 @@ export default function App() {
     "Log Out",
   ];
 
+  const styles = {
+    navbarFixed: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      zIndex: 1000
+    }
+  };
+
   return (
-    <div className="navbar">
+    <div className="navbar" style={styles.navbarFixed}>
       <div className="left-item">
-        <a href="#" className="navbar-item"><Flower size={50} strokeWidth={1} /></a>
+        <a href="/infomation" className="navbar-item"><Flower fontSize={20} strokeWidth={1} /></a>
       </div>
       
       <div className="center-item">
@@ -30,7 +40,7 @@ export default function App() {
 
       <div className="right-item">
         <div className="navbar-item" onClick={() => setMenuOpen(!menuOpen)}>
-          <MoreHoriz size={50} strokeWidth={2} />
+          <MoreHoriz fontSize={20}  strokeWidth={2} />
         </div>
       </div>
 

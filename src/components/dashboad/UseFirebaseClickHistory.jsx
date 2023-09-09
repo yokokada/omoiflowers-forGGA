@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { collection, addDoc, onSnapshot, query, orderBy, Timestamp} from 'firebase/firestore';
-import { auth , db} from '../pages/Firebase'; 
+import { auth , db} from '../../pages/Firebase'; 
 
 const UseFirebaseClickHistory = (setCountdown, setLastClicked) => {
 // ーーーーーー最初の状態をuseStateで定義ーーーーーーーーーーーーーーーーーーーー

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CustomModal from './CustomModal';  // 忘れずにインポートしてください
+import CustomModal from '../common/CustomModal';  // 忘れずにインポートしてください
 import Countdown from './Countdown';
 import useFirebaseClickHistory from './UseFirebaseClickHistory';
 

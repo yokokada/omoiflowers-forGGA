@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { auth } from './Firebase';
 import { Link } from 'react-router-dom';  // Linkコンポーネントをインポート
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import CustomModal from '../components/CustomModal';  // CustomModalをインポート
+import CustomModal from '../components/common/CustomModal';  // CustomModalをインポート
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
