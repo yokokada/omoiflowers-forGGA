@@ -1,5 +1,5 @@
 # React + Vite
-*下記使用*
+## *下記使用したUIコンポーネント*
 - [https://nextui.org/docs/guide/introduction]
 - [https://iconoir.com/]
 
