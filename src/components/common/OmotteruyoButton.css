@@ -1,0 +1,18 @@
+.omotteruyobotton {
+    background-color: #DDDDDD;
+    color: #21396f;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: -50px;
+    margin-bottom: 20px;
+    /* 円形のボタンにするためのスタイル */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    /* 縁無し */
+    border: none;
+    /* 立体的 */
+    box-shadow: 0 0 10px gray;
+  
+  }
+    /* 触ったときにゆっくりかつさらに大きくなる */

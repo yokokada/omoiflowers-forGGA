@@ -1,0 +1,51 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  overflow-y: auto;
+}
+
+.bg-background\/70 {
+  background-color: transparent !important;
+}
+
+#root {
+  max-width: 1280px;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #fde9e9;
+}
+
+
+.App {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.base_flowers {
+  position: relative;
+  display: flex;
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center; /* 垂直方向の中央揃え */
+}
+
+.base_flowers img {
+  margin: 0 auto;
+}
+
+.countdown {
+  /* 右側に固定して表示するためのスタイル */
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+}
+.countdown p {
+  margin-top: 25px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: grey;
+}
+
+
+
+
