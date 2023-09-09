@@ -1,11 +1,11 @@
 # React + Vite
-## *下記使用したUIコンポーネント*
+## 下記使用したUIコンポーネント
 - [https://nextui.org/docs/guide/introduction]
 - [https://iconoir.com/]
 
 ## 未解決問題
 ### dashboad/AnimationComponent.jsx
- **firebaseからの読み込みの時間がかかりすぎるなんとかしたい**
+ firebaseからの読み込みの時間がかかりすぎるなんとかしたい
  
 ### dashboad/clickcountPKF/KeyParsonClickCount.jsx
 1. カウントダウンの未表示
