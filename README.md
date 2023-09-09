@@ -1,8 +1,8 @@
 # React + Vite
 
-未解決問題
+<未解決問題>
 dashboadの中のclickcountPKF
-＜キーパーソン画面＞
+KeyParsonClickCount.jsx
 ＃カウントダウンの未表示
 ＃トグルボタン閉じた時に元の配置に戻らない
 　トグル閉じた位置をセットしてしまっている様子
