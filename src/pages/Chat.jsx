@@ -1,4 +1,6 @@
 import React from 'react';
+import TopNavbar from '../components/common/TopNavbar';
+import FooterPK from '../components/common/FooterPK';
 import {
   MainContainer,
   ChatContainer,
@@ -10,7 +12,9 @@ import {
 
 const Chat = () => {
   return (
-    <div style={{ position: "relative", height: "500px" }}>
+    <div>
+      <TopNavbar/>
+      <div style={{ position: "relative", height: "500px", marginTop:"60px"}}>
       <MainContainer>
         <ChatContainer>
           <MessageList>
@@ -28,6 +32,10 @@ const Chat = () => {
         </ChatContainer>
       </MainContainer>
     </div>
+    <FooterPK/>
+
+    </div>
+    
   );
 }
 

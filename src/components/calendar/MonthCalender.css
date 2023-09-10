@@ -1,0 +1,67 @@
+.Calendar {
+    margin: 60px  auto 0; /* これにより、要素が水平方向に中央に配置されます */
+    padding-top: 10px;
+    width: 350px;
+    max-width: 100%;
+    background: white;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.125em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
+    border-radius: 5px; /* 角を少し丸く */
+    transition: transform 0.3s; /* ホバー時の動きのアニメーション */
+  }
+  .Calendar:hover {
+    transform: translateY(-5px); /* ホバー時に少し上に移動 */
+  }
+  
+  .Calendar button{
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+  
+  .react-calendar__navigation {
+    display: flex;
+    height: 44px;
+    margin-bottom: 1em;
+  }
+  
+  .react-calendar__navigation button {
+    min-width: 44px;
+    background: none;
+  }
+  
+  .react-calendar__month-view__weekdays {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.75em;
+  }
+  
+  .react-calendar__month-view__weekdays__weekday {
+    padding: 0.5em;
+  }
+  
+
+  .react-calendar__month-view__days__day--weekend {
+    color: #d10000;
+  }
+  
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: #757575;
+  }
+  
+  .react-calendar__tile {
+    max-width: 100%;
+    padding: 10px;
+    background: none;
+    text-align: center;
+    /* line-height: 16px; */
+    transition: box-shadow 0.3s; /* 影のアニメーションを滑らかに */
+  }
+  
+  .react-calendar__tile--active {
+    /* background: #006edc; */
+    /* color: white; */
+  }
+  
+  

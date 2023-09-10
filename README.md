@@ -3,6 +3,8 @@
 - [https://nextui.org/docs/guide/introduction]
 - [https://iconoir.com/]
 - [https://chatscope.io/]
+- [https://devexpress.github.io/devextreme-reactive/demos/]
+- [https://projects.wojtekmaj.pl/react-calendar/]
 
 ## 未解決問題
 - ### dashboad/AnimationComponent.jsx
@@ -28,6 +30,9 @@
 　以下の記事を参考にchat-ui-kit-reactを導入。一旦見た目はできた。firebaseとの連携とかはまだ実装していない。ライブラリ選んだりするのに時間がかかった。
 　（9/10 18:45）
 [https://qiita.com/Ueken3pei/items/a4290883840b23019742]
+
+- ### /pages/Calendar.jsx
+　react-clendarを入れて、実装。ここにスタンプをつけたい。日付の詳細画面はまだ実装未。とりあえず、次のページに。（9/10 21:00）
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

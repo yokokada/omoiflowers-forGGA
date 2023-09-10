@@ -19,6 +19,7 @@
     "framer-motion": "^10.16.4",
     "iconoir-react": "^6.11.0",
     "react": "^18.2.0",
+    "react-calendar": "^4.6.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0"
   },
