@@ -32,7 +32,7 @@
 [https://qiita.com/Ueken3pei/items/a4290883840b23019742]
 
 - ### /pages/Calendar.jsx
-　react-clendarを入れて、実装。ここにスタンプをつけたい。日付の詳細画面はまだ実装未。とりあえず、次のページに。（9/10 21:00）
+　react-clendarを入れて、実装。ここにスタンプをつけたい。日付の詳細画面はまだ未実装。とりあえず、次のページに。（9/10 21:00）
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
