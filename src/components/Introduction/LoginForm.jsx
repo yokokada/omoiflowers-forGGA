@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { auth } from '../../pages/Firebase'; 
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"; 
@@ -9,6 +8,7 @@ import SubmitButton from '../common/SubmitButtun';
 import {Input} from "@nextui-org/react";
 import {EyeFilledIcon} from "./EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./EyeSlashFilledIcon";
+import { Flower } from 'iconoir-react';
 
 
 // firebaseでのログイン機能を実装する
@@ -69,9 +69,14 @@ const toggleVisibility = () => {
 // ーーーーーーー実際の表示はここからーーーーーーーーーーーー
 return (
     <div>
-        <header className='form'>
-            <h1 className="text-center">ログイン画面</h1>
-        </header>
+            <div className='explanation'>
+            <div>
+                <p>想いをお花にして届けよう</p>
+            </div>
+            <div>
+                 <Flower fontSize={12} strokeWidth={1} />
+            </div>
+            </div>
         <main>
             <form  className='RegisterForm' onSubmit={handleSubmit}>
                 <Input
@@ -108,7 +113,7 @@ return (
             </form>
             <div className='messege'> 
                 アカウントを持っていない場合は
-                <Link to="/Register" className="underline">新規登録</Link>へ
+                <Link to="/Register" className="underline font-extrabold">新規登録</Link>へ
             </div>
         </main>
     </div>

@@ -29,13 +29,13 @@ const styles = {
 const Footer = () => {
   return (
     <div style={styles.footerContainer}>
-      <Link to="/Dashboard" style={styles.iconLink}>
+      <Link to="/dashboard" style={styles.iconLink}>
         <Home />
       </Link>
       <Link to="/chat" style={styles.iconLink}>
         <ChatLines />
       </Link>
-      <Link to="/adduser" style={styles.iconLink}>
+      <Link to="/addMember" style={styles.iconLink}>
         <AddUser />
       </Link>
       <Link to="/calendar" style={styles.iconLink}>

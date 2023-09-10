@@ -15,7 +15,8 @@ const SubmitButton = ({ children, onClick }) => {
           borderRadius: '10px',
           cursor: 'pointer',
           transition: '0.3s',
-          margin: '50px',
+          marginTop: '50px',
+          marginBottom: '20px',
         };
       
         const buttonHoverStyle = {

@@ -31,7 +31,7 @@ export default function App() {
   return (
     <div className="navbar" style={styles.navbarFixed}>
       <div className="left-item">
-        <a href="/infomation" className="navbar-item"><Flower fontSize={20} strokeWidth={1} /></a>
+        <a href="/information" className="navbar-item"><Flower fontSize={20} strokeWidth={1} /></a>
       </div>
       
       <div className="center-item">
