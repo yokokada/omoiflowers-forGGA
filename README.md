@@ -16,8 +16,8 @@
 **上記、同様のことがフレンド画面でも予測されるため、一旦Dashboadはやめて違うページを作ることにする**
 
 - ### components/Introduction/RegisterForm.jsx
-バリデーションのエラーはまだ出ないが、一旦firebaseへの登録は実装できたので、違うページに移行
-(9/10 13:40)
+　バリデーションのエラーはまだ出ないが、一旦firebaseへの登録は実装できたので、違うページに移行
+　(9/10 13:40)
 
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
