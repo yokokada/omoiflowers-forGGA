@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes,Navigate} from 'react-router-dom
 import './App.css'
 import ErrorBoundary from './components/common/ErrorBoundary';
 import Login from './pages/Login';
-import SignUp from './pages/SignUp';
+import Introdaction from './pages/Introduction';
 import Dashboard from './pages/Dashboard';
 import NotFoundComponent from './components/common/NotFoundComponent';
 import AddMember from './pages/AddMember';
@@ -20,7 +20,7 @@ function App() {
       <ErrorBoundary>
           <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/Introdaction" element={<Introdaction />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/AddMember" element={<AddMember />} />
           <Route path="/Calendar" element={<Calendar />} />

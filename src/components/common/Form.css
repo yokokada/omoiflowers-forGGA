@@ -1,0 +1,36 @@
+header{
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    background-color: #fde9e9;
+}
+
+.input-spacing {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.form main {
+    width: 100%;
+    max-width: 500px; /* この値はお好みで変更してください */
+    margin: 0 auto;
+}
+
+.RegisterForm{
+    margin: 20 auto;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    /* 縦に整列 */
+    align-items: center;
+}
+.form h1{
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: #1B3672;
+}
