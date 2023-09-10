@@ -29,7 +29,7 @@ const styles = {
 const Footer = () => {
   return (
     <div style={styles.footerContainer}>
-      <Link to="/Dashboad" style={styles.iconLink}>
+      <Link to="/Dashboard" style={styles.iconLink}>
         <Home />
       </Link>
       <Link to="/chat" style={styles.iconLink}>

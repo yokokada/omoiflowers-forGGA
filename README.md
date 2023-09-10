@@ -2,6 +2,7 @@
 ## 下記使用したUIコンポーネント
 - [https://nextui.org/docs/guide/introduction]
 - [https://iconoir.com/]
+- [https://chatscope.io/]
 
 ## 未解決問題
 - ### dashboad/AnimationComponent.jsx
@@ -22,6 +23,11 @@
 - ### components/Introduction/LoginForm.jsx
 　バリデーションのエラーはまだ出ないが、一旦firebaseへの登録は実装できたので、違うページに移行
 　(9/10 16:00 2時間かかってる💦)
+
+- ### /pages/Chat.jsx
+　以下の記事を参考にchat-ui-kit-reactを導入。一旦見た目はできた。firebaseとの連携とかはまだ実装していない。ライブラリ選んだりするのに時間がかかった。
+　（9/10 18:45）
+- [https://qiita.com/Ueken3pei/items/a4290883840b23019742]
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

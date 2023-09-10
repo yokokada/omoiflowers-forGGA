@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chatscope/chat-ui-kit-react": "^1.10.1",
+    "@chatscope/chat-ui-kit-styles": "^1.4.0",
     "@nextui-org/react": "^2.1.10",
     "@nextui-org/use-infinite-scroll": "^2.1.0",
     "@react-stately/data": "^3.10.2",
