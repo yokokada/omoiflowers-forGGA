@@ -19,6 +19,9 @@
 　バリデーションのエラーはまだ出ないが、一旦firebaseへの登録は実装できたので、違うページに移行
 　(9/10 13:40)
 
+- ### components/Introduction/LoginForm.jsx
+　バリデーションのエラーはまだ出ないが、一旦firebaseへの登録は実装できたので、違うページに移行
+　(9/10 16:00 2時間かかってる💦)
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

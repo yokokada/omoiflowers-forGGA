@@ -2,7 +2,7 @@ import React from 'react'
 import TopNavbarOnlyLogo from '../components/Introduction/TopNavbarOnlyLogo'
 import RegisterForm from '../components/Introduction/RegisterForm'
 
-const Introduction = () => {
+const Register = () => {
   return (
     <div>
         <TopNavbarOnlyLogo/>
@@ -11,4 +11,4 @@ const Introduction = () => {
   )
 }
 
-export default Introduction
+export default Register
