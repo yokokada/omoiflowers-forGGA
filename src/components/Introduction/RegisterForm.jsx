@@ -43,7 +43,7 @@ const RegisterForm = () => {
                 await updateProfile(user, {
                     displayName: displayName
                 });
-                console.log('アカウント作成成功:', user);
+                console.log('アカウント作成成功:', user, user.displayName);
                 setErrorMessage('');
                 setAccountCreated(true);  // アカウント作成成功時にポップアップを表示
                 } else {
