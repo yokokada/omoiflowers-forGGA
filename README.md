@@ -50,5 +50,10 @@ tailsに紐付けてユーザーを招待するために招待するロジック
 　アバターのURLを取得できない登録はできる
 　結構頑張ったけど、無理
 
+- ### 背景色変更
+　components/common/Navbar.css
+　/components/common/FooterPK.jsx
+　ヘッダーとフッターの色が変わらない（9/13 3:00）
+
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

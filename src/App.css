@@ -53,6 +53,15 @@ html,body {
   color: grey;
 }
 
+.bg-blue{
+background-color: #E9FDFC;
+} 
+.bg-pink{
+  background-color: #FDE9E9;
+  } 
+.bg-yellow{
+    background-color:#FDFDE9;
+    } 
 
 
 

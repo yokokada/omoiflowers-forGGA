@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useState ,useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes,Navigate} from 'react-router-dom';
 import './App.css'
 import ErrorBoundary from './components/common/ErrorBoundary';
@@ -13,9 +13,18 @@ import Settings from './pages/Settings';
 import Information from './pages/Information';
 import Member from './pages/Member';
 
+export const ColorContext = createContext();
 
 function App() {
+  const [bgColor, setBgColor] = useState("white");
+
+  useEffect(() => {
+    document.body.style.backgroundColor = bgColor;
+  }, [bgColor]);
+  
   return (
+<ColorContext.Provider value={{ bgColor, setBgColor }}>
+  <div style={{ backgroundColor: bgColor }}>
     <Router>
       <ErrorBoundary>
           <Routes>
@@ -33,6 +42,8 @@ function App() {
         </Routes>
       </ErrorBoundary>
     </Router>  
+    </div>  
+  </ColorContext.Provider>
   );
 }
 
