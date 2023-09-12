@@ -93,7 +93,7 @@ const handleFileSelect = async (event) => {
         setSelectedImage(downloadURL); // アップロードされた画像を表示
         // FirestoreにダウンロードURLを保存
         const userDocRef = doc(db, "users", currentUserId); 
-        await setDoc(userDocRef, { avatarURL: downloadURL }, { merge: true });
+        await setDoc(userDocRef, { avatar: downloadURL }, { merge: true });
       });
     });
   }

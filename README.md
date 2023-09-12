@@ -39,5 +39,12 @@
 　strageに画像保存して表示できた。dbにはjsonが入っている様子
 　/components/settings/DisplayNameSetting.jsxうまくauthからDisplayNameを取り出せない、とりあえず、寝る（9/11-20:00~9/12 2:00）
 
+- ### db構造の設定し直し
+users[email,displayName,avatar,birthDate,adminFlag,tail]
+tails[name,owner,subAdmin,members,createdAt]
+を作成。User's tailsに紐付けて、clicksを登録しようとしたが、うまくできず、一旦どんなtailの人でもすべてクリックする仕様のままになっている。
+tailsに紐付けてユーザーを招待するために招待するロジックを考え中。一旦保存することとする。
+（9/12 14:20）
+
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

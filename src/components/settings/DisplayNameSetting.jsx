@@ -1,40 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from '../../pages/Firebase';  // あなたのFirebaseの設定をインポートします。
+import { db } from '../../pages/Firebase';
 
 const DisplayNameSetting = () => {
-  const [displayName, setDisplayName] = useState('');
+    const auth = getAuth();
+    const user = auth.currentUser;
 
-  useEffect(() => {
-    const fetchDisplayName = async () => {
-      const auth = getAuth();
-      const currentUser = auth.currentUser;
+    let email = "";
+    let displayName = "";
 
-      if (currentUser) {
-        const userDocRef = doc(db, "users", currentUser.uid);
-        const docSnapshot = await getDoc(userDocRef);
+    if (user !== null) {
+        email = user.email;
+        displayName = user.displayName;
+    }
 
-        if (docSnapshot.exists()) {
-          const currentDisplayName = docSnapshot.data().displayName;
-          setDisplayName(currentDisplayName);
-          console.log("Current DisplayName:", currentDisplayName);
-        } else {
-          console.error("No document found for user:", currentUser.uid);
-        }
-      } else {
-        console.error("No user is currently signed in.");
-      }
-    };
-
-    fetchDisplayName();
-  }, []);
-
-  return (
-    <div>
-      {/* こちらに後でdisplayNameを扱うロジックやUIを追加します */}
-    </div>
-  );
+    return (
+        <div>
+            <p>Email: {email}</p>
+            <p>DisplayName: {displayName}</p>
+        </div>
+    );
 };
 
 export default DisplayNameSetting;

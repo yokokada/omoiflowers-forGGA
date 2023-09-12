@@ -7,6 +7,8 @@ import {EyeFilledIcon} from "./EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./EyeSlashFilledIcon";
 import SubmitButton from '../common/SubmitButtun';
 import '../common/Form.css'
+import { getDoc, setDoc, doc, collection, query, where, getDocs, updateDoc  } from "firebase/firestore";  // Firestoreの関数をインポート
+import { db } from '../../pages/Firebase';  // Firestoreのインスタンスをインポー
 
 const RegisterForm = () => {
     const [email, setEmail] = useState('');
@@ -43,6 +45,60 @@ const RegisterForm = () => {
                 await updateProfile(user, {
                     displayName: displayName
                 });
+            // 新しいユーザーをFirestoreに登録する
+            const userDocRef = doc(db, 'users', user.uid);  
+            const q = query(collection(db, 'tails'), where('members', 'array-contains', user.uid));
+
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                const tailName = `${displayName}'s tails`;
+                const tailRef = doc(collection(db, 'tails'));
+                await setDoc(tailRef, {
+                    name: tailName,
+                    owner: user.uid,
+                    subAdmin: null,
+                    members: [user.uid],
+                    createdAt: new Date()
+                });
+                await setDoc(userDocRef, {
+                    email: email,
+                    displayName: displayName,
+                    avatar: null,
+                    birthDate: null,
+                    adminFlag: 0,
+                    tail: tailRef.id
+                });
+            } else {
+                const tailDoc = querySnapshot.docs[0];
+                const tailData = tailDoc.data();
+                if (!tailData.subAdmin) {
+                    await updateDoc(doc(db, 'tails', tailDoc.id), {
+                        subAdmin: user.uid,
+                        members: [...tailData.members, user.uid] 
+                    });
+                    await setDoc(userDocRef, {
+                        email: email,
+                        displayName: displayName,
+                        avatar: null,
+                        birthDate: null,
+                        adminFlag: 1,
+                        tail: tailDoc.id
+                    });
+                } else {
+                    await setDoc(userDocRef, {
+                        email: email,
+                        displayName: displayName,
+                        avatar: null,
+                        birthDate: null,
+                        adminFlag: 3,
+                        tail: tailDoc.id
+                    });
+                    await updateDoc(doc(db, 'tails', tailDoc.id), {
+                        members: [...tailData.members, user.uid]
+                    });
+                }
+            }
+
                 console.log('アカウント作成成功:', user, user.displayName);
                 setErrorMessage('');
                 setAccountCreated(true);  // アカウント作成成功時にポップアップを表示
