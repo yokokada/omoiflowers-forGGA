@@ -22,9 +22,9 @@ export default function App() {
   };
 
   const menuItems = [
-    { name: "omoi flowers", action: "/dashboard" },
-    { name: "HugTalks", action: "/chat" },
-    { name: "Unity Calendar", action: "/calendar" },
+    { name: "home", action: "/dashboard" },
+    { name: "Talks", action: "/chat" },
+    { name: "Calendar", action: "/calendar" },
     { name: "設定", action: "/settings" },
     { name: "お知らせ", action: "/information" },
     { name: "友達招待", action: "/AddMember" },

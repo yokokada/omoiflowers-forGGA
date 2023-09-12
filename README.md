@@ -46,5 +46,9 @@ tails[name,owner,subAdmin,members,createdAt]
 tailsに紐付けてユーザーを招待するために招待するロジックを考え中。一旦保存することとする。
 （9/12 14:20）
 
+- ### components/common/AvatarUploader.jsx
+　アバターのURLを取得できない登録はできる
+　結構頑張ったけど、無理
+
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

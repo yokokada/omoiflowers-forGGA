@@ -9,6 +9,9 @@ import {Input} from "@nextui-org/react";
 import {EyeFilledIcon} from "./EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./EyeSlashFilledIcon";
 import { Flower } from 'iconoir-react';
+// Firebase Firestoreをインポートする
+import { doc, getDoc } from 'firebase/firestore'; 
+import { db } from '../../pages/Firebase'; // あなたのFirebase設定に合わせて変更してください
 
 
 // firebaseでのログイン機能を実装する
@@ -36,9 +39,20 @@ const handleSubmit = (e) => {
 
     //ーーーーーーサインイン処理ーーーーーーーーーーーー
        signInWithEmailAndPassword(auth, email, password)  // <- ここを変更しました
-       .then((userCredential) => {
+       .then(async(userCredential) => {
          // ログイン成功時の処理
          console.log('ログイン成功:', userCredential.user);
+         const currentUserId = userCredential.user.uid;
+          // Firestoreからユーザー情報を取得
+            const userDocRef = doc(db, 'users', currentUserId);
+            const userDoc = await getDoc(userDocRef);
+            
+            if (userDoc.exists()) {
+                console.log("User avatar URL:", userDoc.data().avatar);
+            } else {
+                console.log("No such user!");
+            }
+
          setErrorMessage(''); // エラーメッセージをリセット
          navigate('/dashboard');  // <-- この行を修正
        })
@@ -71,10 +85,13 @@ return (
     <div>
             <div className='explanation'>
             <div>
-                <p>想いをお花にして届けよう</p>
+                <p>そっと寄り添い</p>
             </div>
             <div>
-                 <Flower fontSize={12} strokeWidth={1} />
+                 {/* <Flower fontSize={12} strokeWidth={1} /> */}
+            </div>
+            <div>
+                <p>　ゆったり繋がる</p>
             </div>
             </div>
         <main>
