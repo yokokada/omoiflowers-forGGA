@@ -29,14 +29,14 @@ function App() {
       <ErrorBoundary>
           <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/AddMember" element={<AddMember />} />
-          <Route path="/Calendar" element={<Calendar />} />
-          <Route path="/Chat" element={<Chat />} />
-          <Route path="/Settings" element={<Settings />} />
-          <Route path="/Information" element={<Information />} />
-          <Route path="/Member" element={<Member />} />
+          <Route path="/addMember" element={<AddMember />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/talks" element={<Talks />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/information" element={<Information />} />
+          <Route path="/member" element={<Member />} />
           <Route path="/" element={<Navigate to="/login" replace/>} /> {/* <-- Redirect to /login */}
           <Route path="*" element={<NotFoundComponent />} /> {/* Optional: Handle 404 not found */}
         </Routes>

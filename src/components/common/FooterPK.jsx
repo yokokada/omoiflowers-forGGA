@@ -35,10 +35,10 @@ const Footer = () => {
       <Link to="/dashboard" style={styles.iconLink}>
         <Home />
       </Link>
-      <Link to="/chat" style={styles.iconLink}>
+      <Link to="/talks" style={styles.iconLink}>
         <ChatLines />
       </Link>
-      <Link to="/addMember" style={styles.iconLink}>
+      <Link to="/addmember" style={styles.iconLink}>
         <AddUser />
       </Link>
       <Link to="/calendar" style={styles.iconLink}>
