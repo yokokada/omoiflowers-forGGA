@@ -50,7 +50,7 @@ tailsに紐付けてユーザーを招待するために招待するロジック
 　アバターのURLを取得できない登録はできる
 　結構頑張ったけど、無理
 
-- ### 背景色変更
+- ### 背景色のボタンによる設定変更
 　components/common/Navbar.css
 　/components/common/FooterPK.jsx
 　ヘッダーとフッターの色が変わらない（9/13 3:00）
