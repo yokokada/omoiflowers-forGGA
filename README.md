@@ -54,6 +54,13 @@ tailsに紐付けてユーザーを招待するために招待するロジック
 　components/common/Navbar.css
 　/components/common/FooterPK.jsx
 　ヘッダーとフッターの色が変わらない（9/13 3:00）
+　ヘッダーとフッターの色は設定できたものの、ページによってうまく背景が変わっていないところがあり、後で調整の必要あり。
+- Dashboard.jsx : ヘッダーの色が変わらない
+- Chat.jsx : 全ての色が変わらない
+- AddMember.jsx  :  ヘッダーが透過している
+- Clender.jsx : ヘッダー、フッターの色が変わらない
+- Setting.jsx : body下半分とフッターの色が変わらない
+- Imformation.jsx : 全部色が変わらない
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
