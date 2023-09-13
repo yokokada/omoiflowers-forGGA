@@ -1,32 +1,35 @@
-import React from 'react';
+import React, { useContext }from 'react';
 import { Link } from 'react-router-dom';
 import { Home, Calendar, Settings, ChatLines, AddUser } from 'iconoir-react';
+import { ColorContext } from '../../App';
 
-const styles = {
-  footerContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '10px 20px 10px 20px',
-    alignItems: 'center',
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'rgba(253, 233, 233, 0.8)',
-},
-  iconLink: {
-    fontSize: '24px',
-    color: '#1B3672',
-    textDecoration: 'none',
-    display: 'grid',
-    alignItems: 'end',
-  },
-  hover: {
-    opacity: 0.8,
-  }
-}
+
 
 const Footer = () => {
+  const { bgColor } = useContext(ColorContext);  // bgColorを取得
+  const styles = {
+    footerContainer: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      padding: '10px 20px 10px 20px',
+      alignItems: 'center',
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor:  `${bgColor}80`, // bgColorを利用してNavbarの背景色を動的に変更
+  },
+    iconLink: {
+      fontSize: '24px',
+      color: '#1B3672',
+      textDecoration: 'none',
+      display: 'grid',
+      alignItems: 'end',
+    },
+    hover: {
+      opacity: 0.8,
+    }
+  }
   return (
     <div style={styles.footerContainer}>
       <Link to="/dashboard" style={styles.iconLink}>

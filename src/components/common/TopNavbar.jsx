@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext  } from 'react';
 import './Navbar.css';
 import { MoreHoriz } from 'iconoir-react';
 import { Flower } from 'iconoir-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../pages/Firebase';  // Firebaseの設定に応じて変更
 import { Link, useNavigate } from 'react-router-dom';
+import { ColorContext } from '../../App';
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { bgColor } = useContext(ColorContext);  
+  console.log("bgColor from context:", bgColor);
 
   useEffect(() => {
     console.log("menuOpen:", menuOpen);
@@ -37,7 +40,8 @@ export default function App() {
       top: 0,
       left: 0,
       width: '100%',
-      zIndex: 1000
+      zIndex: 1000,
+      backgroundColor: `${bgColor}80`, // bgColorを利用してNavbarの背景色を動的に変更
     }
   };
 

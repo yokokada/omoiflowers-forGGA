@@ -16,7 +16,7 @@ import Member from './pages/Member';
 export const ColorContext = createContext();
 
 function App() {
-  const [bgColor, setBgColor] = useState("white");
+  const [bgColor, setBgColor] = useState("rgb(253, 233, 233)");
 
   useEffect(() => {
     document.body.style.backgroundColor = bgColor;
@@ -24,7 +24,7 @@ function App() {
   
   return (
 <ColorContext.Provider value={{ bgColor, setBgColor }}>
-  <div style={{ backgroundColor: bgColor }}>
+  <div className={bgColor}>
     <Router>
       <ErrorBoundary>
           <Routes>

@@ -1,7 +1,6 @@
 html,body {
   font-family: Helvetica, Arial, sans-serif;
   overflow-y: auto;
-  background-color: #fde9e9;
   height: 100%;
   width: 100%;
   margin: 0;
@@ -17,14 +16,12 @@ html,body {
   height: auto;
   margin: 0 auto;
   text-align: center;
-  background-color: #fde9e9;
 }
 
 
 .App {
   text-align: center;
   margin: 0 auto;
-  background-color: #fde9e9;
 }
 
 .base_flowers {
@@ -53,15 +50,18 @@ html,body {
   color: grey;
 }
 
-.bg-blue{
-background-color: #E9FDFC;
-} 
-.bg-pink{
-  background-color: #FDE9E9;
-  } 
-.bg-yellow{
-    background-color:#FDFDE9;
-    } 
+.bg-blue {
+  background-color: rgb(233, 253, 252);
+}
+
+.bg-pink {
+  background-color: rgb(253, 233, 233);
+}
+
+.bg-yellow {
+  background-color: rgb(253, 253, 233);
+}
+
 
 
 
