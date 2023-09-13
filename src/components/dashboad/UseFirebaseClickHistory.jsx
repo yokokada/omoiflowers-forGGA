@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { collection, addDoc, onSnapshot, query, orderBy, Timestamp} from 'firebase/firestore';
 import { auth , db} from '../../pages/Firebase'; 
 
-const UseFirebaseClickHistory = (setCountdown, setLastClicked) => {
+const UseFirebaseClickHistory = ( ) => {
 // ーーーーーー最初の状態をuseStateで定義ーーーーーーーーーーーーーーーーーーーー
     const [clickHistory, setClickHistory] = useState([]);
     const [count, setCount] = useState(0);
     const [userDisplayName, setUserDisplayName] = useState(null);
-    const [countdown] = useState(0);  // カウントダウンの状態
+    const [countdown, setCountdown] = useState(0); // カウントダウンの状態
+    const [lastClicked, setLastClicked] = useState(null); // 最後のクリックの状態
     
 
 // ーーーーーーuseEffect関連コードーーーーーーーーーーーーーーーーーーーーーーー   

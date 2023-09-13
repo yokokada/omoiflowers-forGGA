@@ -12,6 +12,7 @@ import Talks from './pages/Talks';
 import Settings from './pages/Settings';
 import Information from './pages/Information';
 import Member from './pages/Member';
+import Chat from './pages/Chat';
 
 export const ColorContext = createContext();
 
@@ -28,6 +29,7 @@ function App() {
     <Router>
       <ErrorBoundary>
           <Routes>
+          <Route path="/chat/:memberId" element={<Chat />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
