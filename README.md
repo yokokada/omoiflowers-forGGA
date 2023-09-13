@@ -62,5 +62,3 @@ tailsに紐付けてユーザーを招待するために招待するロジック
 - Setting.jsx : body下半分とフッターの色が変わらない
 - Imformation.jsx : 全部色が変わらない
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
