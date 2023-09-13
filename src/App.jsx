@@ -8,7 +8,7 @@ import Dashboard from './pages/Dashboard';
 import NotFoundComponent from './components/common/NotFoundComponent';
 import AddMember from './pages/AddMember';
 import Calendar from './pages/Calendar';
-import Chat from './pages/Chat';
+import Talks from './pages/Talks';
 import Settings from './pages/Settings';
 import Information from './pages/Information';
 import Member from './pages/Member';
@@ -24,7 +24,7 @@ function App() {
   
   return (
 <ColorContext.Provider value={{ bgColor, setBgColor }}>
-  <div className={bgColor}>
+  <div style={{ backgroundColor: bgColor }}>
     <Router>
       <ErrorBoundary>
           <Routes>
