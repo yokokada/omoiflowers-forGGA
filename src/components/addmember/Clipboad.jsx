@@ -13,7 +13,7 @@ const VersionInput = ({ index, version, updateVersion }) => {
     outline: "none",
     resize: "none",
     width: "330px",
-    height: "90px",
+    height: "80px",
     padding: "10px 20px",
   };
 
@@ -29,9 +29,10 @@ const VersionInput = ({ index, version, updateVersion }) => {
     color: '#1B3672',
   };
   // indexが0（一番上）の場合だけ、marginTopを80に設定
-  const containerStyle = index === 0 ? { position: 'relative', marginTop: '80px' } : { position: 'relative', marginBottom: '10px' };
+  const containerStyle = index === 0 ? { position: 'relative', marginTop: '30px' } : { position: 'relative', marginBottom: '5px' };
 
   return (
+    <div>
     <div style={containerStyle}>
       <div style={{ textAlign: 'left', marginLeft: '30px' }}>
         <label style={{ fontWeight: 'bold', color: '#1B3672' }}>{`Ver.${index + 1}`}</label>
@@ -52,6 +53,7 @@ const VersionInput = ({ index, version, updateVersion }) => {
         {version.copied ? <span style={{ color: '#F39459' }}>コピーしました！</span> : null}
       </div>
     </div>
+    </div>
   );
 };
 
@@ -60,8 +62,7 @@ const Clipboard = () => {
     { value: '', copied: false },
     { value: '', copied: false },
     { value: '', copied: false },
-    { value: '', copied: false },
-    { value: '', copied: false }
+  
   ]);
 
   const addVersion = () => {
