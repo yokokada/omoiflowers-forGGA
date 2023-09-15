@@ -9,12 +9,14 @@ const AnimationComponent = () => {
     const [lastClicked, setLastClicked] = useState(null);
     const [countdown, setCountdown] = useState(0);  // カウントダウンの状態
     const [showModal, setShowModal] = useState(false);  // モーダルの状態
+    const [resetCounter, setResetCounter] = useState(0);
+    const [flowerImage, setFlowerImage] = useState(1);
     const {count, recordClick } = useFirebaseClickHistory(setCountdown, setLastClicked);
 
 // ーーーーーーuseEffect関連コードーーーーーーーーーーーーーーーーーーーーーーー
 useEffect(() => {
-    setImage(`${count}.png`);
-}, [count]);
+    setFlowerImage((count % 250) || 250);
+  }, [count]);
 
 useEffect(() => {
     console.log("countdown changed:", countdown);
@@ -33,14 +35,14 @@ const handleClick = async () => {
         return;
     }
     // クリックが上限に達した場合
-    if (count === 250) {
-        resetCount();
-        return;
-    }
+    if (count % 250 === 0) {
+        setFlowerImage(1); // 1.pngから再開
+    }else {
         recordClick(count + 1, now);
         localStorage.setItem('lastClicked', now.toString());
         setLastClicked(now);
         setCountdown(60);
+    }
     };
 
 const handleCountdownComplete = () => {
@@ -51,9 +53,8 @@ const handleCountdownComplete = () => {
 // ーーーーーーーーーここから下が実際の表示内容ーーーーーーーーーーーー
     return (
         <div className='omoi-flowers'>
-             
             <div className='base_flowers'>
-            <img src={`images/${image}`} alt="base_flowers" width={200} />
+            <img src={`images/${flowerImage}.png`} alt="base_flowers" width={200} />
             </div>
             <CustomModal isOpen={showModal} onClose={() => setShowModal(false)}>
                 <p>1分間に1回しかクリックできません！</p>
@@ -64,4 +65,3 @@ const handleCountdownComplete = () => {
 
 
 export default AnimationComponent;
-
