@@ -48,7 +48,7 @@ export default function App() {
   return (
     <div className="navbar" style={styles.navbarFixed}>
       <div className="left-item">
-        <a href="/notification" className="navbar-item"><Flower fontSize={20} strokeWidth={1} /></a>
+        <Link to="/notification" className="navbar-item"><Flower fontSize={20} strokeWidth={1} /></Link>
       </div>
       
       <div className="center-item">
