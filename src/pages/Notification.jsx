@@ -5,8 +5,7 @@ import FooterPK from '../components/common/FooterPK'
 const Notification = () => {
   return (
     <div>
-      {/* <TopNavbar/> */}
-      こんにちは
+      <TopNavbar/>
       <FooterPK/>
     </div>
   )
