@@ -91,7 +91,7 @@ const RegisterForm = () => {
                         displayName: displayName,
                         avatar: null,
                         birthDate: null,
-                        adminFlag: 3,
+                        adminFlag: 2,
                         tail: tailDoc.id
                     });
                     await updateDoc(doc(db, 'tails', tailDoc.id), {
@@ -103,9 +103,9 @@ const RegisterForm = () => {
                 console.log('アカウント作成成功:', user, user.displayName);
                 setErrorMessage('');
                 setAccountCreated(true);  // アカウント作成成功時にポップアップを表示
+                navigate('/login'); // この行を追加：アカウント作成成功後にログイン画面に遷移
                 } else {
                     setErrorMessage('ユーザーが正しく作成されませんでした。');
-                    navigate('/login'); // '/login'は実際のログイン画面のパスに置き換えてください
                 }
 
         } catch (error) {
@@ -137,6 +137,7 @@ const RegisterForm = () => {
                 variant="bordered"
                 value={displayName}
                             onChange={(e) => setDisplayName(e.target.value)}
+                style={{ fontSize: '17px' }}
             />
              <Input
                 isRequired
@@ -148,6 +149,7 @@ const RegisterForm = () => {
                 variant="bordered"
                 value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                style={{ fontSize: '17px' }}
             />
             <Input
                 isRequired
@@ -167,6 +169,7 @@ const RegisterForm = () => {
                     className="max-w-xs input-spacing"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    style={{ fontSize: '17px' }}
                     
             />
             <Input
@@ -187,6 +190,7 @@ const RegisterForm = () => {
                 className="max-w-xs input-spacing"
                 value={confirmPassword} // パスワード確認用のステートをバインド
                 onChange={(e) => setConfirmPassword(e.target.value)} // パスワード確認用のステートを更新
+                style={{ fontSize: '17px' }}
             />
             <SubmitButton>登録する</SubmitButton>
             </form>
