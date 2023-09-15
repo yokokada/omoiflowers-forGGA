@@ -105,6 +105,7 @@ return (
                     variant="bordered"
                     value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                    style={{ fontSize: '17px' }}
                 />
                 <Input
                     isRequired
@@ -123,6 +124,7 @@ return (
                         className="max-w-xs input-spacing"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        style={{ fontSize: '17px' }}
                         
                 />
                 {errorMessage && <div>{errorMessage}</div>}

@@ -27,7 +27,7 @@ header{
     align-items: center;
 }
 .form h1{
-    font-size: 16px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -35,7 +35,8 @@ header{
 }
 
 .messege{
-    font-size: 12px;
+    margin-top: 14px;
+    font-size: 16px;
     font-style: normal;
     line-height: normal;
     color: #1B3672;
