@@ -8,7 +8,6 @@ import SubmitButton from '../common/SubmitButtun';
 import {Input} from "@nextui-org/react";
 import {EyeFilledIcon} from "./EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./EyeSlashFilledIcon";
-import { Flower } from 'iconoir-react';
 // Firebase Firestoreをインポートする
 import { doc, getDoc } from 'firebase/firestore'; 
 import { db } from '../../pages/Firebase'; // あなたのFirebase設定に合わせて変更してください
@@ -57,6 +56,7 @@ const handleSubmit = (e) => {
          navigate('/dashboard');  // <-- この行を修正
        })
        .catch((error) => {
+        console.error("Firebase Authentication エラー:", error.code, error.message);
          // ログイン失敗時のエラーハンドリング
          switch (error.code) {
            case 'auth/user-not-found':
