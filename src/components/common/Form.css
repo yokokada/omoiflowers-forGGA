@@ -48,3 +48,8 @@ header{
     font-size: 12px;
     margin-bottom: 60px;
 }
+
+.errorMessage{
+color: red;
+font-size: 12px;
+}

@@ -127,6 +127,7 @@ const RegisterForm = () => {
         </header>
         <main>
             <form className='RegisterForm' onSubmit={handleSubmit}>
+            {errorMessage && <p className="errorMessage">{errorMessage}</p>} 
             <Input
                 isRequired
                 name="displayName"
