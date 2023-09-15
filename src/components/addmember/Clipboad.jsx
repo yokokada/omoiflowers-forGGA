@@ -8,7 +8,7 @@ const VersionInput = ({ index, version, updateVersion }) => {
   const defaultStyle = {
     border: "1px solid #ddd",
     borderRadius: "10px",
-    fontSize: "12px",
+    fontSize: "17px",
     color: "#333",
     outline: "none",
     resize: "none",
@@ -50,7 +50,7 @@ const VersionInput = ({ index, version, updateVersion }) => {
         </button>
       </CopyToClipboard>
       <div style={{ marginTop: '1px' }}>
-        {version.copied ? <span style={{ color: '#F39459' }}>コピーしました！</span> : null}
+        {version.copied ? <span style={{ color: '#F39459' ,fontWeight:'bold'}}>コピーしました！</span> : null}
       </div>
     </div>
     </div>
