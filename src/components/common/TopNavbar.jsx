@@ -29,7 +29,7 @@ export default function App() {
     { name: "Talks", action: "/chat" },
     { name: "Calendar", action: "/calendar" },
     { name: "設定", action: "/settings" },
-    { name: "お知らせ", action: "/information" },
+    { name: "お知らせ", action: "/notification" },
     { name: "友達招待", action: "/AddMember" },
     { name: "ログアウト", action: "LOG_OUT" }
   ];
@@ -48,7 +48,7 @@ export default function App() {
   return (
     <div className="navbar" style={styles.navbarFixed}>
       <div className="left-item">
-        <a href="/Notification" className="navbar-item"><Flower fontSize={20} strokeWidth={1} /></a>
+        <a href="/notification" className="navbar-item"><Flower fontSize={20} strokeWidth={1} /></a>
       </div>
       
       <div className="center-item">
