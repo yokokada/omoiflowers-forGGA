@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from '../../pages/Firebase';
-import { Link } from 'react-router-dom';  // Linkコンポーネントをインポート
+import { useNavigate  } from 'react-router-dom';  // Linkコンポーネントをインポート
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {Input} from "@nextui-org/react";
 import {EyeFilledIcon} from "./EyeFilledIcon";
@@ -19,6 +19,7 @@ const RegisterForm = () => {
     const [isVisible, setIsVisible] = React.useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
     const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
 
 
     const handleSubmit = async (e) => {
@@ -104,7 +105,7 @@ const RegisterForm = () => {
                 setAccountCreated(true);  // アカウント作成成功時にポップアップを表示
                 } else {
                     setErrorMessage('ユーザーが正しく作成されませんでした。');
-                    return;
+                    navigate('/login'); // '/login'は実際のログイン画面のパスに置き換えてください
                 }
 
         } catch (error) {
