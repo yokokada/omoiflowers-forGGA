@@ -10,7 +10,7 @@ import AddMember from './pages/AddMember';
 import Calendar from './pages/Calendar';
 import Talks from './pages/Talks';
 import Settings from './pages/Settings';
-import Information from './pages/Information';
+import Notification from './pages/Notification';
 import Member from './pages/Member';
 import Chat from './pages/Chat';
 import AllPost from './pages/AllPost';
@@ -40,7 +40,7 @@ function App() {
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/talks" element={<Talks />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/information" element={<Information />} />
+          <Route path="/Notification" element={<Notification />} />
           <Route path="/member" element={<Member />} />
           <Route path="/" element={<Navigate to="/login" replace/>} /> {/* <-- Redirect to /login */}
           <Route path="*" element={<NotFoundComponent />} /> {/* Optional: Handle 404 not found */}
