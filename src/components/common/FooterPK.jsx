@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { Home, Calendar, Settings, ChatLines, AddUser } from 'iconoir-react';
 import { ColorContext } from '../../App';
 
-
-
 const Footer = () => {
   const { bgColor } = useContext(ColorContext);  // bgColorを取得
   const styles = {
@@ -20,7 +18,7 @@ const Footer = () => {
       backgroundColor:  `${bgColor}80`, // bgColorを利用してNavbarの背景色を動的に変更
   },
     iconLink: {
-      fontSize: '24px',
+      fontSize: '16px',
       color: '#1B3672',
       textDecoration: 'none',
       display: 'grid',

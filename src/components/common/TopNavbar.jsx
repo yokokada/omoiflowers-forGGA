@@ -48,7 +48,7 @@ export default function App() {
   return (
     <div className="navbar" style={styles.navbarFixed}>
       <div className="left-item">
-        <Link to="/notification" className="navbar-item"><Flower fontSize={20} strokeWidth={1} /></Link>
+        <Link to="/notification" className="navbar-item"><Flower fontSize={16} strokeWidth={1} /></Link>
       </div>
       
       <div className="center-item">
@@ -60,7 +60,7 @@ export default function App() {
           setMenuOpen((prevState => !prevState));
           console.log("menuOpen:", menuOpen);  // <-- この行を追加
         }}>
-          <MoreHoriz fontSize={20}  strokeWidth={2} />
+          <MoreHoriz fontSize={16}  strokeWidth={2} />
         </div>
       </div>
       <div className={menuOpen ? 'menu-open' : ''}>
