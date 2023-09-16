@@ -4,12 +4,17 @@ import UseFirebaseClickHistory from '../UseFirebaseClickHistory';
 import OmotteruyoButton from '../../common/OmotteruyoButton';
 import Countdown from '../Countdown';
 import FooterPK from '../../common/FooterPK';
+import './ClickTable.css';
 
-const KeyParsonClickCount = () => {
+const KeyParsonClickCount = ({ showButton = true, showCountdown = true } ) => {
    // 画面遷移時にスクロール制御をかける定義
   const [isScrollDisabled, setIsScrollDisabled] = useState(true); 
   // omoってるよボタンの稼働状況テーブルの表示の定義
   const { clickHistory, userDisplayName, count, recordClick, countdown } = UseFirebaseClickHistory();
+// ここでclickHistoryとuserDisplayNameのログを出力
+const userClicks = clickHistory.filter(history => history.displayName === userDisplayName);
+  // userClicksの長さ（配列の要素数）がそのユーザーのクリック回数になります。
+const userClickCount = userClicks.length;
   // トグルボタンの定義
   const [isOpenMyThoughts, setIsOpenMyThoughts] = useState(false);
   const [isOpenClickers, setIsOpenClickers] = useState(false);
@@ -86,64 +91,34 @@ useEffect(() => {
 
   
   // スタイルの定義
-  const styles = {
-    mainTable: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      height: '100vh',
-    }
-  };
+
 
 // ここから下が実際の表示内容
-  return (
-    <div>
-      {/* カウントダウンの表示 → うまく表示できていない */}
-      <Countdown initialCountdown={countdown} onCountdownComplete={handleCountdownComplete}/>
-      {/* omoってるよボタンの表示 */}
-      <OmotteruyoButton onClick={handleButtonClick} />
-      {/* omoってるよボタンの稼働状況テーブルの表示 ⇨ 下のテーブルの左によってるのなんとかしたい*/}
-      <div style={styles.mainTable}>
-        <table style={{borderCollapse: 'collapse' }}>
-          <tbody>
-            <tr style={{ borderBottom: '1px solid #ddd' }}>
-              <td>omoってるよ累積</td>
-              <td>{count}</td>
-            </tr>
-            <tr  onClick={() => handleToggleClick(setIsOpenMyThoughts, isOpenMyThoughts)} style={{ cursor: 'pointer', borderBottom: '1px solid #ddd' }}>
-              <td>自分のomoってるよ</td>
-              <td>自分のomoってるよ</td>
-              {/* 一個目のトグル：自分の数カウント */}
-              <td>{isOpenMyThoughts ? '▲' : '▼'}</td>
-            </tr>
-            {isOpenMyThoughts && (
-              <tr>
-                <td colSpan={2}>
-                  <p>ここに自分の思っているよが入るよ</p>
-                </td>
-              </tr>
-            )}
-            <tr  onClick={() => handleToggleClick(setIsOpenClickers, isOpenClickers)} style={{ cursor: 'pointer', borderBottom: '1px solid #ddd' }}>
-              <td>押してくれた人</td>
-              <td>押してくれた人</td>
-              {/* 2個目のトグル：トータル数通した人カウント */}
-              <td>{isOpenClickers ? '▲' : '▼'}</td>
-            </tr>
-            {isOpenClickers && (
-              <tr>
-                <td colSpan={2}>
-                    {/* トータル数通した人カウント状況のテーブル表示 */}
-                  <ClickHistory history={clickHistory} />
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-        {/* 患者Pと家族用Kのフッター */}
-        <FooterPK/> 
+return (
+  <div className='tablespace'>
+    {showCountdown && <Countdown initialCountdown={countdown} onCountdownComplete={handleCountdownComplete} />}
+    {showButton && <OmotteruyoButton onClick={handleButtonClick} />}
+    <div className='mainTable'>
+      <div className='row' onClick={() => handleToggleClick(setIsOpenClickers, isOpenClickers)} style={{ cursor: 'pointer', borderBottom: '1px solid #ddd' }}>
+        <p className='a'>omoってるよ累積</p>
+        <p className='b'>{count}</p>
+        <p className='c'>{isOpenClickers ? '▲' : '▼'}</p>
       </div>
-    </div> 
-  );
+      {isOpenClickers && (
+        <ClickHistory history={clickHistory} />
+      )}
+      <div className='row' onClick={() => handleToggleClick(setIsOpenMyThoughts, isOpenMyThoughts)} style={{ cursor: 'pointer', borderBottom: '1px solid #ddd' }}>
+        <p className='a'>自分のomoってるよ</p>
+        <p className='b'>{userClickCount}</p>
+        <p className='c'>{isOpenMyThoughts ? '▲' : '▼'}</p>
+      </div>
+      {isOpenMyThoughts && (
+        <ClickHistory history={userClicks} />
+      )}
+    </div>
+    <FooterPK />
+  </div>
+);
 }
 
 export default KeyParsonClickCount;

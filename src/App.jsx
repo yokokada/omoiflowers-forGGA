@@ -14,6 +14,7 @@ import Notification from './pages/Notification';
 import Member from './pages/Member';
 import Chat from './pages/Chat';
 import AllPost from './pages/AllPost';
+import Clicks from './pages/Clicks';
 
 
 export const ColorContext = createContext();
@@ -32,6 +33,7 @@ function App() {
       <ErrorBoundary>
           <Routes>
           <Route path="/all-post" element={<AllPost />} />
+          <Route path="/clicks" element={<Clicks />} />
           <Route path="/chat/:memberId" element={<Chat />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

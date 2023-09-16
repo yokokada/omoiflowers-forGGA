@@ -26,6 +26,7 @@ export default function App() {
 
   const menuItems = [
     { name: "home", action: "/dashboard" },
+    { name: "クリック履歴", action: "/clicks" },
     { name: "Talks", action: "/talks" },
     { name: "Calendar", action: "/calendar" },
     { name: "設定", action: "/settings" },

@@ -1,0 +1,48 @@
+.tablespace{
+    margin:0 auto;
+}
+
+.mainTable {
+   margin: 0 auto;
+    }
+
+.a{
+    width: 170px;
+    text-align: left;
+    
+}
+.b{
+    width: 70px;
+    text-align: right;
+}
+.c{
+    width: 60px;
+    text-align: right;
+    font-size: 20px;
+}
+.table2{
+    display: flex;
+    justify-content: center;
+}
+.table3{
+    margin: 0 auto;
+    
+}
+.historytable{
+    width: 300px;
+    margin:0 auto;
+    text-align: center;
+}
+.table3{
+    margin: -10px auto;
+}
+.table3 tr {
+    height: 40px;
+    color: #1B3672;
+    
+}
+.row{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}

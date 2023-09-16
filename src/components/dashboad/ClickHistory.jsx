@@ -1,26 +1,16 @@
 import React from 'react';
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import './clickcountPKF/ClickTable.css';
 
 const ClickHistory = ({ history }) => {
-    // インラインスタイル定義
-    const styles = {
-        container: {
-            display: 'table',
-            margin: '0 auto',
-            justifyContent: 'center'
-        },
-        centeredCell: {
-            textAlign: 'center'  // セルのテキストを中央揃えにするためのスタイル
-        }
-    };
 
     return (
-        <div style={styles.container}>
+        <div className='historytable'>
             <Table isHeaderSticky aria-label="Click History">
                 <TableHeader>
-                    <TableColumn key="clickNumber" style={styles.centeredCell}>クリック数</TableColumn>
-                    <TableColumn key="clickedAt" style={styles.centeredCell}>時間</TableColumn>
-                    <TableColumn key="displayName" style={styles.centeredCell}>ID</TableColumn>
+                    <TableColumn key="clickNumber">クリックNo.</TableColumn>
+                    <TableColumn key="clickedAt" >日時</TableColumn>
+                    <TableColumn key="displayName" >ID</TableColumn>
                 </TableHeader>
                 <TableBody items={history}>
                     {(item) => (
@@ -28,12 +18,12 @@ const ClickHistory = ({ history }) => {
                             {(columnKey) => {
                                 if (columnKey === "clickedAt") {
                                     return (
-                                        <TableCell style={styles.centeredCell}>
+                                        <TableCell >
                                             {new Date(item.clickedAt.seconds * 1000).toLocaleString()}
                                         </TableCell>
                                     );
                                 }
-                                return <TableCell style={styles.centeredCell}>{item[columnKey]}</TableCell>;
+                                return <TableCell >{item[columnKey]}</TableCell>;
                             }}
                         </TableRow>
                     )}
