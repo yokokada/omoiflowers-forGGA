@@ -1,0 +1,73 @@
+.member-header {
+    font-size:16px;
+    color: #1B3672;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.member-image {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    transition: opacity 0.3s;
+    opacity: 0;
+    border-radius: 50%;
+}
+
+.member-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;  /* 左寄せのための設定 */
+    gap: 16px;  /* 4remから変更 */
+    padding: 8px 16px;  /* 6remから変更 */
+    margin: 2px;  /* 4remから変更 */
+    border-radius: 12px;
+    background-color: white;
+    box-shadow:  
+    0 -2px 2px rgba(0, 0, 0, 0.1),  
+    0 2px 2px rgba(0, 0, 0, 0.1),   
+    -2px 0 2px rgba(0, 0, 0, 0.1),  
+    2px 0 2px rgba(0, 0, 0, 0.1);   
+    
+    width: 300px;
+}
+
+.member-avatar {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    vertical-align: middle;
+    z-index: 20;
+    width: 50px;  /* 20remから変更 */
+    height: 50px;  /* 20remから変更 */
+    font-size: 16px;
+    background-color: var(--default); /* ここでbg-defaultの実際のカラー値に変更してください */
+    color: var(--default-foreground); /* ここでtext-default-foregroundの実際のカラー値に変更してください */
+    border-radius: 50%;
+    box-shadow: 
+    0 -2px 2px rgba(0, 0, 0, 0.1),  
+    0 2px 2px rgba(0, 0, 0, 0.1),   
+    -2px 0 2px rgba(0, 0, 0, 0.1),  
+    2px 0 2px rgba(0, 0, 0, 0.1);   
+}
+
+.member-detail {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.member-name {
+    font-size: var(--large-text);  /* ここで--large-textの実際のフォントサイズに変更してください */
+    color: #1B3672;  /* text-inheritの実際のカラー値、もしあれば */
+    font-weight: bold;
+}
+
+.member-email {
+    font-size: 1rem;  /* text-baseの実際のフォントサイズに変更してください */
+    color: var(--foreground-400);  /* ここでtext-foreground-400の実際のカラー値に変更してください */
+}
+
