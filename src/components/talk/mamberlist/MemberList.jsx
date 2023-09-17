@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { db, auth } from '../../pages/Firebase';  // FirestoreとAuthのインスタンスをインポート
+import { db, auth } from '../../../pages/Firebase';  // FirestoreとAuthのインスタンスをインポート
 import { collection, getDocs } from "firebase/firestore";  // Firestoreの関数をインポート
 import { useNavigate } from 'react-router-dom';
 import "./MemberList.css"

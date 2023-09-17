@@ -5,8 +5,8 @@ import FooterPK from '../components/common/FooterPK';
 import { db, auth } from './Firebase'; 
 import { doc, getDoc, collection, query, where, addDoc, orderBy, onSnapshot } from 'firebase/firestore';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import ChatDisplay from '../components/talk/ChatDisplay';
-import ChatHeader from '../components/talk/ChatHeader';
+import ChatDisplay from '../components/talk/chat/ChatDisplay';
+import ChatHeader from '../components/talk/chat/ChatHeader';
 
 
 const Chat = () => {

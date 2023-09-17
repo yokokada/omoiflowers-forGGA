@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavArrowLeft } from 'iconoir-react';
-import { db } from '../../pages/Firebase'; 
+import { db } from '../../../pages/Firebase'; 
 import { doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 

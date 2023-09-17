@@ -1,7 +1,7 @@
 import React from 'react';
 import {MainContainer,ChatContainer,MessageList,Message,MessageInput,Avatar
 } from "@chatscope/chat-ui-kit-react";
-import { db, auth } from '../../pages/Firebase'; 
+import { db, auth } from '../../../pages/Firebase'; 
 
 
 const ChatDisplay = ({ 
