@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ClickHistory from '../ClickHistory';
-import UseFirebaseClickHistory from '../UseFirebaseClickHistory';
+import ClickHistory from './ClickHistory';
+import UseFirebaseClickHistory from './UseFirebaseClickHistory';
 
 const PatientClickCount = () => {
   const { clickHistory, userDisplayName, count, recordClick } = UseFirebaseClickHistory();

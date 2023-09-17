@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CustomModal from '../common/CustomModal';  // 忘れずにインポートしてください
 import Countdown from './Countdown';
-import useFirebaseClickHistory from './UseFirebaseClickHistory';
+import useFirebaseClickHistory from './clickcountPKF/UseFirebaseClickHistory';
 
 const AnimationComponent = () => {
 // ーーーーーー最初の状態をuseStateで定義ーーーーーーーーーーーーーーーーーーーー

@@ -3,11 +3,11 @@ import { auth } from '../../pages/Firebase';
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"; 
 import { Link, useNavigate } from 'react-router-dom';  // <-- `useNavigate`を追
 // Form.cssをインポート
-import '../common/Form.css';
+import './Form.css';
 import SubmitButton from '../common/SubmitButtun';
 import {Input} from "@nextui-org/react";
-import {EyeFilledIcon} from "./EyeFilledIcon";
-import {EyeSlashFilledIcon} from "./EyeSlashFilledIcon";
+import {EyeFilledIcon} from "../common/EyeFilledIcon";
+import {EyeSlashFilledIcon} from "../common/EyeSlashFilledIcon";
 // Firebase Firestoreをインポートする
 import { doc, getDoc } from 'firebase/firestore'; 
 import { db } from '../../pages/Firebase'; // あなたのFirebase設定に合わせて変更してください

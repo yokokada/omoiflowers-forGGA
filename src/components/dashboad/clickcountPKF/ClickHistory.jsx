@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
-import './clickcountPKF/ClickTable.css';
+import './ClickTable.css';
 
 const ClickHistory = ({ history }) => {
 

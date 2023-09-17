@@ -3,10 +3,10 @@ import { auth } from '../../pages/Firebase';
 import { useNavigate  } from 'react-router-dom';  // Linkコンポーネントをインポート
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {Input} from "@nextui-org/react";
-import {EyeFilledIcon} from "../Introduction/EyeFilledIcon";
-import {EyeSlashFilledIcon} from "../Introduction/EyeSlashFilledIcon";
+import {EyeFilledIcon} from "../common/EyeFilledIcon";
+import {EyeSlashFilledIcon} from "../common/EyeSlashFilledIcon";
 import SubmitButton from '../common/SubmitButtun';
-import '../common/Form.css'
+import './Form.css'
 import { getDoc, setDoc, doc, collection, query, where, getDocs, updateDoc  } from "firebase/firestore";  // Firestoreの関数をインポート
 import { db } from '../../pages/Firebase';  // Firestoreのインスタンスをインポー
 

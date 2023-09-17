@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginForm from '../components/Introduction/LoginForm';
+import LoginForm from '../components/Users/LoginForm';
 
 const styles = {
   headerStyle: {
