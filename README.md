@@ -35,7 +35,6 @@
 - ### /pages/Settings.jsx
 　/components/common/AvatarUploader.jsx作成
 　strageに画像保存して表示できた。dbにはjsonが入っている様子
-　/components/settings/DisplayNameSetting.jsxうまくauthからDisplayNameを取り出せない、とりあえず、寝る（9/11-20:00~9/12 2:00）
 
 - ### db構造の設定し直し
 users[email,displayName,avatar,birthDate,adminFlag,tail]
