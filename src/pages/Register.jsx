@@ -1,6 +1,6 @@
 import React from 'react'
 import TopNavbarOnlyLogo from '../components/Introduction/TopNavbarOnlyLogo'
-import RegisterForm from '../components/Introduction/RegisterForm'
+import RegisterForm from '../components/Users/RegisterForm'
 
 const Register = () => {
   return (
