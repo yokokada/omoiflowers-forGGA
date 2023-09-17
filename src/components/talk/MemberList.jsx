@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db, auth } from '../../pages/Firebase';  // FirestoreとAuthのインスタンスをインポート
 import { collection, getDocs } from "firebase/firestore";  // Firestoreの関数をインポート
 import { useNavigate } from 'react-router-dom';
-import "./Memberlist.css"
+import "./MemberList.css"
 import {Avatar} from "@nextui-org/react";
 
 const Memberlist = () => {
