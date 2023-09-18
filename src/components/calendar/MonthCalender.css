@@ -1,7 +1,7 @@
 .Calendar {
     margin: 70px  auto 0; 
     /* これにより、要素が水平方向に中央に配置されます */
-    padding-top: 10px;
+    padding-top: 5px;
     width: 90vw;  
     max-width: 100%;
     background: white;
@@ -22,7 +22,7 @@
   .react-calendar__navigation {
     display: flex;
     height: 44px;
-    margin-bottom: 1em;
+    margin-bottom: 5px;
   }
   
   .react-calendar__navigation button {
