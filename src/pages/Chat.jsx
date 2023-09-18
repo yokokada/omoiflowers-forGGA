@@ -48,11 +48,13 @@ const Chat = () => {
     }
      // Firestoreにメッセージを保存
       await addDoc(collection(db, 'messages'), {
+        format: 'individual', // formatフィールドを追加
         senderId: auth.currentUser.uid,
         recipientId: memberId,
+        title: null ,          // titleフィールドを追加
         text: newMessage,
         imageUrl: imageUrl, // 画像のURLを追加
-        timestamp: new Date(),
+        timestamp: new Date()
       });
       setNewMessage('');
       setAttachment(null); // 添付ファイルをクリア

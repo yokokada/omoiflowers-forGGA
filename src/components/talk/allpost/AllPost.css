@@ -1,0 +1,144 @@
+.allMessageCreate{
+    display: flex;
+    /* 縦に並べる */
+    flex-direction: column;
+    /* 横方向の中央寄せ */
+    align-items: center;
+}
+
+.massageArea {
+    padding: 0px;
+    width: 90%;
+    max-width: 600px;
+    
+   
+}
+
+.inputGroup {
+    margin: 0;  /* この行を追加 */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* テキストエリアの背景色と境界線 */
+.inputTitle{
+    width: 100%;
+    padding: 8px;
+    font-size: 17px;
+    margin: 0;  /* この行を追加 */
+    border: 1px solid #ccc;
+    /* 上だけborder-radius:10px */
+    border-radius: 10px 10px 0 0;
+}
+
+.inputMessage {
+  min-height: 100px;
+  width: 100%; 
+  padding: 8px;
+  font-size: 17px;
+  word-wrap: break-word;  
+  overflow-y: auto;  
+  text-align: left; 
+  border: 1px solid #ccc;
+}
+
+.inputMessage:focus {
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+  }
+
+.inputImage {
+    padding: 2px 8px 8px;
+    text-align: left;
+    
+}
+
+.imagePreview img {
+    padding: 8px;
+    max-width: 50%;
+    max-height: 150px; /* 必要に応じて調整してください */
+    display: block;
+    border-radius: 4px;
+  }
+
+.cardArea{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+}
+
+.allPostCard{
+    margin: 0 auto;
+    width: 80%;
+    /* 浮き上がらせる */
+    box-shadow: 0 0 10px gray;
+    border-radius: 10px;
+}
+
+.cardImage img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0 ;
+    border-bottom:1px solid #ccc ;
+}
+.displayArea {
+    word-wrap: break-word;
+    white-space: normal;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    text-align: left;
+    white-space: pre-line;
+}
+
+.displayArea h2{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.displayArea p{
+    font-size: 12px;
+    margin: 0;
+}
+
+.cardImage + .displayArea {
+    border-radius: 0 0 10px 10px; /* 上部の角を0、下部の角を10pxで丸くする */
+}
+  
+.customMessage {
+    max-width: 80%; /* 例として70%に設定。好みに応じて変更してください */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影の効果を追加 */
+    border-radius: 10px; /* 角を少し丸める */
+    margin: 20px 10px ;
+  }
+
+  .customMessageWrapper {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    padding-left: 10px; /* これにより、メッセージと時間の左側のマージンが揃う */
+}
+  
+  .customMessageWrapper.outgoing .customMessage {
+    margin-right: 60px; /* 右寄せの時にメッセージを左に移動させる */
+  }
+  
+  .messageInfo {
+    font-size: 0.8em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 0; /* 余分なパディングを削除 */
+    margin-left: 25px;
+  }
+  
+
+
+
+
