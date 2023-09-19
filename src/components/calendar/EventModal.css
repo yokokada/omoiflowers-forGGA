@@ -1,0 +1,52 @@
+.eventModal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%; /* モーダルの幅を調整 */
+        max-width: 600px; /* 最大の幅を設定 */
+        height: auto; /* 必要に応じて高さを調整 */
+        background-color: white; /* 背景色を白に */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.4); /* 影を追加 */
+        z-index: 1000;
+    }
+
+    /* EventModal.css */
+.icon-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .icon-text {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    gap:10px;
+}
+  
+  .icon-row-selected {
+    color: blue;
+  }
+  
+  .input-row {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+  }
+  
+  .time-input {
+    margin-left: 20px;
+  }
+  
+  .comment-input {
+    margin-top: 5px;
+    width: 240px;
+    font-size: 17px;
+  }
+  
+    
+  
