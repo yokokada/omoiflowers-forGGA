@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import LoginForm from '../components/Users/LoginForm';
+import { ColorContext } from '../App';
 
 const styles = {
   headerStyle: {
@@ -12,6 +13,16 @@ const styles = {
 }
 
 const Login = () => {
+  const { setBgColor } = useContext(ColorContext);
+
+  useEffect(() => {
+    // ローカルストレージから背景色を取得して設定
+    const storedBgColor = localStorage.getItem('bgColor');
+    if (storedBgColor) {
+      setBgColor(storedBgColor);
+    }
+  }, [setBgColor]);
+
   return (
     <div>
       <div className='bigLogo'>
@@ -25,4 +36,3 @@ const Login = () => {
 }
 
 export default Login;
-

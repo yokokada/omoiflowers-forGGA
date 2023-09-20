@@ -20,11 +20,16 @@ import Clicks from './pages/Clicks';
 export const ColorContext = createContext();
 
 function App() {
-  const [bgColor, setBgColor] = useState("rgb(253, 233, 233)");
+  const initialColor = localStorage.getItem('bgColor') || "rgb(253, 233, 233)";
+  const [bgColor, setBgColor] = useState(initialColor);
+
 
   useEffect(() => {
     document.body.style.backgroundColor = bgColor;
-  }, [bgColor]);
+
+    // 色が変わったたびにローカルストレージにも保存
+    localStorage.setItem('bgColor', bgColor);
+    }, [bgColor]);
   
   return (
 <ColorContext.Provider value={{ bgColor, setBgColor }}>
