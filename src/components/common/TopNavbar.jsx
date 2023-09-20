@@ -7,14 +7,17 @@ import { auth } from '../../pages/Firebase';  // Firebaseの設定に応じて�
 import { Link, useNavigate } from 'react-router-dom';
 import { ColorContext } from '../../App';
 
+
+const convertRGBtoRGBA = (rgbString, opacity) => {
+  return rgbString.replace('rgb', 'rgba').replace(')', `, ${opacity})`);
+};
+
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { bgColor } = useContext(ColorContext);  
-  console.log("bgColor from context:", bgColor);
 
   useEffect(() => {
-    console.log("menuOpen:", menuOpen);
   }, [menuOpen]);
 
   const handleSignOut = () => {
@@ -42,7 +45,7 @@ export default function App() {
       left: 0,
       width: '100%',
       zIndex: 1000,
-      backgroundColor: `${bgColor}80`, // bgColorを利用してNavbarの背景色を動的に変更
+      backgroundColor: convertRGBtoRGBA(bgColor, 0.8),
     }
   };
 

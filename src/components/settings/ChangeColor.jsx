@@ -1,10 +1,34 @@
-import React, { useContext }  from 'react'
+import React, { useContext , useEffect }  from 'react'
 import '../.././App.css';
 import { ColorContext } from '../../App';
 import {Tabs, Tab} from "@nextui-org/react";
 
 const ChangeColor = () => {
     const { setBgColor } = useContext(ColorContext);
+
+    const currentColor = localStorage.getItem('bgColor');
+    let defaultTabKey = 'pink';  // デフォルトのタブをピンクに設定
+
+    switch(currentColor) {
+      case 'rgb(253, 233, 233)':
+          defaultTabKey = 'pink';
+          break;
+      case 'rgb(233, 253, 252)':
+          defaultTabKey = 'cyan';
+          break;
+      case 'rgb(253, 253, 233)':
+          defaultTabKey = 'yellow';
+          break;
+      default:
+          break;
+  }
+
+  // ページのロード時にローカルストレージから取得した背景色を設定
+  useEffect(() => {
+    if (currentColor) {
+        setBgColor(currentColor);
+    }
+}, [currentColor, setBgColor]);
 
     const handleTabChange = (key) => {
       let selectedColor = ''; // ここで選択された色を保存します
@@ -36,7 +60,7 @@ const ChangeColor = () => {
         <div className='changeColorcontent'>
           <p>背景色選択</p>
           <div className="flex w-full flex-col">
-          <Tabs aria-label="背景色変更" onSelectionChange={handleTabChange}>
+          <Tabs aria-label="背景色変更" defaultActiveKey={defaultTabKey}onSelectionChange={handleTabChange}>
               <Tab
                 key="pink"
                 title={

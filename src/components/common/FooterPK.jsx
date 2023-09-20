@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 import { Home, Calendar, Settings, ChatLines, AddUser } from 'iconoir-react';
 import { ColorContext } from '../../App';
 
+const convertRGBtoRGBA = (rgbString, opacity) => {
+  return rgbString.replace('rgb', 'rgba').replace(')', `, ${opacity})`);
+};
+
 const Footer = () => {
   const { bgColor } = useContext(ColorContext);  // bgColorを取得
+
   const styles = {
     footerContainer: {
       display: 'flex',
@@ -15,7 +20,7 @@ const Footer = () => {
       bottom: 0,
       left: 0,
       right: 0,
-      backgroundColor:  `${bgColor}80`, // bgColorを利用してNavbarの背景色を動的に変更
+      backgroundColor: convertRGBtoRGBA(bgColor, 0.8),
   },
     iconLink: {
       fontSize: '16px',
