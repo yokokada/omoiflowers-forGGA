@@ -1,32 +1,37 @@
-import React, { useContext , useEffect }  from 'react'
+import React, { useContext , useEffect , useState }  from 'react'
 import '../.././App.css';
 import { ColorContext } from '../../App';
 import {Tabs, Tab} from "@nextui-org/react";
 
 const ChangeColor = () => {
-    const { setBgColor } = useContext(ColorContext);
-
-    const currentColor = localStorage.getItem('bgColor');
-    let defaultTabKey = 'pink';  // デフォルトのタブをピンクに設定
-
-    switch(currentColor) {
-      case 'rgb(253, 233, 233)':
-          defaultTabKey = 'pink';
-          break;
-      case 'rgb(233, 253, 252)':
-          defaultTabKey = 'cyan';
-          break;
-      case 'rgb(253, 253, 233)':
-          defaultTabKey = 'yellow';
-          break;
-      default:
-          break;
-  }
+  const colorMapping = {
+    'rgb(253, 233, 233)': 'pink',
+    'rgb(233, 253, 252)': 'cyan',
+    'rgb(253, 253, 233)': 'yellow'
+  };
+  
+  const currentColor = localStorage.getItem('bgColor')|| 'rgb(253, 233, 233)';
+  const initialTab = colorMapping[currentColor] ;
+  const { setBgColor } = useContext(ColorContext);
+  const [activeTab, setActiveTab] = useState(initialTab);
 
   // ページのロード時にローカルストレージから取得した背景色を設定
   useEffect(() => {
     if (currentColor) {
         setBgColor(currentColor);
+        switch(currentColor) {  // switch文をここに移動
+          case 'rgb(253, 233, 233)':
+              setActiveTab('pink');
+              break;
+          case 'rgb(233, 253, 252)':
+              setActiveTab('cyan');
+              break;
+          case 'rgb(253, 253, 233)':
+              setActiveTab('yellow');
+              break;
+          default:
+              break;
+      }
     }
 }, [currentColor, setBgColor]);
 
@@ -52,15 +57,22 @@ const ChangeColor = () => {
           setBgColor(selectedColor);
           localStorage.setItem('bgColor', selectedColor);
           console.log("ローカルストレージに保存:", localStorage.getItem('bgColor')); // この行を追加
+          setActiveTab(key); // この行を変更
       }
   };
+
+  useEffect(() => {
+    if (currentColor) {
+        setBgColor(currentColor);
+    }
+  }, [currentColor, setBgColor]);
   
 
       return (
         <div className='changeColorcontent'>
           <p>背景色選択</p>
           <div className="flex w-full flex-col">
-          <Tabs aria-label="背景色変更" defaultActiveKey={defaultTabKey}onSelectionChange={handleTabChange}>
+          <Tabs aria-label="背景色変更"  selectedKey={activeTab} onSelectionChange={handleTabChange}>
               <Tab
                 key="pink"
                 title={
