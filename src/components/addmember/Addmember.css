@@ -1,0 +1,45 @@
+/* Clipboard.css */
+
+/* VersionInputのコンテナ */
+.version-input-container {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 5px;
+  }
+  
+  /* 最初のVersionInputの特別なスタイル */
+  .version-input-container:first-child {
+    margin-top: 30px;
+  }
+  
+  /* Versionラベル */
+  .version-label {
+    text-align: left;
+    margin-left: 30px;
+    font-weight: bold;
+    color: #1B3672;
+  }
+  
+/* 新しく追加するスタイル */
+.textarea-wrapper {
+    position: relative;
+    display: inline-block;  /* テキストエリアの幅に合わせてサイズ調整 */
+  }
+  
+  /* コピーボタンのスタイルを少し変更 */
+  .copy-button {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    color: #1B3672;
+    border-radius: 50%;
+    padding: 5px;
+  }
+  
+  
+  /* コピーメッセージ */
+  .copy-message {
+    color: #F39459;
+    font-weight: bold;
+  }
+  

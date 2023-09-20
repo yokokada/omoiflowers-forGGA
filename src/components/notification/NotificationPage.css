@@ -1,0 +1,35 @@
+/* NotificationPage.css */
+
+/* お知らせ全体のスタイル */
+.notification-container {
+    width: 90vw;  
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto; /* これを追加してコンテナを中央に配置 */
+  }
+  
+  /* お知らせのタイトル */
+  .notification-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* お知らせリスト */
+  .notification-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* お知らせの項目 */
+  .notification-item {
+    font-size: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff; /* 背景色 */
+    border-radius: 5px;
+  }
+  
+  
