@@ -3,7 +3,7 @@ import './AllPost.css';
 import DisplayMergedData from './DisplayMergedData'; // この行を追加
 import {Button} from "@nextui-org/react";
 import { db,auth } from '../../../pages/Firebase';
-import { getDocs,collection, addDoc } from 'firebase/firestore';
+import { getDocs, collection, addDoc, serverTimestamp  } from 'firebase/firestore';
 
 
 
@@ -42,6 +42,22 @@ const AllPostMessage = () => {
     const memberSnapshot = await getDocs(memberQuery);
     let memberData = memberSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
+    const formatCurrentDate = () => {
+      const currentDate = new Date();
+      const formatWithZero = (num) => {
+        return num < 10 ? `0${num}` : `${num}`;
+      }
+    
+      return `${currentDate.getFullYear()}-${formatWithZero(currentDate.getMonth() + 1)}-${formatWithZero(currentDate.getDate())}`;
+    };
+    
+    // schedulesコレクションにもデータを追加
+    await addDoc(collection(db, 'schedules'), {
+      timestamp: serverTimestamp(),
+      userId: auth.currentUser?.uid || '',
+      date: formatCurrentDate(), // ここでヘルパー関数を使用して日付をフォーマット
+      record: 'on',
+    });
     for(let member of memberData) {
         await addDoc(collection(db, 'messages'), {
             format: 'all',

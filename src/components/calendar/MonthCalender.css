@@ -1,5 +1,5 @@
 .Calendar {
-    margin: 90px auto 50px; 
+    margin: 70px auto 50px; 
     /* これにより、要素が水平方向に中央に配置されます */
     padding-top: 5px;
     width: 90vw;  
@@ -64,4 +64,4 @@
     /* color: white; */
   }
   
-  
+

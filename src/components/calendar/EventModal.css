@@ -48,5 +48,15 @@
     font-size: 17px;
   }
   
-    
+  .close-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: #F39459;
+    padding: 5px 6px;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 5px;
+}
   

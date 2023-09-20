@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import Calendar from 'react-calendar';
 import './MonthCalender.css';
 import { Hospital,  Edit, Emoji} from 'iconoir-react';
 import EventModal from './EventModal';
+import { db } from '../../pages/Firebase';
+import { collection, getDocs, query, where } from 'firebase/firestore'; // 必要なFirestore関数をインポート
+import IconDescription from './IconDescription'; // IconDescriptionのインポート
+
 
 
 const MonthCalendar = () => {
@@ -14,6 +18,38 @@ const MonthCalendar = () => {
   const [startTime, setStartTime] = useState("09:00");
   const [endTime, setEndTime] = useState("18:00");
 
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'schedules')); // 全てのドキュメントを取得
+        const fetchedEvents = {};
+        querySnapshot.forEach(doc => {
+          const data = doc.data();
+          fetchedEvents[data.date] = {
+            emoji: {
+              selected: data.omimai === 'on',
+              startTime: data['o-time'] ? data['o-time'].split('-')[0] : '',
+              endTime: data['o-time'] ? data['o-time'].split('-')[1] : ''
+            },
+            hospital: {
+              selected: data.care === 'on',
+              startTime: data['c-time'] ? data['c-time'].split('-')[0] : '',
+              endTime: data['c-time'] ? data['c-time'].split('-')[1] : ''
+            },
+            edit: {
+              selected: data.record === 'on'
+            }
+            // 他のフィールドも同様にマッピング
+          };
+        });
+        setEvents(fetchedEvents);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   const handleDateClick = (date) => {
     const dateStr =date.toLocaleDateString('en-CA');
@@ -117,7 +153,8 @@ return (
       setEndTime={setEndTime}
       onSave={saveEvent}
       setIconsWithTime={setIconsWithTime} // この行を追加
-    />      
+    />   
+       <IconDescription />  
   </div>
     
   );
