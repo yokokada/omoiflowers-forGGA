@@ -1,0 +1,78 @@
+.avatarSetting{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;   
+}
+
+.avatarSetting p{
+    margin-bottom: 10px;
+}
+.avatarStyle {
+    width: 160px !important;
+    height: 160px !important;
+    margin-bottom: 20px;
+}
+
+.fileInput {
+    display: none;
+}
+
+.settingContents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+.passwordChangeToggle{
+    margin-top: 20px;
+}
+
+.underlineLink {
+    text-decoration: underline;
+}
+.form{
+    margin-bottom: 10px;
+}
+.form header{
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.form p{
+   margin-top: 0px;
+   font-size: 12px;
+   margin-bottom:5px ;
+}
+.circle-p{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color:#FDE9E9 ;
+    border: solid 1px black;
+    margin-right: 3px;
+}
+.circle-b{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #E9FDFC;
+    border: solid 1px black;
+    margin-right: 3px;
+
+}
+.circle-y{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FDFDE9;
+    border: solid 1px black;
+    margin-right: 3px;
+
+}
+
+.changeColorcontent p{
+    margin-bottom: 10px;
+}

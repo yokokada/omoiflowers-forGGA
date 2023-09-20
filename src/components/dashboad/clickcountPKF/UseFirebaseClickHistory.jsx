@@ -9,7 +9,7 @@ const UseFirebaseClickHistory = ( ) => {
     const [userDisplayName, setUserDisplayName] = useState(null);
     const [countdown, setCountdown] = useState(0); // カウントダウンの状態
     const [lastClicked, setLastClicked] = useState(null); // 最後のクリックの状態
-    
+    const [userId, setUserId] = useState(null); // ユーザーのuidを保持する状態
 
 // ーーーーーーuseEffect関連コードーーーーーーーーーーーーーーーーーーーーーーー   
 // ユーザー名を取得するための useEffect
@@ -17,13 +17,17 @@ useEffect(() => {
     const user = auth.currentUser;
     if (user) {
         setUserDisplayName(user.displayName);
+        setUserId(user.uid); // uidを状態にセット
     }
     const unsubscribe = auth.onAuthStateChanged((user) => {
+        console.log("User state changed: ", user);
         if (user) {
             setUserDisplayName(user.displayName);
+            setUserId(user.uid); // この行を追加
         } else {
             // ログアウトした時やログイン状態がない時の処理をここに書く
             setUserDisplayName(null);
+            setUserId(null); // ユーザーがログアウトした場合、uidの状態をnullに設定
         }
     });
     return () => unsubscribe();
@@ -73,6 +77,7 @@ useEffect(() => {
         const timestamp = Timestamp.fromDate(currentDate);
         // firestoreにデータを追加
         const clickData = {
+            uid: userId, // uidをデータに追加
             displayName: userDisplayName,
             clickedAt: timestamp,
             clickNumber: newCount
@@ -90,7 +95,7 @@ useEffect(() => {
         }
     };
 
-  return  { clickHistory, userDisplayName, count, recordClick,setCountdown,countdown }
+  return  { clickHistory, userDisplayName, userId, count, recordClick,setCountdown,countdown }
   
 };
 

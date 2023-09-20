@@ -10,10 +10,11 @@ const KeyParsonClickCount = ({ showButton = true, showCountdown = true } ) => {
    // 画面遷移時にスクロール制御をかける定義
   const [isScrollDisabled, setIsScrollDisabled] = useState(true); 
   // omoってるよボタンの稼働状況テーブルの表示の定義
-  const { clickHistory, userDisplayName, count, recordClick, countdown } = UseFirebaseClickHistory();
+  const { clickHistory, userDisplayName, userId, count, recordClick, countdown } = UseFirebaseClickHistory();
 // ここでclickHistoryとuserDisplayNameのログを出力
-const userClicks = clickHistory.filter(history => history.displayName === userDisplayName);
-  // userClicksの長さ（配列の要素数）がそのユーザーのクリック回数になります。
+const userClicks = clickHistory.filter(history => history.uid === userId);
+console.log("Current User UID: ", userId);
+  // userClicksの長さ（配列の要素数）がそのユーザaーのクリック回数になります。
 const userClickCount = userClicks.length;
   // トグルボタンの定義
   const [isOpenMyThoughts, setIsOpenMyThoughts] = useState(false);
