@@ -28,8 +28,8 @@ function Dashboard() {
      <TopNavbar/>
       <AnimationComponent />
       {/* <PatientClickCount /> */}
-      {/* <KeyParsonClickCount/> */}
-      <FriendsClickCount/>
+      <KeyParsonClickCount/>
+      {/* <FriendsClickCount/> */}
       
     </div>
   );

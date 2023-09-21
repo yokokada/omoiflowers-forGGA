@@ -10,6 +10,8 @@ const clicks = () => {
         < TopNavbar />
         <div style={{marginTop:'100px'}}>
         <KeyParsonClickCount showButton={false} showCountdown={false}/>
+        {/* <PatientClickCount showButton={false} showCountdown={false}/> */}
+        {/* <FriendsClickCount showButton={false} showCountdown={false}/> */}
         </div>
         <Footer/>
     </div>
