@@ -4,6 +4,7 @@ import TopNavbar from '../components/common/TopNavbar';
 import '../App.css';
 import PatientClickCount from '../components/dashboad/clickcountPKF/PatientClickCount';
 import KeyParsonClickCount from '../components/dashboad/clickcountPKF/KeyParsonClickCount';
+import FriendsClickCount from '../components/dashboad/clickcountPKF/FriendsClickCount';
 
 function Dashboard() {
 
@@ -27,7 +28,8 @@ function Dashboard() {
      <TopNavbar/>
       <AnimationComponent />
       {/* <PatientClickCount /> */}
-      <KeyParsonClickCount/>
+      {/* <KeyParsonClickCount/> */}
+      <FriendsClickCount/>
       
     </div>
   );
