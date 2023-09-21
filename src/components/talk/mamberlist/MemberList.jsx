@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import "./MemberList.css"
 import {Avatar} from "@nextui-org/react";
 
-const Memberlist = () => {
+const Memberlist = ({ isClickable = true }) => {
   const [members, setMembers] = useState([]);
   const  navigate  = useNavigate();
   
   const handleChatWithMember = (memberId) => {
+    if (!isClickable) return; // 追加する条件
     navigate (`/chat/${memberId}`);
   };
 
