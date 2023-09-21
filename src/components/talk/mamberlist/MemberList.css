@@ -71,3 +71,7 @@
     color: var(--foreground-400);  /* ここでtext-foreground-400の実際のカラー値に変更してください */
 }
 
+.member-contents{
+    margin-bottom: 50px;
+    
+}

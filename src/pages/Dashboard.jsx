@@ -24,7 +24,7 @@ function Dashboard() {
   
   return (
     <div>
-     <TopNavbar style={styles.topNavBar} />
+     <TopNavbar/>
       <AnimationComponent />
       {/* <PatientClickCount /> */}
       <KeyParsonClickCount/>

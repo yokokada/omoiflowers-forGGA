@@ -53,7 +53,7 @@ const Memberlist = () => {
   }, []);
 
   return (
-    <div>
+    <div className='member-contents'>
       <h1 className="member-header">メンバーリスト</h1>
       <ul>
       {members.map(member => (
