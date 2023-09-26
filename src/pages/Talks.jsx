@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { getDoc, doc } from "firebase/firestore";
 import { auth, db } from '../pages/Firebase';
 import MemberList from '../components/talk/mamberlist/MemberList'
-import TopNavbar from '../components/common/TopNavbar'
-import FooterPK from '../components/common/FooterPK'
+import TopNavbar from '../components/common/header/TopNavbar'
+import FooterPK from '../components/common/footer/FooterPK'
 import MenuComponent from '../components/talk/menu/MenuComponent';
 import FriendsMemberList from '../components/talk/mamberlist/FriendsMemberList'
 import FriendsMenu from '../components/talk/menu/FriendsMenu';
@@ -28,7 +28,7 @@ const Talks = () => {
 
   return (
     <div>
-      <TopNavbar />
+      {/* <TopNavbar /> */}
       {(adminFlag === 0 || adminFlag === 1) && (
         <>
           <MenuComponent />
@@ -41,7 +41,7 @@ const Talks = () => {
           <FriendsMemberList />
         </>
       )}
-      <FooterPK />
+      {/* <FooterPK /> */}
     </div>
   );
 };

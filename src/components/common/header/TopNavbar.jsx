@@ -3,9 +3,9 @@ import './Navbar.css';
 import { MoreHoriz } from 'iconoir-react';
 import { Flower } from 'iconoir-react';
 import { signOut } from 'firebase/auth';
-import { auth } from '../../pages/Firebase';  // Firebaseの設定に応じて変更
+import { auth } from '../../../pages/Firebase';  // Firebaseの設定に応じて変更
 import { Link, useNavigate } from 'react-router-dom';
-import { ColorContext } from '../../App';
+import { ColorContext } from '../../../App';
 
 
 const convertRGBtoRGBA = (rgbString, opacity) => {

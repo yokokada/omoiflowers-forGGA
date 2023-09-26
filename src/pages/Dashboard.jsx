@@ -1,6 +1,6 @@
 import React from 'react';
 import AnimationComponent from '../components/dashboad/AnimationComponent';
-import TopNavbar from '../components/common/TopNavbar';
+import TopNavbar from '../components/common/header/TopNavbar';
 import '../App.css';
 import PatientClickCount from '../components/dashboad/clickcountPKF/PatientClickCount';
 import KeyParsonClickCount from '../components/dashboad/clickcountPKF/KeyParsonClickCount';
@@ -25,7 +25,7 @@ function Dashboard() {
   
   return (
     <div>
-     <TopNavbar/>
+     {/* <TopNavbar/> */}
       <AnimationComponent />
       {/* <PatientClickCount /> */}
       <KeyParsonClickCount/>

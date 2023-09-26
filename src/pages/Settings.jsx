@@ -1,6 +1,6 @@
 import React, { createContext, useState ,useEffect} from 'react'
-import TopNavbar from '../components/common/TopNavbar'
-import FooterPK from '../components/common/FooterPK'
+import TopNavbar from '../components/common/header/TopNavbar'
+import FooterPK from '../components/common/footer/FooterPK'
 import AvatarUploader from '../components/settings/AvatarUploader'
 import DisplayNameSetting from '../components/settings/DisplayNameSetting'
 import ChangeColor from '../components/settings/ChangeColor'
@@ -10,13 +10,13 @@ const Settings = () => {
   
   return (
     <div className='settingContents'>
-      <TopNavbar/>
+      {/* <TopNavbar/> */}
       <div style={{ marginTop:'50px' }}>
       <AvatarUploader />
       <ChangeColor/>
       <DisplayNameSetting/>
       </div>
-      <FooterPK/>
+      {/* <FooterPK/> */}
     </div>
   )
 }

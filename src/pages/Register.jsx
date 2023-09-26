@@ -1,11 +1,11 @@
 import React from 'react'
-import TopNavbarOnlyLogo from '../components/Introduction/TopNavbarOnlyLogo'
+import TopNavbarOnlyLogo from '../components/common/header/TopNavbarOnlyLogo'
 import RegisterForm from '../components/Users/RegisterForm'
 
 const Register = () => {
   return (
     <div>
-        <TopNavbarOnlyLogo/>
+        {/* <TopNavbarOnlyLogo/> */}
         <RegisterForm/>
     </div>
   )

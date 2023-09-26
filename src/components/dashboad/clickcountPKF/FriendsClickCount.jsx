@@ -3,7 +3,7 @@ import ClickHistory from './ClickHistory';
 import UseFirebaseClickHistory from './UseFirebaseClickHistory';
 import OmotteruyoButton from '../omotteruyobutton/OmotteruyoButton';
 import Countdown from '../Countdown';
-import FooterPK from '../../common/FooterPK';
+import FooterPK from '../../common/footer/FooterPK';
 import './ClickTable.css';
 
 const KeyParsonClickCount = ({ showButton = true, showCountdown = true } ) => {
@@ -115,7 +115,7 @@ return (
         <ClickHistory history={userClicks} />
       )}
     </div>
-    <FooterPK />
+    {/* <FooterPK /> */}
   </div>
 );
 }

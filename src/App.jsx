@@ -15,6 +15,8 @@ import Member from './pages/Member';
 import Chat from './pages/Chat';
 import AllPost from './pages/AllPost';
 import Clicks from './pages/Clicks';
+import ConditionalHeader from './components/common/header/ConditionalHeader';
+import ConditionalFooter from './components/common/footer/ConditionalFooter';
 
 
 export const ColorContext = createContext();
@@ -35,6 +37,7 @@ function App() {
 <ColorContext.Provider value={{ bgColor, setBgColor }}>
   <div style={{ backgroundColor: bgColor }}>
     <Router>
+    <ConditionalHeader/>
       <ErrorBoundary>
           <Routes>
           <Route path="/all-post" element={<AllPost />} />
@@ -53,6 +56,7 @@ function App() {
           <Route path="*" element={<NotFoundComponent />} /> {/* Optional: Handle 404 not found */}
         </Routes>
       </ErrorBoundary>
+      <ConditionalFooter/>
     </Router>  
     </div>  
   </ColorContext.Provider>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import TopNavbar from '../components/common/TopNavbar';
-import FooterPK from '../components/common/FooterPK';
+import TopNavbar from '../components/common/header/TopNavbar';
+import FooterPK from '../components/common/footer/FooterPK';
 import ChatDisplay from '../components/talk/chat/ChatDisplay';
 import ChatHeader from '../components/talk/chat/ChatHeader';
 import useChat from '../hooks/useChat';
@@ -13,14 +13,14 @@ const Chat = () => {
 
   return (
     <div>
-      <TopNavbar/>
+      {/* <TopNavbar/> */}
       <div style={{ position: "relative", height: "500px", marginTop: "80px" }}>
         <ChatHeader memberId={memberId} />
         <ChatContext.Provider value={chatState}>
           <ChatDisplay />
         </ChatContext.Provider>
       </div>
-      <FooterPK/>
+      {/* <FooterPK/> */}
     </div>
   );
 };
