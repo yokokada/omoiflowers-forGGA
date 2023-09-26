@@ -17,6 +17,7 @@ import AllPost from './pages/AllPost';
 import Clicks from './pages/Clicks';
 import ConditionalHeader from './components/common/header/ConditionalHeader';
 import ConditionalFooter from './components/common/footer/ConditionalFooter';
+import { AdminFlagProvider } from './context/AdminFlagContext';
 
 
 export const ColorContext = createContext();
@@ -35,6 +36,7 @@ function App() {
   
   return (
 <ColorContext.Provider value={{ bgColor, setBgColor }}>
+ <AdminFlagProvider> 
   <div style={{ backgroundColor: bgColor }}>
     <Router>
     <ConditionalHeader/>
@@ -59,7 +61,8 @@ function App() {
       <ConditionalFooter/>
     </Router>  
     </div>  
-  </ColorContext.Provider>
+ </AdminFlagProvider> 
+</ColorContext.Provider>
   );
 }
 

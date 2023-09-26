@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Home, Calendar, Settings, ChatLines, AddUser } from 'iconoir-react';
 import { ColorContext } from '../../../App';
 
+
 const convertRGBtoRGBA = (rgbString, opacity) => {
   return rgbString.replace('rgb', 'rgba').replace(')', `, ${opacity})`);
 };

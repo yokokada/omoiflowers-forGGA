@@ -3,8 +3,8 @@ import { db, auth } from '../../../pages/Firebase';  // FirestoreとAuthのイ�
 import { collection, getDocs } from "firebase/firestore";  // Firestoreの関数をインポート
 
 const FriendsMenu = () => {
-  const [displayNameForZero, setDisplayNameForZero] = useState("本人さん"); // adminFlagが0のdisplayName
-  const [displayNameForOne, setDisplayNameForOne] = useState("家族さん"); // adminFlagが1のdisplayName
+  const [displayNameForZero, setDisplayNameForZero] = useState("本人"); // adminFlagが0のdisplayName
+  const [displayNameForOne, setDisplayNameForOne] = useState("家族"); // adminFlagが1のdisplayName
   
   useEffect(() => {
     const fetchNames = async () => {
