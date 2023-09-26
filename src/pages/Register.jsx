@@ -4,7 +4,7 @@ import RegisterForm from '../components/Users/RegisterForm'
 
 const Register = () => {
   return (
-    <div>
+    <div style={{ marginTop:'80px' }}>
         {/* <TopNavbarOnlyLogo/> */}
         <RegisterForm/>
     </div>
