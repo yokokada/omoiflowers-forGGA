@@ -6,13 +6,16 @@ import EventModal from './EventModal';
 import { db } from '../../pages/Firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore'; // 必要なFirestore関数をインポート
 import IconDescription from './IconDescription'; // IconDescriptionのインポート
-
+import FriendsEventModal from './FriendsEventModal';
+import { useAdminFlag } from '../../context/AdminFlagContext';
 
 
 const MonthCalendar = () => {
+  const { adminFlag,} = useAdminFlag(); // <-- useAdminFlagで取得
   const [value, onChange] = useState(new Date());
   const [events, setEvents] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEventModalOpen, setIsEventModalOpen] = useState(false);
+  const [isFriendsModalOpen, setIsFriendsModalOpen] = useState(false); // FriendsEventModal専用の状態
   const [selectedIcons, setSelectedIcons] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [startTime, setStartTime] = useState("09:00");
@@ -52,29 +55,39 @@ const MonthCalendar = () => {
   }, []);
 
   const handleDateClick = (date) => {
-    const dateStr =date.toLocaleDateString('en-CA');
+    console.log("handleDateClickが呼ばれました", date);
+    const dateStr = date.toLocaleDateString('en-CA');
     setSelectedDate(dateStr);
     const iconsForDate = events[dateStr];
     if (iconsForDate) {
-        // 日付に対するイベントデータが存在する場合
-        setIconsWithTime(iconsForDate);
+      // 日付に対するイベントデータが存在する場合
+      setIconsWithTime(iconsForDate);
     } else {
-        // 日付に対するイベントデータが存在しない場合、アイコンと時間の情報を初期値にリセット
-        setIconsWithTime({
-            emoji: {
-                selected: false,
-                startTime: "09:00",
-                endTime: "10:00"
-            },
-            hospital: {
-                selected: false,
-                startTime: "09:00",
-                endTime: "10:00"
-            },
-        });
+      // 日付に対するイベントデータが存在しない場合、アイコンと時間の情報を初期値にリセット
+      setIconsWithTime({
+        emoji: {
+          selected: false,
+          startTime: "09:00",
+          endTime: "10:00"
+        },
+        hospital: {
+          selected: false,
+          startTime: "09:00",
+          endTime: "10:00"
+        },
+      });
     }
-    setIsModalOpen(true);
-};
+  
+    // adminFlagに応じて対応するモーダルの状態を変更
+    if (adminFlag === 0 || adminFlag === 1) {
+      setIsEventModalOpen(true);
+      setIsFriendsModalOpen(false);  // 追加：友達のモーダルを閉じる
+    } else if (adminFlag === 3) {
+      setIsFriendsModalOpen(true);
+      setIsEventModalOpen(false);  // 追加：イベントモーダルを閉じる
+    }
+  };
+  
 
   const [iconsWithTime, setIconsWithTime] = useState({
     emoji: {
@@ -104,7 +117,7 @@ const MonthCalendar = () => {
         ...prevEvents,
         [selectedDate]: iconsWithTime
       }));
-      setIsModalOpen(false);
+      setIsEventModalOpen(false);
     };
 
   const renderTile = ({ date, view }) => {
@@ -141,19 +154,34 @@ return (
       onClickDay={handleDateClick}
       locale="en-US"
     />
-    <EventModal 
-      isOpen={isModalOpen}
-      onClose={() => setIsModalOpen(false)}
-      date={selectedDate}
-      iconsWithTime={iconsWithTime}
-      onIconToggle={toggleIconTimeSelection}
-      startTime={startTime}
-      setStartTime={setStartTime}
-      endTime={endTime}
-      setEndTime={setEndTime}
-      onSave={saveEvent}
-      setIconsWithTime={setIconsWithTime} // この行を追加
-    />   
+      { 
+      // adminFlagが0または1の場合はEventModalを表示
+      (adminFlag === 0 || adminFlag === 1) && 
+      <EventModal 
+        isOpen={isEventModalOpen}
+        onClose={() => setIsEventModalOpen(false)}
+        date={selectedDate}
+        iconsWithTime={iconsWithTime}
+        onIconToggle={toggleIconTimeSelection}
+        startTime={startTime}
+        setStartTime={setStartTime}
+        endTime={endTime}
+        setEndTime={setEndTime}
+        onSave={saveEvent}
+        setIconsWithTime={setIconsWithTime}
+      />
+    }
+    {
+      // adminFlagが3の場合はFriendsEventModalを表示
+      adminFlag === 3 &&
+      <div>
+        <FriendsEventModal 
+        isOpen={isFriendsModalOpen} 
+        onClose={() => setIsFriendsModalOpen(false)}
+        selectedDate={selectedDate}  // selectedDateを渡す
+         />
+    </div>
+    }
        <IconDescription />  
   </div>
     

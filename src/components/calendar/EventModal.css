@@ -11,8 +11,21 @@
         border-radius: 10px;
         box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.4); /* 影を追加 */
         z-index: 1000;
+        color: #1B3672;
+        font-size: 17px;
     }
 
+    .eventModal h2{
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 20px;
+    } 
+
+    .eventModal h3{
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    } 
     /* EventModal.css */
 .icon-row {
     display: flex;
@@ -58,5 +71,19 @@
     font-size: 24px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.comment-input {
+  margin-top: 5px;
+  padding: 5px;
+  width: 260px;  /* 幅を400pxに設定 */
+  height: 80px;  /* 高さを100pxに設定 */
+  font-size: 17px;
+}
+.appointmentArea{
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 1px #F39459;;
 }
   
