@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../../pages/Firebase';
 import { collection, getDocs, query, where, addDoc } from 'firebase/firestore';
 import { useAdminFlag } from '../../context/AdminFlagContext';
+import {Button} from "@nextui-org/react";
 
 
 const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDateをプロパティとして受け取る
@@ -95,6 +96,10 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
   
 
   const handleSave = async () => {
+    if (!selectedTime || !additionalComment) {
+        alert("時間とコメントを入力してください。");
+        return;
+      }
     const fullText = generateFullText();
     console.log("Full text to be saved:", fullText);
     // Firestoreに保存するデータのオブジェクト
@@ -112,6 +117,7 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
     // messagesコレクションにデータを追加
     await addDoc(collection(db, 'messages'), newMessage);
     console.log("Message saved successfully.");
+    alert("希望を送信しました。返答はチャットでご確認ください。");  // <-- この行を追加
   } catch (error) {
     console.error("Error saving message: ", error);
   }
@@ -152,7 +158,7 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
             value={additionalComment}
             onChange={(e) => setAdditionalComment(e.target.value)}
           ></textarea>
-          <button onClick={handleSave}>保存</button>
+           <Button style={{ backgroundColor:'#1B3672',color:'white' }} onClick={handleSave}>保存</Button>
           </div>
       </div>
     )}
