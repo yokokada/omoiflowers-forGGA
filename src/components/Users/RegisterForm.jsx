@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {Input} from "@nextui-org/react";
 import {EyeFilledIcon} from "../common/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "../common/EyeSlashFilledIcon";
-import SubmitButton from '../common/SubmitButtun';
+import SubmitButton from '../common/SubmitButton';
 import './Form.css'
 import { getDoc, setDoc, doc, collection, query, where, getDocs, updateDoc  } from "firebase/firestore";  // Firestoreの関数をインポート
 import { db } from '../../pages/Firebase';  // Firestoreのインスタンスをインポー
@@ -14,6 +14,7 @@ const RegisterForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
+    const [relationship, setRelationship] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [accountCreated, setAccountCreated] = useState(false);
     const [isVisible, setIsVisible] = React.useState(false);
@@ -21,11 +22,10 @@ const RegisterForm = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (email === '' || password === '' || displayName === '') {
+        if (email === '' || password === '' || displayName === '' ) {
             setErrorMessage('全てのフィールドを入力してください。');
             return;
         } else if (displayName.length > 8) {  // 表示名が8文字以上かチェック
@@ -42,68 +42,26 @@ const RegisterForm = () => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
+
             if (user) {
                 await updateProfile(user, {
                     displayName: displayName
                 });
             // 新しいユーザーをFirestoreに登録する
             const userDocRef = doc(db, 'users', user.uid);  
-            const q = query(collection(db, 'tails'), where('members', 'array-contains', user.uid));
-
-            const querySnapshot = await getDocs(q);
-            if (querySnapshot.empty) {
-                const tailName = `${displayName}'s tails`;
-                const tailRef = doc(collection(db, 'tails'));
-                await setDoc(tailRef, {
-                    name: tailName,
-                    owner: user.uid,
-                    subAdmin: null,
-                    members: [user.uid],
-                    createdAt: new Date()
-                });
                 await setDoc(userDocRef, {
                     email: email,
                     displayName: displayName,
                     avatar: null,
-                    birthDate: null,
+                    relationship : 'owner',
                     adminFlag: 0,
                     tail: tailRef.id
                 });
-            } else {
-                const tailDoc = querySnapshot.docs[0];
-                const tailData = tailDoc.data();
-                if (!tailData.subAdmin) {
-                    await updateDoc(doc(db, 'tails', tailDoc.id), {
-                        subAdmin: user.uid,
-                        members: [...tailData.members, user.uid] 
-                    });
-                    await setDoc(userDocRef, {
-                        email: email,
-                        displayName: displayName,
-                        avatar: null,
-                        birthDate: null,
-                        adminFlag: 1,
-                        tail: tailDoc.id
-                    });
-                } else {
-                    await setDoc(userDocRef, {
-                        email: email,
-                        displayName: displayName,
-                        avatar: null,
-                        birthDate: null,
-                        adminFlag: 2,
-                        tail: tailDoc.id
-                    });
-                    await updateDoc(doc(db, 'tails', tailDoc.id), {
-                        members: [...tailData.members, user.uid]
-                    });
-                }
-            }
-
+            
                 console.log('アカウント作成成功:', user, user.displayName);
                 setErrorMessage('');
                 setAccountCreated(true);  // アカウント作成成功時にポップアップを表示
-                navigate('/login'); // この行を追加：アカウント作成成功後にログイン画面に遷移
+                navigate('/login/:tail'); // この行を追加：アカウント作成成功後にログイン画面に遷移
                 } else {
                     setErrorMessage('ユーザーが正しく作成されませんでした。');
                 }

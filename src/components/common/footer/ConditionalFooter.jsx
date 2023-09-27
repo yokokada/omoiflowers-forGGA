@@ -5,12 +5,19 @@ import FriendsFooter from './FriendsFooter';
 import { useAdminFlag } from '../../../context/AdminFlagContext'
 
 const ConditionalFooter = () => {
-    const { adminFlag, isLoading } = useAdminFlag(); // <-- useAdminFlagで取得
+    const { adminFlag, isLoading,uid,displayName,tail } = useAdminFlag(); // <-- useAdminFlagで取得
     const location = useLocation();
 
     // Debugging lines
+  console.log('tail:', tail);
   console.log('adminFlag:', adminFlag);
+  console.log('uid:', uid);
+  console.log('displayName:', displayName);
   console.log('isLoading:', isLoading);
+ 
+  
+  
+
   
     // ログインページではフッターを表示しない
     if (location.pathname === '/login') {

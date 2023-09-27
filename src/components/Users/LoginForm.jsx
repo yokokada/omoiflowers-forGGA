@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';  // <-- `useNavigate`を追
 // Form.cssをインポート
 import './Form.css';
-import SubmitButton from '../common/SubmitButtun';
+import SubmitButton from '../common/SubmitButton';
 import {Input} from "@nextui-org/react";
 import {EyeFilledIcon} from "../common/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "../common/EyeSlashFilledIcon";
