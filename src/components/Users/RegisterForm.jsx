@@ -61,7 +61,7 @@ const RegisterForm = () => {
                 console.log('アカウント作成成功:', user, user.displayName);
                 setErrorMessage('');
                 setAccountCreated(true);  // アカウント作成成功時にポップアップを表示
-                navigate('/login/:tail'); // この行を追加：アカウント作成成功後にログイン画面に遷移
+                navigate('/login'); // この行を追加：アカウント作成成功後にログイン画面に遷移
                 } else {
                     setErrorMessage('ユーザーが正しく作成されませんでした。');
                 }

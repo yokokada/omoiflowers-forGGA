@@ -16,9 +16,7 @@ const ConditionalFooter = () => {
   console.log('isLoading:', isLoading);
  
   
-  
 
-  
     // ログインページではフッターを表示しない
     if (location.pathname === '/login') {
       return null;
@@ -34,7 +32,6 @@ const ConditionalFooter = () => {
       <div>
         {(adminFlag === 0 || adminFlag === 1) && <FooterPK />}
         {adminFlag === 3 && <FriendsFooter />}
-        {typeof adminFlag !== 'number' && <div>Admin flag is not a number: {String(adminFlag)}</div>}
       </div>
     );
   };
