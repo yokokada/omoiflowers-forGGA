@@ -31,7 +31,8 @@ function Dashboard() {
       <AnimationComponent />
       {adminFlag === 0 && <PatientClickCount />}
       {adminFlag === 1 && <KeyParsonClickCount />}
-      {adminFlag === 3 && <FriendsClickCount />}
+      {adminFlag === 3 && <KeyParsonClickCount />}
+      {/* {adminFlag === 3 && <FriendsClickCount />} */}
     </div>
   );
 }

@@ -9,7 +9,6 @@ import SubmitButton from '../common/SubmitButton';
 import './Form.css'
 import { getDoc, setDoc, doc, collection, query, where, getDocs, updateDoc  } from "firebase/firestore";  // Firestoreの関数をインポート
 import { db } from '../../pages/Firebase';  // Firestoreのインスタンスをインポー
-
 const RegisterForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +24,7 @@ const RegisterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (email === '' || password === '' || displayName === '' ) {
+        if (email === '' || password === '' || displayName === '') {
             setErrorMessage('全てのフィールドを入力してください。');
             return;
         } else if (displayName.length > 8) {  // 表示名が8文字以上かチェック
@@ -38,7 +37,6 @@ const RegisterForm = () => {
             setErrorMessage('パスワードが一致しません。');
             return;
         }
-
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
@@ -49,15 +47,59 @@ const RegisterForm = () => {
                 });
             // 新しいユーザーをFirestoreに登録する
             const userDocRef = doc(db, 'users', user.uid);  
+            const q = query(collection(db, 'tails'), where('members', 'array-contains', user.uid));
+
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                const tailName = `${displayName}'s tails`;
+                const tailRef = doc(collection(db, 'tails'));
+                await setDoc(tailRef, {
+                    name: tailName,
+                    owner: user.uid,
+                    subAdmin: null,
+                    members: [user.uid],
+                    createdAt: new Date()
+                });
                 await setDoc(userDocRef, {
                     email: email,
                     displayName: displayName,
                     avatar: null,
-                    relationship : 'owner',
-                    adminFlag: 0,
-                    tail: tailRef.id
+                    relationship : null,
+                    adminFlag: 3,  // <-- 一時的な変更
+                    tail: "VYyr5j0ERPBAs5GU6A91"  // <-- 一時的な変更
                 });
-            
+            } else {
+                const tailDoc = querySnapshot.docs[0];
+                const tailData = tailDoc.data();
+                if (!tailData.subAdmin) {
+                    await updateDoc(doc(db, 'tails', tailDoc.id), {
+                        subAdmin: user.uid,
+                        members: [...tailData.members, user.uid] 
+                    });
+                    await setDoc(userDocRef, {
+                        email: email,
+                        displayName: displayName,
+                        avatar: null,
+                        relationship : null,
+                        adminFlag: 3,  // <-- 一時的な変更
+                        tail: "VYyr5j0ERPBAs5GU6A91"  // <-- 一時的な変更
+                    });
+                } else {
+                    await setDoc(userDocRef, {
+                        email: email,
+                        displayName: displayName,
+                        avatar: null,
+                        relationship : null,
+                        adminFlag: 3,  // <-- 一時的な変更
+                        tail: "VYyr5j0ERPBAs5GU6A91"  // <-- 一時的な変更
+                    });
+                    await updateDoc(doc(db, 'tails', tailDoc.id), {
+                        members: [...tailData.members, user.uid]
+                    });
+                }
+            }
+
+
                 console.log('アカウント作成成功:', user, user.displayName);
                 setErrorMessage('');
                 setAccountCreated(true);  // アカウント作成成功時にポップアップを表示
@@ -65,7 +107,6 @@ const RegisterForm = () => {
                 } else {
                     setErrorMessage('ユーザーが正しく作成されませんでした。');
                 }
-
         } catch (error) {
             console.error("Error during account creation:", error); 
             // Firebaseのエラーコードをチェックして適切なメッセージを設定する
@@ -76,86 +117,84 @@ const RegisterForm = () => {
         }
         }
     };
-
-
-  return (
-    <div className='form'>
-        <header>
-         <h1 className="text-center">アカウント作成</h1>
-        </header>
-        <main>
-            <form className='RegisterForm' onSubmit={handleSubmit}>
-            {errorMessage && <p className="errorMessage">{errorMessage}</p>} 
-            <Input
-                isRequired
-                name="displayName"
-                type="text"
-                label="表示名"
-                placeholder="8文字以内で記入"
-                className="max-w-xs input-spacing"
-                variant="bordered"
-                value={displayName}
-                            onChange={(e) => setDisplayName(e.target.value)}
-                style={{ fontSize: '17px' }}
-            />
-             <Input
-                isRequired
-                name="email"
-                type="email"
-                label="Email"
-                placeholder="Emailaアドレスを入力"
-                className="max-w-xs input-spacing"
-                variant="bordered"
-                value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                style={{ fontSize: '17px' }}
-            />
-            <Input
-                isRequired
-                label="Password"
-                variant="bordered"
-                placeholder="英数字8文字以上"
-                endContent={
-                    <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                    {isVisible ? (
-                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                    ) : (
-                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                    )}
-                    </button>
+  
+    return (
+        <div className='form'>
+            <header>
+             <h1 className="text-center">アカウント作成</h1>
+            </header>
+            <main>
+                <form className='RegisterForm' onSubmit={handleSubmit}>
+                {errorMessage && <p className="errorMessage">{errorMessage}</p>} 
+                <Input
+                    isRequired
+                    name="displayName"
+                    type="text"
+                    label="表示名"
+                    placeholder="8文字以内で記入"
+                    className="max-w-xs input-spacing"
+                    variant="bordered"
+                    value={displayName}
+                                onChange={(e) => setDisplayName(e.target.value)}
+                    style={{ fontSize: '17px' }}
+                />
+                 <Input
+                    isRequired
+                    name="email"
+                    type="email"
+                    label="Email"
+                    placeholder="Emailaアドレスを入力"
+                    className="max-w-xs input-spacing"
+                    variant="bordered"
+                    value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                    style={{ fontSize: '17px' }}
+                />
+                <Input
+                    isRequired
+                    label="Password"
+                    variant="bordered"
+                    placeholder="英数字8文字以上"
+                    endContent={
+                        <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                        {isVisible ? (
+                            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        ) : (
+                            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        )}
+                        </button>
+                        }
+                        type={isVisible ? "text" : "password"}
+                        className="max-w-xs input-spacing"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{ fontSize: '17px' }}
+                        
+                />
+                <Input
+                    isRequired
+                    label="Password確認"
+                    variant="bordered"
+                    placeholder="上記と同じパスワードを入力"
+                    endContent={
+                        <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                        {isVisible ? (
+                            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        ) : (
+                            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        )}
+                        </button>
                     }
                     type={isVisible ? "text" : "password"}
                     className="max-w-xs input-spacing"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={confirmPassword} // パスワード確認用のステートをバインド
+                    onChange={(e) => setConfirmPassword(e.target.value)} // パスワード確認用のステートを更新
                     style={{ fontSize: '17px' }}
-                    
-            />
-            <Input
-                isRequired
-                label="Password確認"
-                variant="bordered"
-                placeholder="上記と同じパスワードを入力"
-                endContent={
-                    <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                    {isVisible ? (
-                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                    ) : (
-                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                    )}
-                    </button>
-                }
-                type={isVisible ? "text" : "password"}
-                className="max-w-xs input-spacing"
-                value={confirmPassword} // パスワード確認用のステートをバインド
-                onChange={(e) => setConfirmPassword(e.target.value)} // パスワード確認用のステートを更新
-                style={{ fontSize: '17px' }}
-            />
-            <SubmitButton>登録する</SubmitButton>
-            </form>
-        </main>
-    </div>  
-  );
-};
-
-export default RegisterForm
+                />
+                <SubmitButton>登録する</SubmitButton>
+                </form>
+            </main>
+        </div>  
+      );
+    };
+    export default RegisterForm
