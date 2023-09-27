@@ -1,12 +1,14 @@
 import React from 'react';
 import AnimationComponent from '../components/dashboad/AnimationComponent';
-import TopNavbar from '../components/common/header/TopNavbar';
 import '../App.css';
 import PatientClickCount from '../components/dashboad/clickcountPKF/PatientClickCount';
 import KeyParsonClickCount from '../components/dashboad/clickcountPKF/KeyParsonClickCount';
 import FriendsClickCount from '../components/dashboad/clickcountPKF/FriendsClickCount';
+import { useAdminFlag } from '../context/AdminFlagContext';
+
 
 function Dashboard() {
+  const { adminFlag, uid,displayName,tail } = useAdminFlag(); 
 
   const styles = {
     topNavBar: {
@@ -27,10 +29,9 @@ function Dashboard() {
     <div>
      {/* <TopNavbar/> */}
       <AnimationComponent />
-      {/* <PatientClickCount /> */}
-      <KeyParsonClickCount/>
-      {/* <FriendsClickCount/> */}
-      
+      {adminFlag === 0 && <PatientClickCount />}
+      {adminFlag === 1 && <KeyParsonClickCount />}
+      {adminFlag === 3 && <FriendsClickCount />}
     </div>
   );
 }
