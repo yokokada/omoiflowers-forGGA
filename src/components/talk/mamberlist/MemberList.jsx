@@ -38,8 +38,13 @@ const Memberlist = ({ isClickable = true }) => {
     const memberQuery = collection(db, 'users');
     const memberSnapshot = await getDocs(memberQuery);
     let memberData = memberSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    // 名前でソート
-    memberData.sort((a, b) => a.displayName.localeCompare(b.displayName, 'ja'));
+   // 名前でソート
+   memberData.sort((a, b) => {
+    if (a.displayName && b.displayName) {
+      return a.displayName.localeCompare(b.displayName, 'ja');
+    }
+    return 0;
+  });
     // 現在のユーザーをリストの先頭に移動
     const currentUserIndex = memberData.findIndex(member => member.id === currentUser.uid);
     if (currentUserIndex > 0) {

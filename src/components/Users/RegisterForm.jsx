@@ -9,6 +9,7 @@ import SubmitButton from '../common/SubmitButton';
 import './Form.css'
 import { getDoc, setDoc, doc, collection, query, where, getDocs, updateDoc  } from "firebase/firestore";  // Firestoreの関数をインポート
 import { db } from '../../pages/Firebase';  // Firestoreのインスタンスをインポー
+
 const RegisterForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -47,19 +48,19 @@ const RegisterForm = () => {
                 });
             // 新しいユーザーをFirestoreに登録する
             const userDocRef = doc(db, 'users', user.uid);  
-            const q = query(collection(db, 'tails'), where('members', 'array-contains', user.uid));
+            // const q = query(collection(db, 'tails'), where('members', 'array-contains', user.uid));
 
-            const querySnapshot = await getDocs(q);
-            if (querySnapshot.empty) {
-                const tailName = `${displayName}'s tails`;
-                const tailRef = doc(collection(db, 'tails'));
-                await setDoc(tailRef, {
-                    name: tailName,
-                    owner: user.uid,
-                    subAdmin: null,
-                    members: [user.uid],
-                    createdAt: new Date()
-                });
+            // const querySnapshot = await getDocs(q);
+            // if (querySnapshot.empty) {
+            //     const tailName = `${displayName}'s tails`;
+            //     const tailRef = doc(collection(db, 'tails'));
+            //     await setDoc(tailRef, {
+            //         name: tailName,
+            //         owner: user.uid,
+            //         subAdmin: null,
+            //         members: [user.uid],
+            //         createdAt: new Date()
+            //     });
                 await setDoc(userDocRef, {
                     email: email,
                     displayName: displayName,
@@ -68,36 +69,36 @@ const RegisterForm = () => {
                     adminFlag: 3,  // <-- 一時的な変更
                     tail: "VYyr5j0ERPBAs5GU6A91"  // <-- 一時的な変更
                 });
-            } else {
-                const tailDoc = querySnapshot.docs[0];
-                const tailData = tailDoc.data();
-                if (!tailData.subAdmin) {
-                    await updateDoc(doc(db, 'tails', tailDoc.id), {
-                        subAdmin: user.uid,
-                        members: [...tailData.members, user.uid] 
-                    });
-                    await setDoc(userDocRef, {
-                        email: email,
-                        displayName: displayName,
-                        avatar: null,
-                        relationship : null,
-                        adminFlag: 3,  // <-- 一時的な変更
-                        tail: "VYyr5j0ERPBAs5GU6A91"  // <-- 一時的な変更
-                    });
-                } else {
-                    await setDoc(userDocRef, {
-                        email: email,
-                        displayName: displayName,
-                        avatar: null,
-                        relationship : null,
-                        adminFlag: 3,  // <-- 一時的な変更
-                        tail: "VYyr5j0ERPBAs5GU6A91"  // <-- 一時的な変更
-                    });
-                    await updateDoc(doc(db, 'tails', tailDoc.id), {
-                        members: [...tailData.members, user.uid]
-                    });
-                }
-            }
+            // } else {
+            //     const tailDoc = querySnapshot.docs[0];
+            //     const tailData = tailDoc.data();
+            //     if (!tailData.subAdmin) {
+            //         await updateDoc(doc(db, 'tails', tailDoc.id), {
+            //             subAdmin: user.uid,
+            //             members: [...tailData.members, user.uid] 
+            //         });
+            //         await setDoc(userDocRef, {
+            //             email: email,
+            //             displayName: displayName,
+            //             avatar: null,
+            //             relationship : null,
+            //             adminFlag: 3,  // <-- 一時的な変更
+            //             tail: "VYyr5j0ERPBAs5GU6A91"  // <-- 一時的な変更
+            //         });
+            //     } else {
+            //         await setDoc(userDocRef, {
+            //             email: email,
+            //             displayName: displayName,
+            //             avatar: null,
+            //             relationship : null,
+            //             adminFlag: 3,  // <-- 一時的な変更
+            //             tail: "VYyr5j0ERPBAs5GU6A91"  // <-- 一時的な変更
+            //         });
+            //         await updateDoc(doc(db, 'tails', tailDoc.id), {
+            //             members: [...tailData.members, user.uid]
+            //         });
+            //     }
+            // }
 
 
                 console.log('アカウント作成成功:', user, user.displayName);

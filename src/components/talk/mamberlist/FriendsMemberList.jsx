@@ -41,7 +41,12 @@ const FriendsMemberlist = ({ isClickable = true }) => {
     // adminFlag が 0 または 1 のメンバーだけをフィルタリング
     memberData = memberData.filter(member => member.adminFlag === 0 || member.adminFlag === 1);
     // 名前でソート
-    memberData.sort((a, b) => a.displayName.localeCompare(b.displayName, 'ja'));
+    memberData.sort((a, b) => {
+    if (a.displayName && b.displayName) {
+      return a.displayName.localeCompare(b.displayName, 'ja');
+    }
+    return 0;
+  });
     // 現在のユーザーをリストの先頭に移動
     const currentUserIndex = memberData.findIndex(member => member.id === currentUser.uid);
     if (currentUserIndex > 0) {
