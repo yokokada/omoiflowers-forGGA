@@ -16,8 +16,8 @@ const ConditionalHeader = () => {
     return () => unsubscribe();
   }, []);
 
-  // ログインページには何も表示させないようにする
-  if (location.pathname === '/login') { // <-- 追加
+  // ログインページまたはレジスター画面には何も表示させないようにする
+  if (location.pathname === '/login' || location.pathname === '/register') {
     return null;
   }
 
