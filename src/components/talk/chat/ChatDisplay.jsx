@@ -31,6 +31,13 @@ const ChatDisplay = () => {
     return msg.format === 'all';
   };
 
+  const formatDateAndTime = (timestampInSeconds) => {
+    const date = new Date(timestampInSeconds * 1000);
+    const dateString = date.toLocaleDateString();
+    const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return `${dateString} ${timeString}`;
+  };
+
   const CustomMessage = ({ msg, direction }) => (
     <div className={`customMessageWrapper ${direction}`}>
       <div className={`customMessage ${direction}`}>
@@ -45,7 +52,7 @@ const ChatDisplay = () => {
         </div>
       </div>
       <div className="messageInfo">
-        <span>{new Date(msg.timestamp?.seconds * 1000).toLocaleTimeString()}</span>
+      <span>{formatDateAndTime(msg.timestamp?.seconds)}</span>
       </div>
     </div>
   );
@@ -85,7 +92,8 @@ const ChatDisplay = () => {
                   key={index}
                   model={{
                     message: msg.text,
-                    sentTime: new Date(msg.timestamp?.seconds * 1000).toLocaleTimeString(),
+                    sentTime: formatDateAndTime(msg.timestamp?.seconds),
+                    sender: msg.senderId === auth.currentUser.uid ? "You" : displayName,
                     sender: msg.senderId === auth.currentUser.uid ? "You" : displayName,
                     position: "normal",
                     direction: msg.senderId === auth.currentUser.uid ? "outgoing" : "incoming",
