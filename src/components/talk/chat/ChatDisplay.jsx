@@ -10,6 +10,8 @@ import {
 import { db, auth } from '../../../pages/Firebase'; 
 import '../allpost/AllPost.css';
 import { ChatContext } from '../../../context/ChatContext'; // 追加
+import { useAdminFlag } from '../../../context/AdminFlagContext';
+
 
 const ChatDisplay = () => {
   const {
@@ -19,8 +21,10 @@ const ChatDisplay = () => {
     newMessage, 
     handleAttachClick, 
     setNewMessage, 
-    handleSendMessage 
+    handleSendMessage,
   } = useContext(ChatContext); // 追加
+
+  const { adminFlag} = useAdminFlag(); // <-- useAdminFlagで取得
 
   const isImageUrl = (text) => {
     const imageUrlPattern = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
@@ -37,6 +41,15 @@ const ChatDisplay = () => {
     const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     return `${dateString} ${timeString}`;
   };
+
+  // 最後のメッセージが存在し、その送信者が相手ならば、送信欄を表示する。
+const isLastMessageFromOther = messages.length > 0 && messages[messages.length - 1].senderId !== auth.currentUser.uid;
+ // adminFlagが3で、かつメッセージの数が1より大きく、最後のメッセージが相手からでない場合にtrueになる
+const hideMessageInputForAdmin = adminFlag === 3 && messages.length > 1 && !isLastMessageFromOther;
+
+console.log("adminFlag:", adminFlag);
+console.log("messages.length:", messages.length);
+console.log("isLastMessageFromOther:", isLastMessageFromOther);
 
   const CustomMessage = ({ msg, direction }) => (
     <div className={`customMessageWrapper ${direction}`}>
@@ -103,12 +116,15 @@ const ChatDisplay = () => {
             }
           })}
         </MessageList>
+      {/* 条件によってMessageInputの表示を切り替え */}
+      {!hideMessageInputForAdmin && (
         <MessageInput 
           onAttachClick={handleAttachClick}
           value={newMessage}
           onChange={e => setNewMessage(e)}
           onSend={handleSendMessage}
         />
+        )}
       </ChatContainer>
     </MainContainer>
   );

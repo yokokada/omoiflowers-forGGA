@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import './AllPost.css';
 import DisplayMergedData from './DisplayMergedData'; // この行を追加
 import {Button} from "@nextui-org/react";
 import { db,auth } from '../../../pages/Firebase';
 import { getDocs, collection, addDoc, serverTimestamp  } from 'firebase/firestore';
-
-
+import {useImageCompressor} from '../../../hooks/useImageCompressor'
 
 const AllPostMessage = () => {
   const [title, setTitle] = useState('');
   const [imageUrl, setImageUrl] = useState(null);
   const [message, setMessage] = useState('');
   const [displayData, setDisplayData] = useState(null);
+  const [compressedImage, compressImage] = useImageCompressor(); // ここでカスタムフックを使う
 
   const handleTextareaChange = (event) => {
     setMessage(event.target.value);
@@ -25,14 +25,15 @@ const AllPostMessage = () => {
     });
   };
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImageUrl(reader.result);
-      };
-      reader.readAsDataURL(file);
+      const image = new Image();
+      image.src = URL.createObjectURL(file);
+      await image.decode(); // 画像が読み込まれるまで待つ
+
+      const compressed = await compressImage(image, 50); // 50%に圧縮
+      setImageUrl(compressed); // 圧縮後の画像をセット
     }
   };
 

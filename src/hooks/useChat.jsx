@@ -10,6 +10,7 @@ const useChat = (memberId) => {
   const [newMessage, setNewMessage] = useState("");
   const [attachment, setAttachment] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);  // 画像のURLのstate
+  const [adminFlag, setAdminFlag] = useState(null);
 
   useEffect(() => {
     const fetchDisplayName = async () => {
@@ -21,6 +22,18 @@ const useChat = (memberId) => {
     };
     fetchDisplayName();
   }, [memberId]);
+
+  useEffect(() => {
+    // adminFlagをFirestoreから取得する処理
+    const fetchAdminFlag = async () => {
+      const adminDocRef = doc(db, 'someCollection', 'someDocId'); // このパスは適切に設定してください。
+      const adminDocSnapshot = await getDoc(adminDocRef);
+      if (adminDocSnapshot.exists()) {
+        setAdminFlag(adminDocSnapshot.data().adminFlag || 0); // adminFlagが存在しない場合はデフォルト値（ここでは0）を設定
+      }
+    };
+    fetchAdminFlag();
+  }, []); // 依存配列は適切に設定してください。
 
   useEffect(() => {
     const messagesRef = collection(db, 'messages');
@@ -78,7 +91,8 @@ const useChat = (memberId) => {
     handleSendMessage,
     handleAttachClick,
     imageUrl,
-    setAttachment
+    setAttachment,
+    adminFlag 
   };
 };
 
