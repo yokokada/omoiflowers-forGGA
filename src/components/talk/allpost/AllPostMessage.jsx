@@ -4,7 +4,7 @@ import DisplayMergedData from './DisplayMergedData'; // この行を追加
 import {Button} from "@nextui-org/react";
 import { db,auth } from '../../../pages/Firebase';
 import { getDocs, collection, addDoc, serverTimestamp  } from 'firebase/firestore';
-import {useImageCompressor} from '../../../hooks/useImageCompressor'
+import useImageCompressor from '../../../hooks/useImageCompressor'
 
 const AllPostMessage = () => {
   const [title, setTitle] = useState('');
@@ -26,6 +26,7 @@ const AllPostMessage = () => {
   };
 
   const handleFileChange = async (event) => {
+    try {
     const file = event.target.files[0];
     if (file) {
       const image = new Image();
@@ -35,7 +36,10 @@ const AllPostMessage = () => {
       const compressed = await compressImage(image, 50); // 50%に圧縮
       setImageUrl(compressed); // 圧縮後の画像をセット
     }
-  };
+  } catch (error) {
+    console.error("画像の処理中にエラーが発生しました:", error);
+  }
+};
 
 
   const handleBulkSend = async () => {
