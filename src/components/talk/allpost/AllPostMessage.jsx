@@ -37,7 +37,7 @@ const AllPostMessage = () => {
       setImageUrl(compressed); // 圧縮後の画像をセット
     }
   } catch (error) {
-    console.error("画像の処理中にエラーが発生しました:", error);
+    alert("画像の処理中にエラーが発生しました: " + error.message);
   }
 };
 
