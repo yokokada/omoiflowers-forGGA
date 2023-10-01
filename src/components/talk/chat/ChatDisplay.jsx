@@ -4,11 +4,13 @@ import {
   ChatContainer,
   MessageList,
   Message,
+  MessageGroup,
   MessageInput,
+  MessageSeparator,
   Avatar
 } from "@chatscope/chat-ui-kit-react";
 import { db, auth } from '../../../pages/Firebase'; 
-import '../allpost/AllPost.css';
+import './Chat.css';
 import { ChatContext } from '../../../context/ChatContext'; // 追加
 import { useAdminFlag } from '../../../context/AdminFlagContext';
 
@@ -25,6 +27,10 @@ const ChatDisplay = () => {
   } = useContext(ChatContext); // 追加
 
   const { adminFlag} = useAdminFlag(); // <-- useAdminFlagで取得
+
+  if (!auth.currentUser) {
+    return null;  // auth.currentUserがnullの場合、何も描画しない
+  }
 
   const isImageUrl = (text) => {
     const imageUrlPattern = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
@@ -43,29 +49,30 @@ const ChatDisplay = () => {
   };
 
   // 最後のメッセージが存在し、その送信者が相手ならば、送信欄を表示する。
-const isLastMessageFromOther = messages.length > 0 && messages[messages.length - 1].senderId !== auth.currentUser.uid;
+const isLastMessageFromOther = messages.length > 0 && messages[messages.length - 1].senderId !== (auth.currentUser ? auth.currentUser.uid : null);
  // adminFlagが3で、かつメッセージの数が1より大きく、最後のメッセージが相手からでない場合にtrueになる
 const hideMessageInputForAdmin = adminFlag === 3 && messages.length > 1 && !isLastMessageFromOther;
 
-console.log("adminFlag:", adminFlag);
-console.log("messages.length:", messages.length);
-console.log("isLastMessageFromOther:", isLastMessageFromOther);
+
+let lastDate = null;  // 最後に表示した日付を保持する変数
 
   const CustomMessage = ({ msg, direction }) => (
-    <div className={`customMessageWrapper ${direction}`}>
-      <div className={`customMessage ${direction}`}>
+    <div className={`chatCustomMessageWrapper ${direction}`}>
+      <div className={`chatCcustomMessage ${direction}`}>
+      <div className="chatCardWrapper"> {/* このdivが新しい親要素です */}
         {msg.imageUrl && (
-          <div className='cardImage'>
+          <div className='chatCardImage'>
             <img src={msg.imageUrl} alt="Uploaded content" />
           </div>
         )}
-        <div className="displayArea">
+        <div className="chatDisplayArea">
           <h2>{msg.title}</h2>
           <p>{msg.text}</p>
         </div>
       </div>
       <div className="messageInfo">
-      <span>{formatDateAndTime(msg.timestamp?.seconds)}</span>
+      {/* <span>{formatDateAndTime(msg.timestamp?.seconds)}</span> */}
+      </div>
       </div>
     </div>
   );
@@ -75,59 +82,73 @@ console.log("isLastMessageFromOther:", isLastMessageFromOther);
       <ChatContainer>
         <MessageList>
           {messages.map((msg, index) => {
-            if (isImageUrl(msg.text)) {
-              return (
-                <Message
-                  key={index}
-                  type="image"
-                  model={{
-                    direction: msg.senderId === auth.currentUser.uid ? "outgoing" : "incoming",
-                    payload: {
-                      src: msg.text,
-                      alt: "Attached Image",
-                      width: "150px"
-                    }
-                  }}
-                />
-              );
-            } else if (isCardFormat(msg)) {
-              return (
-                <CustomMessage
-                  key={index}
-                  msg={msg}
-                  direction={msg.senderId === auth.currentUser.uid ? "outgoing" : "incoming"}
-                  displayName={displayName}
-                />
-              );
-            } else {
-              return (
-                <Message
-                  key={index}
-                  model={{
-                    message: msg.text,
-                    sentTime: formatDateAndTime(msg.timestamp?.seconds),
-                    sender: msg.senderId === auth.currentUser.uid ? "You" : displayName,
-                    sender: msg.senderId === auth.currentUser.uid ? "You" : displayName,
-                    position: "normal",
-                    direction: msg.senderId === auth.currentUser.uid ? "outgoing" : "incoming",
-                  }}
-                />
-              );
-            }
+            const sentTime = formatDateAndTime(msg.timestamp?.seconds);
+            const direction = msg.senderId === auth.currentUser.uid ? "outgoing" : "incoming";
+  
+            // タイムスタンプから日付を取得
+            const currentDate = new Date(msg.timestamp?.seconds * 1000).toLocaleDateString();
+  
+            // 前のメッセージと日付が違ったらMessageSeparatorを表示
+            const shouldShowSeparator = lastDate !== currentDate;
+            lastDate = currentDate;  // 最後に表示した日付を更新
+  
+            return (
+              <React.Fragment key={index}>
+                {shouldShowSeparator && <MessageSeparator>{currentDate}</MessageSeparator>}
+                <MessageGroup 
+                  key={index} 
+                  direction={direction} 
+                  sender={direction === "outgoing" ? "You" : displayName}
+                >
+                  <MessageGroup.Messages>
+                    {isImageUrl(msg.text) ? (
+                      <Message
+                        model={{
+                          message: msg.text,
+                          sentTime: sentTime,
+                          sender: direction === "outgoing" ? "You" : displayName,
+                          position: "normal",
+                          direction: direction,
+                        }}
+                      />
+                    ) : isCardFormat(msg) ? (
+                      <CustomMessage
+                        msg={msg}
+                        direction={direction}
+                        displayName={displayName}
+                      />
+                    ) : (
+                      <Message
+                        model={{
+                          message: msg.text,
+                          sentTime: sentTime,
+                          sender: direction === "outgoing" ? "You" : displayName,
+                          position: "normal",
+                          direction: direction,
+                        }}
+                      />
+                    )}
+                  </MessageGroup.Messages>
+                  {/* <MessageGroup.Footer className={`messageGroupFooter-${direction}`}>
+                    {sentTime}
+                  </MessageGroup.Footer> */}
+                </MessageGroup>
+                </React.Fragment>
+            );
           })}
         </MessageList>
-      {/* 条件によってMessageInputの表示を切り替え */}
-      {!hideMessageInputForAdmin && (
-        <MessageInput 
-          onAttachClick={handleAttachClick}
-          value={newMessage}
-          onChange={e => setNewMessage(e)}
-          onSend={handleSendMessage}
-        />
+        {!hideMessageInputForAdmin && (
+          <MessageInput 
+            onAttachClick={handleAttachClick}
+            value={newMessage}
+            onChange={e => setNewMessage(e)}
+            onSend={handleSendMessage}
+          />
         )}
       </ChatContainer>
     </MainContainer>
   );
+  
 }
 
 export default ChatDisplay;

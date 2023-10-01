@@ -3,48 +3,56 @@ import { useState, useEffect } from 'react';
 import { db, auth } from '../pages/Firebase'; 
 import { doc, getDoc, collection, query, where, addDoc, orderBy, onSnapshot } from 'firebase/firestore';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { useAdminFlag } from '../context/AdminFlagContext';
 
 const useChat = (memberId) => {
-  const [displayName, setDisplayName] = useState(""); 
+  const { adminFlag, isLoading,uid,displayName,tail } = useAdminFlag(); // <-- useAdminFlagで取得
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [attachment, setAttachment] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);  // 画像のURLのstate
-  const [adminFlag, setAdminFlag] = useState(null);
 
-  useEffect(() => {
-    const fetchDisplayName = async () => {
-      const userDocRef = doc(db, 'users', memberId);
-      const userDocSnapshot = await getDoc(userDocRef);
-      if (userDocSnapshot.exists()) {
-        setDisplayName(userDocSnapshot.data().displayName || "");
-      }
-    };
-    fetchDisplayName();
-  }, [memberId]);
-
-  useEffect(() => {
-    // adminFlagをFirestoreから取得する処理
-    const fetchAdminFlag = async () => {
-      const adminDocRef = doc(db, 'someCollection', 'someDocId'); // このパスは適切に設定してください。
-      const adminDocSnapshot = await getDoc(adminDocRef);
-      if (adminDocSnapshot.exists()) {
-        setAdminFlag(adminDocSnapshot.data().adminFlag || 0); // adminFlagが存在しない場合はデフォルト値（ここでは0）を設定
-      }
-    };
-    fetchAdminFlag();
-  }, []); // 依存配列は適切に設定してください。
-
+  
   useEffect(() => {
     const messagesRef = collection(db, 'messages');
-    const q = query(messagesRef, where('recipientId', '==', memberId), orderBy('timestamp'));
-    const unsubscribe = onSnapshot(q, snapshot => {
-      const fetchedMessages = snapshot.docs.map(doc => doc.data());
-      setMessages(fetchedMessages);
-    });
-    return () => unsubscribe();
-  }, [memberId]);
+  
+  // 自分が送ったメッセージ
+  const q1 = query(messagesRef, 
+    where('recipientId', '==', memberId), 
+    where('senderId', '==', uid), 
+    orderBy('timestamp'));
+  
+  // 自分が受け取ったメッセージ
+  const q2 = query(messagesRef, 
+    where('recipientId', '==', uid), 
+    where('senderId', '==', memberId), 
+    orderBy('timestamp'));
 
+  let allMessages = [];
+
+  const unsubscribe1 = onSnapshot(q1, snapshot => {
+    const fetchedMessages1 = snapshot.docs.map(doc => doc.data());
+    allMessages = [...allMessages, ...fetchedMessages1];
+    allMessages.sort((a, b) => a.timestamp - b.timestamp); // タイムスタンプでソート
+    setMessages(allMessages);
+  });
+
+  const unsubscribe2 = onSnapshot(q2, snapshot => {
+    const fetchedMessages2 = snapshot.docs.map(doc => doc.data());
+    allMessages = [...allMessages, ...fetchedMessages2];
+    allMessages.sort((a, b) => a.timestamp - b.timestamp); // タイムスタンプでソート
+    setMessages(allMessages);
+  });
+
+  return () => {
+    unsubscribe1();
+    unsubscribe2();
+  };
+}, [memberId, uid]);
+
+     
+
+  // Firestoreに送るための関数
   const handleSendMessage = async () => {
     if (newMessage.trim() !== "" || attachment)  {
       let imageUrl = null;

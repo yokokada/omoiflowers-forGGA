@@ -10,8 +10,6 @@
     padding: 0px;
     width: 90%;
     max-width: 600px;
-    
-   
 }
 
 .inputGroup {
@@ -112,7 +110,7 @@
 }
   
 .customMessage {
-    max-width: 80%; /* 例として70%に設定。好みに応じて変更してください */
+    max-width: 90%; /* 例として70%に設定。好みに応じて変更してください */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影の効果を追加 */
     border-radius: 10px; /* 角を少し丸める */
     margin: 20px 10px ;
@@ -121,8 +119,8 @@
   .customMessageWrapper {
     position: relative;
     display: inline-block;
-    margin: 10px;
-    padding-left: 10px; /* これにより、メッセージと時間の左側のマージンが揃う */
+    /* margin: 10px; */
+    /* padding-left: 10px;  */
 }
   
   .customMessageWrapper.outgoing .customMessage {

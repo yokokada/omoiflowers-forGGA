@@ -15,7 +15,8 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
 
 
   const generateFullText = () => {
-    return `${selectedTime} に伺います。${additionalComment}`;
+    const title = "お見舞い予約";
+    return `${title}\n日付: ${selectedDate}\n時間: ${selectedTime} ごろに伺いたいです。\nコメント: ${additionalComment}`;
   };
 
 
@@ -102,10 +103,13 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
       }
     const fullText = generateFullText();
     console.log("Full text to be saved:", fullText);
+
+    try {
+      for (const adminId of adminData) {
     // Firestoreに保存するデータのオブジェクト
    const newMessage = {
     format: 'individual',
-    recipientId: adminData,
+    recipientId: adminId,
     senderId: uid,  // 本人のUIDを適切に設定
     text: fullText,
     timestamp: new Date(),  // 現在時刻を設定
@@ -113,9 +117,9 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
   };
   console.log('adminData',adminData)
 
-  try {
     // messagesコレクションにデータを追加
     await addDoc(collection(db, 'messages'), newMessage);
+}
     console.log("Message saved successfully.");
     alert("希望を送信しました。返答はチャットでご確認ください。");  // <-- この行を追加
   } catch (error) {
@@ -150,7 +154,7 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
               value={selectedTime}
               onChange={(e) => setSelectedTime(e.target.value)}
             />
-            <label> ごろに伺います。</label>
+            <label> ごろに伺いたいです。</label>
           </div>
           <textarea
             className="comment-input"

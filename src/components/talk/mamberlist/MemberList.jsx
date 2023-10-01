@@ -38,8 +38,13 @@ const Memberlist = ({ isClickable = true }) => {
     const memberQuery = collection(db, 'users');
     const memberSnapshot = await getDocs(memberQuery);
     let memberData = memberSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-   // 名前でソート
+   // 名前とadminFlagでソート
    memberData.sort((a, b) => {
+    // adminFlag でソート
+    if (Number(a.adminFlag) !== Number(b.adminFlag)) {
+      return Number(a.adminFlag) - Number(b.adminFlag);
+    }
+    // adminFlag が同じなら、名前でソート
     if (a.displayName && b.displayName) {
       return a.displayName.localeCompare(b.displayName, 'ja');
     }
@@ -62,15 +67,15 @@ const Memberlist = ({ isClickable = true }) => {
     <div className='member-contents'>
       <h1 className="member-header">メンバーリスト</h1>
       <ul>
-      {members.map(member => (
-        <li key={member.id}>
+      {members.filter(member => member.id !== auth.currentUser.uid).map(filteredMember => (
+    <li key={filteredMember.id}>
           <div className="member-item"
-          onClick={() => handleChatWithMember(member.id)} >
+          onClick={() => handleChatWithMember(filteredMember.id)} >
             <span className="member-avatar">
-            { member.avatar ? (
+            { filteredMember.avatar ? (
             <img 
-              src={member.avatar} 
-              alt={`${member.displayName}のアバター`} 
+              src={filteredMember.avatar} 
+              alt={`${filteredMember.displayName}のアバター`} 
               className="member-image"
               onLoad={(e) => e.target.style.opacity = 1}
             />
@@ -80,7 +85,7 @@ const Memberlist = ({ isClickable = true }) => {
             }
             </span>
             <div className="member-detail">
-              <span className="member-name">{member.displayName}</span>
+              <span className="member-name">{filteredMember.displayName}</span>
               {/* <span className="member-email">{member.email}</span> */}
             </div>
           </div>

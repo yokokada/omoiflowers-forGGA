@@ -1,0 +1,50 @@
+.chatCustomMessageWrapper.outgoing{
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影の効果を追加 */
+    border-radius: 10px;
+}
+
+.chatCustomMessageWrapper.incoming{
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影の効果を追加 */
+    border-radius: 10px;
+}
+
+.chatCardImage img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0 ;
+    border-bottom:1px solid #ccc ;
+}
+
+.chatDisplayArea{
+    word-wrap: break-word;
+    white-space: normal;
+    width: 100%;
+    background-color: white;
+    text-align: left;
+    white-space: pre-line;
+    padding: 10px;
+    border-radius: 0 0 10px 10px; 
+}
+
+
+.chatDisplayArea h2{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #1B3672;
+}
+
+.chatDisplayArea p{
+    font-size: 12px;
+    margin: 0;
+   
+}
+
+.chatCardWrapper {
+    border-radius: 10px;
+    overflow: hidden;  /* このプロパティにより、子要素がこの要素の角を超えなくなります */
+  }
