@@ -21,6 +21,8 @@ const MonthCalendar = () => {
   const [startTime, setStartTime] = useState("09:00");
   const [endTime, setEndTime] = useState("18:00");
 
+  const [holidays, setHolidays] = useState({}); // 祝日データを管理するステート  
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {

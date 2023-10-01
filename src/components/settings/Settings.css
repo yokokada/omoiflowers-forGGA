@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 20px;   
+    color:#1B3672;
 }
 
 .avatarSetting p{
@@ -35,6 +36,7 @@
 }
 .form{
     margin-bottom: 10px;
+    color:#1B3672;
 }
 .form header{
     margin-top: 20px;
@@ -51,7 +53,7 @@
     height: 20px;
     border-radius: 50%;
     background-color:#FDE9E9 ;
-    border: solid 1px black;
+    border: solid 1px #1B3672;
     margin-right: 3px;
 }
 .circle-b{
@@ -59,7 +61,7 @@
     height: 20px;
     border-radius: 50%;
     background-color: #E9FDFC;
-    border: solid 1px black;
+    border: solid 1px #1B3672;
     margin-right: 3px;
 
 }
@@ -68,11 +70,12 @@
     height: 20px;
     border-radius: 50%;
     background-color: #FDFDE9;
-    border: solid 1px black;
+    border: solid 1px #1B3672;
     margin-right: 3px;
 
 }
 
 .changeColorcontent p{
     margin-bottom: 10px;
+    color:#1B3672;
 }

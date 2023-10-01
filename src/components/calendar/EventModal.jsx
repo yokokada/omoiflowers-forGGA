@@ -101,7 +101,7 @@ const EventModal = ({isOpen, date, onIconToggle, iconsWithTime, setIconsWithTime
                         </select>
                     </div>
                     <div className="input-row">
-                        <input 
+                        <textarea 
                         type="text" 
                         placeholder="コメントを追加" 
                         value={comments[iconName] || ''}  // この行を変更

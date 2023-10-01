@@ -76,7 +76,7 @@ const ChangeColor = () => {
               <Tab
                 key="pink"
                 title={
-                  <div className="flex items-center space-x-2">
+                  <div style={{color:'#1B3672'}} className="flex items-center space-x-2">
                     <div className='circle-p'></div>
                     <span>ピンク</span>
                   </div>
@@ -85,7 +85,7 @@ const ChangeColor = () => {
               <Tab
                 key="cyan"
                 title={
-                  <div className="flex items-center space-x-2">
+                  <div style={{color:'#1B3672'}}  className="flex items-center space-x-2">
                      <div className='circle-b'></div>
                     <span>水色</span>
                   </div>
@@ -94,7 +94,7 @@ const ChangeColor = () => {
               <Tab
                 key="yellow"
                 title={
-                  <div className="flex items-center space-x-2">
+                  <div style={{color:'#1B3672'}}  className="flex items-center space-x-2">
                     <div className='circle-y'></div>
                     <span>黄色</span>
                   </div>

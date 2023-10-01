@@ -10,6 +10,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
     border-radius: 5px; /* 角を少し丸く */
     transition: transform 0.3s; /* ホバー時の動きのアニメーション */
+    color:#1B3672;
   }
   .Calendar:hover {
     transform: translateY(-5px); /* ホバー時に少し上に移動 */
@@ -47,7 +48,7 @@
   }
   
   .react-calendar__month-view__days__day--neighboringMonth {
-    color: #757575;
+    color:#1B3672;
   }
   
   .react-calendar__tile {
@@ -63,5 +64,8 @@
     /* background: #006edc; */
     /* color: white; */
   }
-  
+
+  .holiday {
+    color: red;
+  }
 

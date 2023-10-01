@@ -94,7 +94,7 @@ const DisplayNameSetting = () => {
                     onChange={(e) => setDisplayName(e.target.value)}
                     style={{ fontSize: '17px' }}
                 />
-                <Button type="button" onClick={handleDisplayNameSave}>
+                <Button style={{ backgroundColor:'#1B3672',color:'white' }} type="button" onClick={handleDisplayNameSave}>
                     表示名を変更
                 </Button>
                 <br />
@@ -137,7 +137,7 @@ const DisplayNameSetting = () => {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             style={{ fontSize: '17px' }}
                         />
-                        <Button type="button" onClick={handleUpdatePassword}>
+                        <Button style={{ backgroundColor:'#1B3672',color:'white' }} type="button" onClick={handleUpdatePassword}>
                             パスワードを更新
                         </Button>
                     </>
