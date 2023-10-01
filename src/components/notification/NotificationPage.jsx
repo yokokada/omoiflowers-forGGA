@@ -11,7 +11,19 @@ const NotificationPage = () => {
   const [omimaiNotifications, setOmimaiNotifications] = useState([]);
   const [messageNotifications, setMessageNotifications] = useState([]);
   const [clickNotifications, setClickNotifications] = useState([]);
-  
+
+
+  // 日時のカスタムフォーマット関数
+const customFormatDate = (date) => {
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+  return date.toLocaleDateString(undefined, options);
+};
+
+// 通知を日付でソートする関数
+const sortByDate = (notifications) => {
+  return notifications.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+};
+
     useEffect(() => {
       const fetchNotifications = async () => {
         try {
@@ -25,7 +37,7 @@ const NotificationPage = () => {
             const data = doc.data();
             fetchedOmimai.push({
               message: 'お見舞いOKの通知があります。',
-              timestamp: data.timestamp?.toDate().toLocaleString()
+              timestamp: customFormatDate(data.timestamp?.toDate())
             });
           });
           setOmimaiNotifications(fetchedOmimai);
@@ -49,18 +61,16 @@ const fetchedMessages = await Promise.all(
     }
 
     return {
-      message: `新しいメッセージがあります: 送信者 - ${senderData.displayName}`,  // senderData が空の場合、displayName は undefined になります。
-      timestamp: data.timestamp?.toDate().toLocaleString(),
+      message: ` ${senderData.displayName}さんからのメッセージを受信`,  // senderData が空の場合、displayName は undefined になります。
+      timestamp: customFormatDate(data.timestamp?.toDate()),
     };
   })
 );
 
 setMessageNotifications(fetchedMessages);
 
-
-   
   
-          // クリック数に関するお知らせ
+// クリック数に関するお知らせ
 const clicksQuery = query(
   collection(db, 'clicks'), 
   where('clickNumber', '>=', 250),  // 250以上のclickNumberを持つドキュメントのみを対象とする
@@ -74,8 +84,8 @@ clicksSnapshot.forEach(doc => {
   const clickData = doc.data();
   if (clickData.clickNumber % 250 === 0) {  // クリック数が250の倍数である場合
     fetchedClicks.push({
-      message: `ボタンが${clickData.clickNumber}クリックに到達しました！`,
-      timestamp: clickData.clickedAt?.toDate().toLocaleString()
+      message: `${clickData.clickNumber}クリックに到達しました！`,
+      timestamp: customFormatDate(clickData.clickedAt?.toDate())  // ここを修正
     });
   }
 });
@@ -86,6 +96,11 @@ setClickNotifications(fetchedClicks);
           console.log("Omimai Notifications: ", fetchedOmimai);
           console.log("Message Notifications: ", fetchedMessages);
           console.log("Click Notifications: ", fetchedClicks);
+
+                  // ソート処理を行い、状態を更新
+        setOmimaiNotifications(sortByDate(fetchedOmimai));
+        setMessageNotifications(sortByDate(fetchedMessages));
+        setClickNotifications(sortByDate(fetchedClicks));
   
         } catch (error) {
           console.error("Error fetching notifications: ", error);
