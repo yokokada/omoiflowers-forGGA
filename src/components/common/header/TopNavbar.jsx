@@ -22,7 +22,7 @@ export default function App() {
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
-      console.log('User signed out');
+      // console.log('User signed out');
       navigate('/');  // ここでリダイレクト
     });
   };
@@ -62,7 +62,7 @@ export default function App() {
       <div className="right-item">
       <div className="navbar-item" onClick={() => {
           setMenuOpen((prevState => !prevState));
-          console.log("menuOpen:", menuOpen);  // <-- この行を追加
+          // console.log("menuOpen:", menuOpen);  // <-- この行を追加
         }}>
           <MoreHoriz fontSize={16}  strokeWidth={2} />
         </div>

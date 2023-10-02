@@ -4,7 +4,7 @@ import './OmotteruyoButton.css'
 const OmotteruyoButton = ({ onClick }) => {
   return (
     <button className='omotteruyobotton' onClick={() => {
-        console.log("Button clicked!");
+        // console.log("Button clicked!");
         onClick();
       }}>
         omo<br/>ってるよ！

@@ -57,7 +57,7 @@ const MonthCalendar = () => {
   }, []);
 
   const handleDateClick = (date) => {
-    console.log("handleDateClickが呼ばれました", date);
+    // console.log("handleDateClickが呼ばれました", date);
     const dateStr = date.toLocaleDateString('en-CA');
     setSelectedDate(dateStr);
     const iconsForDate = events[dateStr];

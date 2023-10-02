@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, query, where ,orderBy} from 'firebase/firestore';
+import { collection, doc as docRef, getDocs, getDoc, query, where ,orderBy} from 'firebase/firestore';
 import { db } from '../../pages/Firebase';
 import './NotificationPage.css'
 import { useAdminFlag } from '../../context/AdminFlagContext';
@@ -48,20 +48,25 @@ const messageSnapshot = await getDocs(messageQuery);
 
 // メッセージのdisplayNameを非同期で取得
 const fetchedMessages = await Promise.all(
-  messageSnapshot.docs.map(async (doc) => {
-    const data = doc.data();  // この行が追加されました。
+  messageSnapshot.docs.map(async (messageDoc) => {  // docをmessageDocと改名
+    const data = messageDoc.data();
     
-    const senderDoc = await getDocs(query(collection(db, 'users'), where('uid', '==', data.senderId)));
-    let senderData = {};  // この行が追加されました。
+    // ユーザーのドキュメントをuidで直接参照
+    const userDocRef = docRef(db, 'users', data.senderId);
+    
+    // ドキュメントのデータを取得
+    const userDoc = await getDoc(userDocRef);
+    
+    let senderData = {};
 
-    if (senderDoc.docs.length > 0) {
-      senderData = senderDoc.docs[0].data();
+    if (userDoc.exists()) {
+      senderData = userDoc.data();
     } else {
       console.warn(`Sender with uid ${data.senderId} not found.`);
     }
 
     return {
-      message: ` ${senderData.displayName}さんからのメッセージを受信`,  // senderData が空の場合、displayName は undefined になります。
+      message: `${senderData.displayName}さんからのメッセージが届きました`,
       timestamp: customFormatDate(data.timestamp?.toDate()),
     };
   })
@@ -92,10 +97,10 @@ clicksSnapshot.forEach(doc => {
 
 setClickNotifications(fetchedClicks);
 
-          console.log("UID: ", uid);
-          console.log("Omimai Notifications: ", fetchedOmimai);
-          console.log("Message Notifications: ", fetchedMessages);
-          console.log("Click Notifications: ", fetchedClicks);
+          // console.log("UID: ", uid);
+          // console.log("Omimai Notifications: ", fetchedOmimai);
+          // console.log("Message Notifications: ", fetchedMessages);
+          // console.log("Click Notifications: ", fetchedClicks);
 
                   // ソート処理を行い、状態を更新
         setOmimaiNotifications(sortByDate(fetchedOmimai));
@@ -140,7 +145,7 @@ setClickNotifications(fetchedClicks);
       <ul className="notification-list">
         {notifications.map((notif, index) => (
           <li key={index} className="notification-item">
-            {notif.message} - {notif.timestamp}
+            {notif.message}<br/>{notif.timestamp}
           </li>
         ))}
       </ul>

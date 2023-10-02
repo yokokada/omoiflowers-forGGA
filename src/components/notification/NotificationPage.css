@@ -8,14 +8,21 @@
     flex-direction: column;
     justify-content: center;
     margin: 0 auto; /* これを追加してコンテナを中央に配置 */
+    color: #1B3672;
   }
 
 
   .notification-zone {
     height: 150px;  /* または任意の高さ */
     overflow-y: auto;  /* 縦方向にスクロール可能にする */
-    border: 1px solid #ccc;  /* 枠線を追加（オプション） */
+    border: 1px solid #1B3672;  /* 枠線を追加（オプション） */
     margin-bottom: 20px;  /* 下マージンを追加（オプション） */
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
   }
  
   /* お知らせのタイトル */
@@ -35,17 +42,20 @@
   
   /* お知らせの項目 */
   .notification-item {
+    width: 320px;
     font-size: 12px;
-    padding: 10px;
+    padding: 5px;
+    margin-top: 0px;
     margin-bottom: 10px;
-    background-color: #ffffff; /* 背景色 */
+    background-color:#DDDDDD; /* 背景色 */
     border-radius: 5px;
-    border-bottom: 1px solid #eee;
   }
   
   .notification-zone h3{
+  width: 320px;
   position: sticky;  /* 位置を固定 */
   top: 0;  /* 上部に固定 */
   background-color: #fff;  /* 背景色（スクロール時に他の内容が透けないように） */
   z-index: 1;  /* z-indexを設定（他の要素より前面に） */
+  margin: 5px;
   }

@@ -47,7 +47,7 @@ const EventModal = ({isOpen, date, onIconToggle, iconsWithTime, setIconsWithTime
                     });
                     // tailをステートにセット
                     setTail(tail);
-                    console.log('Fetched tail:', tail);
+                    // console.log('Fetched tail:', tail);
                 });
             }
         }, [isOpen, date]);
@@ -58,7 +58,7 @@ const EventModal = ({isOpen, date, onIconToggle, iconsWithTime, setIconsWithTime
     }
 
     const onTimeChange = (iconName, timeType, value) => {
-        console.log("Changing time:", iconName, timeType, value);  // これを追加
+        // console.log("Changing time:", iconName, timeType, value);  // これを追加
         setIconsWithTime(prev => {
             const updatedIcon = {
                 ...prev[iconName],
@@ -147,7 +147,7 @@ const EventModal = ({isOpen, date, onIconToggle, iconsWithTime, setIconsWithTime
         const docRef = doc(db, "schedules", existingDocId);
         updateDoc(docRef, data)
             .then(() => {
-                console.log("Document successfully updated!");
+                // console.log("Document successfully updated!");
             })
             .catch((error) => {
                 console.error("Error updating document: ", error);
@@ -156,7 +156,7 @@ const EventModal = ({isOpen, date, onIconToggle, iconsWithTime, setIconsWithTime
         // ドキュメントがまだない場合、新規作成
         addDoc(collection(db, "schedules"), data)
             .then(() => {
-                console.log("Document successfully written!");
+                // console.log("Document successfully written!");
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);

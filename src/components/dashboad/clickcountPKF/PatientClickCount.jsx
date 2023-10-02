@@ -86,7 +86,7 @@ const todaysClicks = clickHistory.filter((history) => {
   );
 });
 
-console.log("Today's Clicks: ", todaysClicks);
+// console.log("Today's Clicks: ", todaysClicks);
 const todayClickCount = todaysClicks.length;
 
   // ここから下が実際の表示内容

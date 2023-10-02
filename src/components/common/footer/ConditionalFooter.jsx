@@ -9,11 +9,11 @@ const ConditionalFooter = () => {
     const location = useLocation();
 
     // Debugging lines
-  console.log('tail:', tail);
-  console.log('adminFlag:', adminFlag);
-  console.log('uid:', uid);
-  console.log('displayName:', displayName);
-  console.log('isLoading:', isLoading);
+  // console.log('tail:', tail);
+  // console.log('adminFlag:', adminFlag);
+  // console.log('uid:', uid);
+  // console.log('displayName:', displayName);
+  // console.log('isLoading:', isLoading);
  
   
 

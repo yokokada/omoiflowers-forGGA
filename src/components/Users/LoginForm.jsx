@@ -40,16 +40,16 @@ const handleSubmit = (e) => {
        signInWithEmailAndPassword(auth, email, password)  // <- ここを変更しました
        .then(async(userCredential) => {
          // ログイン成功時の処理
-         console.log('ログイン成功:', userCredential.user);
+        //  console.log('ログイン成功:', userCredential.user);
          const currentUserId = userCredential.user.uid;
           // Firestoreからユーザー情報を取得
             const userDocRef = doc(db, 'users', currentUserId);
             const userDoc = await getDoc(userDocRef);
             
             if (userDoc.exists()) {
-                console.log("User avatar URL:", userDoc.data().avatar);
+                // console.log("User avatar URL:", userDoc.data().avatar);
             } else {
-                console.log("No such user!");
+                // console.log("No such user!");
             }
 
          setErrorMessage(''); // エラーメッセージをリセット

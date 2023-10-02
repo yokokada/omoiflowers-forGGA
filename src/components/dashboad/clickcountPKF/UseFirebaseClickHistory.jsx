@@ -87,7 +87,7 @@ useEffect(() => {
     
         try {
             const docRef = await addDoc(collection(db, 'clicks'), clickData);
-            console.log("Document written with ID:", docRef.id);
+            // console.log("Document written with ID:", docRef.id);
             setClickHistory(prevHistory => [...prevHistory, clickData]);
             setCount(newCount);
         } catch (error) {

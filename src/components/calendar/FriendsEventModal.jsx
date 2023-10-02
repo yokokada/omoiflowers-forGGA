@@ -21,7 +21,7 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
 
 
   useEffect(() => {
-    console.log("isOpen value: ", isOpen);
+    // console.log("isOpen value: ", isOpen);
     setIsModalOpen(isOpen);
   }, [isOpen]);
 
@@ -49,7 +49,7 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
             tail: data.tail
           });
         });
-        console.log("Fetched events: ", fetchedEvents);
+        // console.log("Fetched events: ", fetchedEvents);
         setOmimaiEvents(fetchedEvents);
       } catch (error) {
         console.error('Error fetching omimai events:', error);
@@ -91,9 +91,10 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
     const savedTime = localStorage.getItem(`selectedTime_${selectedDate}`);
     const savedComment = localStorage.getItem(`additionalComment_${selectedDate}`);
     
-    if (savedTime) setSelectedTime(savedTime);
-    if (savedComment) setAdditionalComment(savedComment);
-  }, [selectedDate]);  // selectedDateが変更されたときにも実行
+   // 保存されたデータがあればそれを設定、なければ空文字列を設定
+  setSelectedTime(savedTime ? savedTime : "");
+  setAdditionalComment(savedComment ? savedComment : "");
+}, [selectedDate]);  // selectedDateが変更されたときにも実行
   
 
   const handleSave = async () => {
@@ -102,7 +103,7 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
         return;
       }
     const fullText = generateFullText();
-    console.log("Full text to be saved:", fullText);
+    // console.log("Full text to be saved:", fullText);
 
     try {
       for (const adminId of adminData) {
@@ -115,13 +116,16 @@ const FriendsEventModal = ({ isOpen, onClose, selectedDate }) => { // selectedDa
     timestamp: new Date(),  // 現在時刻を設定
     title: 'お見舞い予約'
   };
-  console.log('adminData',adminData)
+  // console.log('adminData',adminData)
 
     // messagesコレクションにデータを追加
     await addDoc(collection(db, 'messages'), newMessage);
 }
-    console.log("Message saved successfully.");
+    // console.log("Message saved successfully.");
     alert("希望を送信しました。返答はチャットでご確認ください。");  // <-- この行を追加
+    saveToLocalStorage();
+    // ここでモーダルを閉じる
+    onClose();
   } catch (error) {
     console.error("Error saving message: ", error);
   }

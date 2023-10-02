@@ -13,7 +13,7 @@ const KeyParsonClickCount = ({ showButton = true, showCountdown = true } ) => {
   const { clickHistory, userDisplayName, userId, count, recordClick, countdown } = UseFirebaseClickHistory();
 // ここでclickHistoryとuserDisplayNameのログを出力
 const userClicks = clickHistory.filter(history => history.uid === userId);
-console.log("Current User UID: ", userId);
+// console.log("Current User UID: ", userId);
   // userClicksの長さ（配列の要素数）がそのユーザaーのクリック回数になります。
 const userClickCount = userClicks.length;
   // トグルボタンの定義

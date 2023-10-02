@@ -19,7 +19,7 @@ useEffect(() => {
   }, [count]);
 
 useEffect(() => {
-    console.log("countdown changed:", countdown);
+    // console.log("countdown changed:", countdown);
 }, [countdown]);
 
 // ーーーーーーークリック時の処理ーーーーーーーーーーーーーーーーーーー
