@@ -60,7 +60,7 @@ const Memberlist = ({ isClickable = true }) => {
     });
     
    
-  console.log("After sort:", memberData.map(m => m.adminFlag));
+  // console.log("After sort:", memberData.map(m => m.adminFlag));
     // 現在のユーザーをリストの先頭に移動
     const currentUserIndex = memberData.findIndex(member => member.id === currentUser.uid);
     if (currentUserIndex > 0) {
