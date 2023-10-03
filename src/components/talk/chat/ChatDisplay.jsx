@@ -145,7 +145,7 @@ let lastDate = null;  // 最後に表示した日付を保持する変数
             value={newMessage}
             onChange={e => setNewMessage(e)}
             onSend={handleSendMessage}
-            style={{ textAlign: 'left' }}
+            style={{ textAlign: 'left' ,fontSize:'17px'}}
           />
         )}
       </ChatContainer>
