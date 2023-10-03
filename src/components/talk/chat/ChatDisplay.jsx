@@ -51,7 +51,7 @@ const ChatDisplay = () => {
   // 最後のメッセージが存在し、その送信者が相手ならば、送信欄を表示する。
 const isLastMessageFromOther = messages.length > 0 && messages[messages.length - 1].senderId !== (auth.currentUser ? auth.currentUser.uid : null);
  // adminFlagが3で、かつメッセージの数が1より大きく、最後のメッセージが相手からでない場合にtrueになる
-const hideMessageInputForAdmin = adminFlag === 3 && messages.length > 1 && !isLastMessageFromOther;
+const hideMessageInputForAdmin = adminFlag === 3 && messages.length > 0 && !isLastMessageFromOther;
 
 
 let lastDate = null;  // 最後に表示した日付を保持する変数
