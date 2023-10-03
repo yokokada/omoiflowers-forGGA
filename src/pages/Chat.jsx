@@ -14,7 +14,7 @@ const Chat = () => {
   return (
     <div>
       {/* <TopNavbar/> */}
-      <div style={{ position: "relative", height: "500px", marginTop: "80px" }}>
+      <div style={{ position: "relative", height: "80vh", marginTop: "60px" }}>
         <ChatHeader memberId={memberId} />
         <ChatContext.Provider value={chatState}>
           <ChatDisplay />
