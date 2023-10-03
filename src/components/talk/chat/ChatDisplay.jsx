@@ -99,6 +99,7 @@ let lastDate = null;  // 最後に表示した日付を保持する変数
                   key={index} 
                   direction={direction} 
                   sender={direction === "outgoing" ? "You" : displayName}
+                  style={{ textAlign: 'left' }}
                 >
                   <MessageGroup.Messages>
                     {isImageUrl(msg.text) ? (
@@ -143,6 +144,7 @@ let lastDate = null;  // 最後に表示した日付を保持する変数
             value={newMessage}
             onChange={e => setNewMessage(e)}
             onSend={handleSendMessage}
+            style={{ textAlign: 'left' }}
           />
         )}
       </ChatContainer>
