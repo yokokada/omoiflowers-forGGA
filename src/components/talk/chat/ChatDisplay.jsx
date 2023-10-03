@@ -103,14 +103,15 @@ let lastDate = null;  // 最後に表示した日付を保持する変数
                 >
                   <MessageGroup.Messages>
                     {isImageUrl(msg.text) ? (
-                      <Message
+                      <Message 
+                        type="image" 
                         model={{
-                          message: msg.text,
-                          sentTime: sentTime,
-                          sender: direction === "outgoing" ? "You" : displayName,
-                          position: "normal",
-                          direction: direction,
-                        }}
+                        direction: direction,
+                        payload: {
+                          src: msg.text,
+                          alt: "Uploaded image",
+                          width: "100px" }
+                        }} 
                       />
                     ) : isCardFormat(msg) ? (
                       <CustomMessage
