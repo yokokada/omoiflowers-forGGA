@@ -38,18 +38,29 @@ const Memberlist = ({ isClickable = true }) => {
     const memberQuery = collection(db, 'users');
     const memberSnapshot = await getDocs(memberQuery);
     let memberData = memberSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-   // 名前とadminFlagでソート
-   memberData.sort((a, b) => {
-    // adminFlag でソート
-    if (Number(a.adminFlag) !== Number(b.adminFlag)) {
-      return Number(a.adminFlag) - Number(b.adminFlag);
-    }
-    // adminFlag が同じなら、名前でソート
-    if (a.displayName && b.displayName) {
-      return a.displayName.localeCompare(b.displayName, 'ja');
-    }
-    return 0;
-  });
+
+    memberData.sort((a, b) => {
+      const flagA = a.adminFlag !== undefined ? Number(a.adminFlag) : Infinity;  // undefinedをInfinityとして扱う
+      const flagB = b.adminFlag !== undefined ? Number(b.adminFlag) : Infinity;  // undefinedをInfinityとして扱う
+      
+      // adminFlagでソート
+      if (flagA !== flagB) {
+        return flagA - flagB;
+      }
+    
+      // adminFlagが同じなら、名前でソート
+      if (a.displayName && b.displayName) {
+        return a.displayName.localeCompare(b.displayName, 'ja');
+      } else if (a.displayName) {
+        return -1; // a には displayName があり、b にはない場合
+      } else if (b.displayName) {
+        return 1;  // b には displayName があり、a にはない場合
+      }
+      return 0;  // どちらも displayName がない場合
+    });
+    
+   
+  console.log("After sort:", memberData.map(m => m.adminFlag));
     // 現在のユーザーをリストの先頭に移動
     const currentUserIndex = memberData.findIndex(member => member.id === currentUser.uid);
     if (currentUserIndex > 0) {
