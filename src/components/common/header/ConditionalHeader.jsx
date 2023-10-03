@@ -4,6 +4,7 @@ import { auth } from '../../../pages/Firebase';
 import TopNavbarOnlyLogo from './TopNavbarOnlyLogo';
 import TopNavbar from './TopNavbar';
 
+
 const ConditionalHeader = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();  // <-- 追加
