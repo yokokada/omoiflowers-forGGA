@@ -121,15 +121,15 @@ setClickNotifications(fetchedClicks);
     return (
       <div className="notification-container">
         <h2 className="notification-title">お知らせ</h2>
+
+        <div className="notification-zone">
+          <h3>メッセージ通知</h3>
+          {renderNotifications(messageNotifications)}
+        </div>
   
         <div className="notification-zone">
           <h3>お見舞い通知</h3>
           {renderNotifications(omimaiNotifications)}
-        </div>
-  
-        <div className="notification-zone">
-          <h3>メッセージ通知</h3>
-          {renderNotifications(messageNotifications)}
         </div>
   
         <div className="notification-zone">
