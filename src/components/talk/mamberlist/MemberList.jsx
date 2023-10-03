@@ -67,7 +67,7 @@ const Memberlist = ({ isClickable = true }) => {
     <div className='member-contents'>
       <h1 className="member-header">メンバーリスト</h1>
       <ul>
-      {members.filter(member => member.id !== auth.currentUser.uid).map(filteredMember => (
+      {members.filter(member => auth.currentUser && member.id !== auth.currentUser.uid).map(filteredMember => (
     <li key={filteredMember.id}>
           <div className="member-item"
           onClick={() => handleChatWithMember(filteredMember.id)} >
