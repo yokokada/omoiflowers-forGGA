@@ -15,7 +15,7 @@ const Footer = () => {
     footerContainer: {
       display: 'flex',
       justifyContent: 'space-between',
-      padding: '10px 20px 10px 20px',
+      padding: '10px 20px 20px 20px',
       alignItems: 'center',
       position: 'fixed',
       bottom: 0,
