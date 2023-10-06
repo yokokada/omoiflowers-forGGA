@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Countdown.css'
 
 const Countdown = ({ initialCountdown, onCountdownComplete }) => {
   const [countdown, setCountdown] = useState(initialCountdown);
