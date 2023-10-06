@@ -1,10 +1,11 @@
 import React from 'react';
-import AnimationComponent from '../components/dashboad/AnimationComponent';
+import AnimationComponent from '../components/dashboad/animationcompornent/AnimationComponent';
 import '../App.css';
 import PatientClickCount from '../components/dashboad/clickcountPKF/PatientClickCount';
 import KeyParsonClickCount from '../components/dashboad/clickcountPKF/KeyParsonClickCount';
 import FriendsClickCount from '../components/dashboad/clickcountPKF/FriendsClickCount';
 import { useAdminFlag } from '../context/AdminFlagContext';
+import PhysicalScale from '../components/dashboad/physicalcondition/PhysicalScales'
 
 
 function Dashboard() {
@@ -33,6 +34,7 @@ function Dashboard() {
       {adminFlag === 1 && <KeyParsonClickCount />}
       {adminFlag === 3 && <KeyParsonClickCount />}
       {/* {adminFlag === 3 && <FriendsClickCount />} */}
+      <PhysicalScale/>
     </div>
   );
 }

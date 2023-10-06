@@ -2,7 +2,7 @@ import React, { useState , useEffect } from 'react';
 import ClickHistory from './ClickHistory';
 import UseFirebaseClickHistory from './UseFirebaseClickHistory';
 import OmotteruyoButton from '../omotteruyobutton/OmotteruyoButton';
-import Countdown from '../Countdown';
+import Countdown from '../countdown/Countdown';
 import FooterPK from '../../common/footer/FooterPK';
 import './ClickTable.css';
 

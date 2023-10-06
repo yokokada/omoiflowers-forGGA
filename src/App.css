@@ -24,32 +24,6 @@ html,body {
   margin: 0 auto;
 }
 
-.base_flowers {
-  margin-top: 65px;
-  position: relative;
-  display: flex;
-  justify-content: center; /* 水平方向の中央揃え */
-  align-items: center; /* 垂直方向の中央揃え */
-}
-
-.base_flowers img {
-  margin: 0 auto;
-}
-
-.countdown {
-  /* 右側に固定して表示するためのスタイル */
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding: 1rem;
-}
-.countdown p {
-  margin-top: 25px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: grey;
-}
-
 .bg-blue {
   background-color: rgb(233, 253, 252);
 }
@@ -63,5 +37,18 @@ html,body {
 }
 
 
+/* App.css */
+* {
+  box-sizing: border-box;
+}
 
+html, body, #root, .App {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.App {
+  overflow-y: auto;
+}
 

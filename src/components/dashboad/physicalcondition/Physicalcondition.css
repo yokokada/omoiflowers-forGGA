@@ -1,0 +1,35 @@
+.physicalScale{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.physicalScaleTitle{
+    padding: 10px 10px  10px 0px;
+}
+.dailyTweet{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.dailyTweet input{
+    width: 280px;
+    font-size: 17px;
+    border-radius: 10px;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid ;
+}
+.dailyTweet label{
+    padding: 10px 10px  10px 0px;
+    line-height: 0.9;
+}
+.physicalScaleWrap{
+    color: #1B3672;
+    margin: 0px 14px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid;
+
+}

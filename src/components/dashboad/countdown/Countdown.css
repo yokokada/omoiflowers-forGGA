@@ -1,0 +1,14 @@
+.countdown {
+    /* 右側に固定して表示するためのスタイル */
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+  }
+  .countdown p {
+    margin-top: 25px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: grey;
+  }
+  
