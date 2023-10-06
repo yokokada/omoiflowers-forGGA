@@ -18,6 +18,7 @@ import Clicks from './pages/Clicks';
 import ConditionalHeader from './components/common/header/ConditionalHeader';
 import ConditionalFooter from './components/common/footer/ConditionalFooter';
 import { AdminFlagProvider } from './context/AdminFlagContext';
+import WishList from './pages/WishList';
 
 
 export const ColorContext = createContext();
@@ -43,6 +44,7 @@ function App() {
       <ErrorBoundary>
           <Routes>
           <Route path="/all-post" element={<AllPost />} />
+          <Route path="/wishlist" element={<WishList />} />
           <Route path="/clicks" element={<Clicks />} />
           <Route path="/chat/:memberId" element={<Chat />} />
           <Route path="/login" element={<Login />} />

@@ -1,0 +1,154 @@
+.addButton {
+    position: fixed;
+    bottom: 60px;
+    right: 30px;
+    z-index: 1000;
+    font-size: 30px;
+  }
+  .wishTab{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    text-align: center;
+    
+    
+  }
+  .wishTab button{
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 8px ;
+  }
+  .listContents{
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .addListModal{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%; /* モーダルの幅を調整 */
+        max-width: 600px; /* 最大の幅を設定 */
+        height: auto; /* 必要に応じて高さを調整 */
+        background-color: white; /* 背景色を白に */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.4); /* 影を追加 */
+        z-index: 1000;
+        color: #1B3672;
+        font-size: 17px;
+  }
+
+  .addListModal input{
+    width: 250px;
+    border: solid 1px;
+    margin: 20px 0; 
+    font-size: 17px;
+  }
+  .modalButton{
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+  }
+
+  .list{
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    
+  }
+  .listItem {
+    text-align: left;
+    background-color: #fff;
+    padding: 5px;
+    /* margin: 0 25px; */
+    /* border-bottom: solid #ddd; */
+    /* box-shadow: 8px 0 8px rgba(0, 0, 0, 0.2), -8px 0 8px rgba(0, 0, 0, 0.2); */
+    color: #1B3672;
+    border: solid 1px #1B3672 ;
+  }
+
+  .lastItem {
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);  
+  }
+
+  .listItemButton{
+    display: flex;
+    margin-right: 30px;
+    width: 30px;
+    padding-top: 5px;
+    gap: 10px;
+  }
+
+
+  .listContents ul {
+    margin-bottom: 120px;
+  }
+
+  .listContents {
+    overflow-y: auto; /* 垂直方向のスクロールを有効に */
+    max-height: calc(100vh - 50px); /* 画面の高さに合わせて、50px分余白を取る */
+  }
+
+
+
+.listDisplay{
+    width: 220px;
+    height: auto;
+    white-space: normal; /* テキストを折り返す */
+    overflow: hidden; /* コンテンツがボックスを超えたら非表示に */
+    text-overflow: ellipsis; /* テキストがボックスを超えたら"..."で省略 */
+    display: -webkit-box; /* フレックスボックスを利用 */
+    -webkit-line-clamp: 2; /* 表示する行数 */
+    -webkit-box-orient: vertical; /* 縦方向にコンテンツを配置 */
+}
+
+.dragging {
+    background-color: lightgray;  /* または他の色 */
+    opacity: 0.5;
+  }
+  
+  .ListTittle h1{
+    font-size: 20px;
+    color: #1B3672;
+    margin-bottom: 10px;
+  }
+
+  .ListTittle h1 span {
+    border-bottom: 2px solid #1B3672;
+    padding-bottom: 2px;
+  }
+
+  .ListAllWraper{
+    margin: 0 25px;
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);   */
+    /* background-color: #fff; */
+  }
+  .ListTittle{
+    color: #1B3672;
+    margin-top: 0;
+    padding-top: 10px;  /* 既存のスタイルに加えて */
+    background-color: white;
+    position: sticky;
+    top: 55px;
+    z-index: 101; /* h1が最前面に来るように */
+    /* margin: 0 25px; */
+    border-bottom: solid #ddd;
+    border-radius: 10px 10px 0 0;
+    height: auto;
+     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);  
+     border: solid 1px #1B3672 ;
+  }
+
+  .circle{
+    width: 50px;
+    height: 50px;
+    background-color: #1B3672;
+    border-radius: 50px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

@@ -1,6 +1,6 @@
 import React, { useContext }from 'react';
 import { Link } from 'react-router-dom';
-import { Home, Calendar, Settings, ChatLines, AddUser } from 'iconoir-react';
+import { Home, Calendar, Settings, ChatLines, ClipboardCheck } from 'iconoir-react';
 import { ColorContext } from '../../../App';
 
 
@@ -42,13 +42,12 @@ const Footer = () => {
       <Link to="/talks" style={styles.iconLink}>
         <ChatLines />
       </Link>
-      <Link to="/addmember" style={styles.iconLink}>
-        <AddUser />
-      </Link>
       <Link to="/calendar" style={styles.iconLink}>
         <Calendar />
       </Link>
-
+      <Link to="/wishlist" style={styles.iconLink}>
+        <ClipboardCheck />
+      </Link>
       <Link to="/settings" style={styles.iconLink}>
         <Settings />
       </Link>

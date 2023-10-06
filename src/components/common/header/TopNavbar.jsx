@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useContext  } from 'react';
 import './Navbar.css';
-import {MoreHoriz, Flower, Home, Calendar, Settings, ChatLines, AddUser ,LogOut ,List, Group} from 'iconoir-react';
+import {MoreHoriz, Flower, Home, Calendar, Settings, ChatLines, AddUser ,LogOut ,List, Group ,ClipboardCheck} from 'iconoir-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../../pages/Firebase';  // Firebaseの設定に応じて変更
 import { Link, useNavigate, useLocation } from 'react-router-dom';
@@ -49,6 +49,7 @@ export default function App() {
     { name: "クリック履歴", action: "/clicks" , icon:<List fontSize={16} strokeWidth={1} />},
     { name: "トーク", action: "/talks" , icon:<ChatLines fontSize={16} strokeWidth={1} />},
     { name: "カレンダー", action: "/calendar", icon:<Calendar fontSize={16} strokeWidth={1} /> },
+    { name: "ウィッシュリスト", action: "/wishlist", icon:<ClipboardCheck fontSize={16} strokeWidth={1} /> },
     { name: "設定", action: "/settings" , icon:<Settings fontSize={16} strokeWidth={1} />},
     { name: "お知らせ", action: "/notification", icon:<Flower fontSize={16} strokeWidth={1} /> },
     { name: "ログアウト", action: "LOG_OUT", icon:<LogOut fontSize={16} strokeWidth={1} /> }
