@@ -16,7 +16,7 @@
     position: absolute;
     top: 50px; 
     right: 0;
-    width: 220px;
+    width: 240px;
     height: 90vh;  /* <-- この行を追加 */
     transition: transform 2.0s ease-in-out; 
     transform: translateX(100%);
