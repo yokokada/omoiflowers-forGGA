@@ -26,7 +26,8 @@
 }
 .physicalScaleWrap{
     color: #1B3672;
-    margin: 0px 14px;
+    margin: 0px auto;
+    width: 90vw;
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;

@@ -15,7 +15,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { bgColor } = useContext(ColorContext);  
-  const { adminFlag, isLoading,uid,displayName,tail } = useAdminFlag(); // <-- useAdminFlagで取得
+  const { adminFlag, isLoading,uid,displayName,tail ,adminZeroDisplayName } = useAdminFlag(); // <-- useAdminFlagで取得
   const location = useLocation();  // <-- 追加
   const menuRef = useRef(null);  // メニューの参照
 
@@ -80,7 +80,7 @@ export default function App() {
       </div>
       
       <div className="center-item">
-        <h1 className="navbar-item" style={{ fontWeight: "bold" }}>omoi flowers</h1>
+        <h1 className="navbar-item" style={{ fontWeight: "bold" }}>{adminZeroDisplayName}さんのRoom</h1>
       </div>
 
       <div className="right-item">
