@@ -1,5 +1,4 @@
 .base_flowers {
-    margin-top: 60px;
     position: relative;
     display: flex;
     justify-content: center; /* 水平方向の中央揃え */
@@ -29,7 +28,6 @@
   }
 
   .dataBoxWrap{
-    margin-top: 60px;
     position: relative;
     display: flex;
     justify-content: center; /* 水平方向の中央揃え */

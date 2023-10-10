@@ -15,6 +15,8 @@ export const AdminFlagProvider = ({ children }) => {
   const [tail, setTail] = useState(null);  // tailを管理するstate
   const [isLoading, setIsLoading] = useState(true);
   const [adminZeroDisplayName, setAdminZeroDisplayName] = useState(null); // adminFlag === 0 の人のdisplayName
+  const [adminZeroId, setAdminZeroId] = useState(null); // adminFlag === 0 の人のID
+
 
   useEffect(() => {
     const fetchAdminFlag = async () => {
@@ -46,7 +48,7 @@ export const AdminFlagProvider = ({ children }) => {
     return () => unsubscribe();  // cleanup function
   }, []);
 
-  const fetchAdminZeroDisplayName = async () => {
+  const fetchAdminZeroData = async () => {
     try {
       const q = query(collection(db, "users"), where("adminFlag", "==", 0));
       const querySnapshot = await getDocs(q);
@@ -54,13 +56,14 @@ export const AdminFlagProvider = ({ children }) => {
       querySnapshot.forEach((doc) => {
         // 通常は1人だけになるはずですが、複数のユーザーが該当する可能性も考慮
         setAdminZeroDisplayName(doc.data().displayName);
+        setAdminZeroId(doc.id); // IDを設定
       });
     } catch (error) {
       console.error("Error fetching adminZeroDisplayName:", error);
     }
   };
   
-  fetchAdminZeroDisplayName(); // adminFlag === 0 の人のdisplayNameを取得
+  fetchAdminZeroData(); // adminFlag === 0 の人のdisplayNameを取得
 
   const value = {
     adminFlag,
@@ -69,6 +72,7 @@ export const AdminFlagProvider = ({ children }) => {
     tail,  // tailも渡す
     isLoading,
     adminZeroDisplayName,
+    adminZeroId
   };
 
   return (
