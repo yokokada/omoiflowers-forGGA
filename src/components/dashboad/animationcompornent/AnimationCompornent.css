@@ -6,12 +6,12 @@
 .slick-prev {
     left: 5px !important;  /* 数値はお好みで調整してください */
     z-index: 1001;  /* z-indexを高く設定 */
-    top: 260px !important; 
+    top: 200px !important; 
 }
 
 .slick-next {
     right: 15px !important;  /* 数値はお好みで調整してください */
-    top: 260px !important; 
+    top: 200px !important; 
 }
 
 .slick-prev:before, .slick-next:before {

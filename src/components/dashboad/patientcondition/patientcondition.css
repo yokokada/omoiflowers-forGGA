@@ -1,0 +1,38 @@
+.patientCondition{
+    display: flex;
+
+}
+.patientConditionWrap{
+    background-color: #fff;
+    border-radius: 10px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px;
+    color: #1B3672;
+
+}
+
+.patientIcon{
+    padding: 5px;
+    border: 1px solid ;
+    border-radius: 10px;
+}
+.patientIcon svg{
+    color: #F39459;
+    margin: 3px;
+    font-size: 20px;
+
+}
+.patientTweet {
+ width: 280px;
+ margin-left: 10px;
+ text-align: left;
+ border:1px solid #F39459;
+ border-radius: 10px;
+ padding: 5px;
+}
+
+.patientTweet  p{
+    font-size: 20px;
+    margin: 3px;
+}

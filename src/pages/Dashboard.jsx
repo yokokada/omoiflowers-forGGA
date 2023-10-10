@@ -6,6 +6,7 @@ import KeyParsonClickCount from '../components/dashboad/clickcountPKF/KeyParsonC
 import FriendsClickCount from '../components/dashboad/clickcountPKF/FriendsClickCount';
 import { useAdminFlag } from '../context/AdminFlagContext';
 import PhysicalScale from '../components/dashboad/physicalcondition/PhysicalScales'
+import Patientcondition from '../components/dashboad/patientcondition/Patientcondition'
 
 
 function Dashboard() {
@@ -28,16 +29,19 @@ function Dashboard() {
   
   return (
     <div>
-      <div>
+       <div style={{ marginTop:'70px' }}>
+        <Patientcondition/>
+      </div>
+      <div style={{ marginTop:'20px' }}>
       <AnimationComponent />
       </div>
       <div style={{ marginTop:'60px' }}>
-        {/* {adminFlag === 0 && <PatientClickCount />}
+        {adminFlag === 0 && <PatientClickCount />}
         {adminFlag === 1 && <KeyParsonClickCount />}
-        {adminFlag === 3 && <KeyParsonClickCount />} */}
+        {adminFlag === 3 && <KeyParsonClickCount />}
       </div>
       <div style={{ marginTop:'30px' }}>
-        <PhysicalScale/>
+      {adminFlag === 0 &&<PhysicalScale />}
       </div>
     </div>
   );
