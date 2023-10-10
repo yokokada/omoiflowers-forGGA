@@ -1,11 +1,19 @@
-.base_flowers {
-    margin-top: 60px;
-    position: relative;
-    display: flex;
-    justify-content: center; /* 水平方向の中央揃え */
-    align-items: center; /* 垂直方向の中央揃え */
-  }
-  
-  .base_flowers img {
-    margin: 0 auto;
-  }
+.slick-prev:before,
+.slick-next:before {
+    color:#F39459 !important;
+}
+
+.slick-prev {
+    left: 5px !important;  /* 数値はお好みで調整してください */
+    z-index: 1001;  /* z-indexを高く設定 */
+    top: 260px !important; 
+}
+
+.slick-next {
+    right: 15px !important;  /* 数値はお好みで調整してください */
+    top: 260px !important; 
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 30px !important;  /* 矢印のテキストサイズ */
+}

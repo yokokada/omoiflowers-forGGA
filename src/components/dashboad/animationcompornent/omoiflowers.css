@@ -1,0 +1,55 @@
+.base_flowers {
+    margin-top: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center; /* 水平方向の中央揃え */
+    align-items: center; /* 垂直方向の中央揃え */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
+    width:90%;
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 10px;
+    height: 400px;
+  }
+  
+  .base_flowers {
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+  }
+
+.omoiFlowers{
+    display: flex;
+    justify-content: center;
+  }
+
+  .omoiFlowersData{
+    display: flex;
+    justify-content: center;
+  }
+
+  .dataBoxWrap{
+    margin-top: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center; /* 水平方向の中央揃え */
+    flex-flow: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
+    width:90%;
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 10px;
+    height: 400px;
+  }
+
+  .dataBox{
+    width: 300px;
+    height: 100px;
+    border-radius: 10px;
+    border: 1px solid #1B3672;
+    margin: auto;
+    padding: 5px;
+    color: #1B3672;
+  }
+  
+  

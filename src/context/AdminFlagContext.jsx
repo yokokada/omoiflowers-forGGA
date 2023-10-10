@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { db, auth } from '../pages/Firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { collection, query, where, doc, getDoc, getDocs} from 'firebase/firestore';
 
 const AdminFlagContext = createContext();
 
@@ -14,6 +14,7 @@ export const AdminFlagProvider = ({ children }) => {
   const [displayName, setDisplayName] = useState(null);
   const [tail, setTail] = useState(null);  // tailを管理するstate
   const [isLoading, setIsLoading] = useState(true);
+  const [adminZeroDisplayName, setAdminZeroDisplayName] = useState(null); // adminFlag === 0 の人のdisplayName
 
   useEffect(() => {
     const fetchAdminFlag = async () => {
@@ -45,12 +46,29 @@ export const AdminFlagProvider = ({ children }) => {
     return () => unsubscribe();  // cleanup function
   }, []);
 
+  const fetchAdminZeroDisplayName = async () => {
+    try {
+      const q = query(collection(db, "users"), where("adminFlag", "==", 0));
+      const querySnapshot = await getDocs(q);
+  
+      querySnapshot.forEach((doc) => {
+        // 通常は1人だけになるはずですが、複数のユーザーが該当する可能性も考慮
+        setAdminZeroDisplayName(doc.data().displayName);
+      });
+    } catch (error) {
+      console.error("Error fetching adminZeroDisplayName:", error);
+    }
+  };
+  
+  fetchAdminZeroDisplayName(); // adminFlag === 0 の人のdisplayNameを取得
+
   const value = {
     adminFlag,
     uid,
     displayName,
     tail,  // tailも渡す
-    isLoading
+    isLoading,
+    adminZeroDisplayName,
   };
 
   return (

@@ -28,13 +28,17 @@ function Dashboard() {
   
   return (
     <div>
-     {/* <TopNavbar/> */}
+      <div>
       <AnimationComponent />
-      {adminFlag === 0 && <PatientClickCount />}
-      {adminFlag === 1 && <KeyParsonClickCount />}
-      {adminFlag === 3 && <KeyParsonClickCount />}
-      {/* {adminFlag === 3 && <FriendsClickCount />} */}
-      <PhysicalScale/>
+      </div>
+      <div style={{ marginTop:'60px' }}>
+        {/* {adminFlag === 0 && <PatientClickCount />}
+        {adminFlag === 1 && <KeyParsonClickCount />}
+        {adminFlag === 3 && <KeyParsonClickCount />} */}
+      </div>
+      <div style={{ marginTop:'30px' }}>
+        <PhysicalScale/>
+      </div>
     </div>
   );
 }
