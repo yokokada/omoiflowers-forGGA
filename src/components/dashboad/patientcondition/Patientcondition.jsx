@@ -15,15 +15,28 @@ const Patientcondition = () => {
         const fetchData = async () => {
           const docRef = doc(db, "PatientData",adminZeroId);
           const docSnap = await getDoc(docRef);
-    
+
           if (docSnap.exists()) {
-            setCondition(docSnap.data().condition);
-            setTweet(docSnap.data().tweet);
+            const data = docSnap.data();
+            const now = new Date();
+            const lastUpdate = data.timestamp.toDate();
+    
+            // 日付が同じ場合のみデータをセット
+            if (lastUpdate.getDate() === now.getDate() &&
+                lastUpdate.getMonth() === now.getMonth() &&
+                lastUpdate.getFullYear() === now.getFullYear()) {
+              setCondition(data.condition);
+              setTweet(data.tweet);
+            } else {
+              // 日付が違う場合はデータをリセット
+              setCondition(null);
+              setTweet('');
+            }
           }
         };
-    
+
         fetchData();
-      }, [uid]);
+      }, [adminZeroId]);
     
       const renderIcon = () => {
         switch (condition) {
@@ -38,7 +51,7 @@ const Patientcondition = () => {
           case 'grate':
             return <EmojiBlinkRight fontSize={'24px'} />;
           default:
-            return <span>情報なし</span>;
+            return <span className="info">情報<br/>なし</span>;
         }
       }
 

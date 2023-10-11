@@ -98,7 +98,7 @@ useEffect(() => {
 return (
   <div className='tablespace'>
     {showCountdown && <Countdown initialCountdown={countdown} onCountdownComplete={handleCountdownComplete} />}
-    {showButton && <OmotteruyoButton onClick={handleButtonClick} />}
+    {/* {showButton && <OmotteruyoButton onClick={handleButtonClick} />} */}
     <div className='mainTable'>
       <div className='row'  style={{ cursor: 'pointer', borderBottom: '1px solid #ddd' }}>
         <p className='a'>omoってるよ累積</p>

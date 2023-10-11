@@ -75,9 +75,9 @@ export default function App() {
 
   return (
     <div className="navbar" style={styles.navbarFixed}>
-      <div className="left-item">
+      {/* <div className="left-item">
         <Link to="/notification" className="navbar-item"><Flower fontSize={16} strokeWidth={1} /></Link>
-      </div>
+      </div> */}
       
       <div className="center-item">
         <h1 className="navbar-item" style={{ fontWeight: "bold" }}>{adminZeroDisplayName}さんのRoom</h1>
