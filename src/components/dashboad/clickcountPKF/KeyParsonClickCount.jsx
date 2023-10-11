@@ -55,12 +55,11 @@ useEffect(() => {
 
 
   // omoってるよボタンを押した時の処理
-  const handleButtonClick = () => {
-    const newCount = count + 1;
-    const currentDate = new Date();
-    recordClick(newCount, currentDate);
-    // ここからスクロールの制御を削除します。
-  };
+  // const handleButtonClick = () => {
+  //   const newCount = count + 1;
+  //   const currentDate = new Date();
+  //   recordClick(newCount, currentDate);
+  // };
 
 //カウントダウンが完了した時の処理
   const handleCountdownComplete = () => {};
@@ -98,7 +97,7 @@ useEffect(() => {
 return (
   <div className='tablespace'>
     {showCountdown && <Countdown initialCountdown={countdown} onCountdownComplete={handleCountdownComplete} />}
-    {showButton && <OmotteruyoButton onClick={handleButtonClick} />}
+    {/* {showButton && <OmotteruyoButton onClick={handleButtonClick} />} */}
     <div className='mainTable'>
       <div className='row' onClick={() => handleToggleClick(setIsOpenClickers, isOpenClickers)} style={{ cursor: 'pointer', borderBottom: '1px solid #ddd' }}>
         <p className='a'>omoってるよ累積</p>

@@ -5,12 +5,16 @@ import PatientClickCount from '../components/dashboad/clickcountPKF/PatientClick
 import KeyParsonClickCount from '../components/dashboad/clickcountPKF/KeyParsonClickCount';
 import FriendsClickCount from '../components/dashboad/clickcountPKF/FriendsClickCount';
 import { useAdminFlag } from '../context/AdminFlagContext';
-import PhysicalScale from '../components/dashboad/physicalcondition/PhysicalScales'
-import Patientcondition from '../components/dashboad/patientcondition/Patientcondition'
+import PhysicalScale from '../components/dashboad/physicalcondition/PhysicalScales';
+import Patientcondition from '../components/dashboad/patientcondition/Patientcondition';
+import OmotteruyoButton from '../components/dashboad/omotteruyobutton/OmotteruyoButton'
+import UseFirebaseClickHistory from '../components/dashboad/clickcountPKF/UseFirebaseClickHistory'; // この行を追加
+
 
 
 function Dashboard() {
   const { adminFlag, uid,displayName,tail } = useAdminFlag(); 
+  const { clickHistory, userDisplayName, userId, count, recordClick, countdown } = UseFirebaseClickHistory(); // この行を追加
 
   const styles = {
     topNavBar: {
@@ -29,16 +33,18 @@ function Dashboard() {
   
   return (
     <div>
-       <div style={{ marginTop:'70px' }}>
-        <Patientcondition/>
+       <div style={{ marginTop:'60px' }}>
+       {(adminFlag === 3 || adminFlag === 1) && <Patientcondition />}
       </div>
-      <div style={{ marginTop:'20px' }}>
+      <div style={{ marginTop:'10px' }}>
       <AnimationComponent />
       </div>
       <div style={{ marginTop:'60px' }}>
-        {adminFlag === 0 && <PatientClickCount />}
+        {/* {adminFlag === 0 && <PatientClickCount />}
         {adminFlag === 1 && <KeyParsonClickCount />}
-        {adminFlag === 3 && <KeyParsonClickCount />}
+        {adminFlag === 3 && <KeyParsonClickCount />} */}
+        {(adminFlag === 3 || adminFlag === 1) && <OmotteruyoButton count={count} recordClick={recordClick} />}
+        
       </div>
       <div style={{ marginTop:'30px' }}>
       {adminFlag === 0 &&<PhysicalScale />}

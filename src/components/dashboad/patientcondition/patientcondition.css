@@ -7,9 +7,15 @@
     border-radius: 10px;
     width: 90%;
     margin: 0 auto;
-    padding: 15px;
+    padding: 10px;
     color: #1B3672;
 
+}
+
+.patientConditionWrap h1{
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .patientIcon{
@@ -24,15 +30,31 @@
 
 }
 .patientTweet {
- width: 280px;
- margin-left: 10px;
+ width: 275px;
+ margin-left: 5px;
  text-align: left;
  border:1px solid #F39459;
  border-radius: 10px;
  padding: 5px;
+ display: flex;
+ justify-content: left;
+ align-items: center;
 }
 
 .patientTweet  p{
-    font-size: 20px;
-    margin: 3px;
+    font-size: 14px;
+    margin-left: 10px;
 }
+
+.info {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    height: 12px;  /* この値は調整が必要かもしれません */
+    vertical-align: middle;  /* テキストを垂直方向に中央に配置 */
+    
+    width: 36px;
+  }
+ 
+  
+  
