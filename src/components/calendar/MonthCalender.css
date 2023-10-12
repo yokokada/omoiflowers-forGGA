@@ -48,8 +48,8 @@
   }
   
   .react-calendar__month-view__days__day--neighboringMonth {
-    color:#1B3672;
-  }
+    color: #a0a0a0;  /* この色は例です。お好きな色に設定してください */
+}
   
   .react-calendar__tile {
     max-width: 100%;
