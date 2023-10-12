@@ -17,3 +17,6 @@
 .slick-prev:before, .slick-next:before {
     font-size: 30px !important;  /* 矢印のテキストサイズ */
 }
+/* .slick-dots{
+    margin-bottom: 10px !important;
+} */

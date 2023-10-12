@@ -11,11 +11,11 @@
     /* justify-content: center; */
     text-align: center;
     align-items: center;
-    gap:20px;
+    gap:16px;
     margin-top: 5px;
 }
 .dailyTweet input{
-    width: 270px;
+    width: 280px;
     font-size: 17px;
     border-radius: 10px;
     height: 40px;

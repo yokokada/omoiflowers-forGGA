@@ -6,9 +6,9 @@ import FooterPK from '../components/common/footer/FooterPK'
 function Calendar() {
   return (
     <div>
-      {/* <TopNavbar/> */}
+      <div style={{ marginTop:'20px' }}>
       <MonthCalendar/>
-      {/* <FooterPK/> */}
+      </div>
     </div>
   )
 }

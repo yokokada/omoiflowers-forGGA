@@ -1,0 +1,24 @@
+.flowerStamp{
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;  /* 追加: コンテンツが折り返されるように */
+}
+.flowers{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 各花のブロックに一定の幅と高さを設定 */
+.flowers > div {
+    width: 36px;  /* こちらの数値はお好みで調整してください */
+    height: 40px;  /* こちらの数値はお好みで調整してください */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flowerStamp p{
+    font-size: 12px;
+}
+

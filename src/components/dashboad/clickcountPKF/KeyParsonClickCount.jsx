@@ -1,10 +1,10 @@
 import React, { useState , useEffect } from 'react';
-import ClickHistory from './ClickHistory';
-import UseFirebaseClickHistory from './UseFirebaseClickHistory';
+import ClickHistory from '../animationcompornent/clickTable/ClickHistory';
+import UseFirebaseClickHistory from '../../../hooks/UseFirebaseClickHistory';
 import OmotteruyoButton from '../omotteruyobutton/OmotteruyoButton';
 import Countdown from '../countdown/Countdown';
 import FooterPK from '../../common/footer/FooterPK';
-import './ClickTable.css';
+import '../animationcompornent/clickTable/ClickTable.css';
 
 const KeyParsonClickCount = ({ showButton = true, showCountdown = true } ) => {
    // 画面遷移時にスクロール制御をかける定義

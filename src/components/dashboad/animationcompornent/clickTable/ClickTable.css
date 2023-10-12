@@ -1,0 +1,93 @@
+.tablespace{
+    margin:0 auto;
+    color:#1B3672;
+}
+
+.mainTable {
+   margin: 0 auto;
+    }
+
+.a{
+    width: 170px;
+    text-align: left;
+    
+}
+.b{
+    width: 70px;
+    text-align: right;
+}
+.c{
+    width: 60px;
+    text-align: right;
+    font-size: 20px;
+}
+.table2{
+    display: flex;
+    justify-content: center;
+}
+.table3{
+    margin: 0 auto;
+    
+}
+.historytable{
+    width: 300px;
+    margin:0 auto;
+    text-align: center;
+}
+.table3{
+    margin: -10px auto;
+}
+.table3 tr {
+    height: 40px;
+    color: #1B3672;
+    
+}
+.row{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.modal {
+    z-index: 1002;  /* この値は他の要素のz-indexに依存します */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    width: 90%;
+    max-width: 800px;  /* 最大の幅を800pxに設定 */
+    position: relative;
+    overflow-y: auto; /* 垂直方向にスクロールを有効に */
+    max-height: 90%;  /* 最大高さを90%に設定 */
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    background-color:#F39459 ;
+    text-align: center;
+    align-items: center;
+    padding-top: 2px;
+  }
+  .closeButton span{
+    color: #1B3672
+  }
+  .date-column{
+    width: 95px !important;
+  }
