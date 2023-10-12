@@ -12,8 +12,11 @@ const Patientcondition = () => {
     const { adminFlag, isLoading, uid, displayName, tail, adminZeroDisplayName,adminZeroId } = useAdminFlag(); 
 
     useEffect(() => {
-        const fetchData = async () => {
-          const docRef = doc(db, "PatientData",adminZeroId);
+      const fetchData = async () => {
+        const today = new Date().toLocaleDateString('en-CA');  // <-- todayをここで設定
+        const docId = `${adminZeroId}_${today}`;  // <-- adminZeroIdとtodayを組み合わせる
+        const docRef = doc(db, "PatientData", docId);  // <-- 変更後のdocIdを使用
+
           const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {
