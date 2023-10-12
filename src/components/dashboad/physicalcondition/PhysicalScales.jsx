@@ -14,19 +14,18 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "PatientData", uid);  // <-- ここを修正
+      const today = new Date().toLocaleDateString('en-CA');
+      const docId = `${uid}_${today}`;
+      const docRef = doc(db, "PatientData", docId);
+
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        const now = new Date();
-        const lastUpdate = docSnap.data().timestamp.toDate();
-        if (lastUpdate.getDate() !== now.getDate()) {
-          setCondition("");
-          setTweet("");
-        } else {
-          setCondition(docSnap.data().condition);
-          setTweet(docSnap.data().tweet);
-        }
+        setCondition(docSnap.data().condition);
+        setTweet(docSnap.data().tweet);
+      } else {
+        setCondition("");
+        setTweet("");
       }
     };
 
@@ -34,11 +33,14 @@ export default function App() {
   }, []);
 
   const saveData = async () => {
-    const docRef = doc(db, "PatientData", uid);  // <-- ここを修正
-    const docSnap = await getDoc(docRef);
+    const today = new Date().toLocaleDateString('en-CA');
+    const docId = `${uid}_${today}`;
+    const docRef = doc(db, "PatientData", docId);
+    const docSnap = await getDoc(docRef);  // <-- ここを追加
 
-      const now = new Date();
-      const lastUpdate = docSnap.data()?.timestamp?.toDate();
+    const now = new Date();  // <-- ここを追加
+    const lastUpdate = docSnap.data()?.timestamp?.toDate();  // <-- ここを追加
+
 
       if (lastUpdate?.getDate() !== now.getDate()|| !docSnap.exists()) {
         // 日付が変わっているか、データが存在しない場合は新しくデータを追加
@@ -60,7 +62,7 @@ export default function App() {
 
    // タブの選択が変更されたときに呼び出される関数
    const handleSelectionChange = (key) => {
-    console.log("Selected tab:", key);  // デバッグ用
+    // console.log("Selected tab:", key);  // デバッグ用
     setCondition(key);
   };
 
