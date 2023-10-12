@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ClickHistory from './ClickHistory';
-import UseFirebaseClickHistory from './UseFirebaseClickHistory';
-import FooterPK from '../../common/footer/FooterPK';
-import './ClickTable.css';
+import ClickHistory from '../animationcompornent/clickTable/ClickHistory';
+import UseFirebaseClickHistory from '../../../hooks/UseFirebaseClickHistory';
+import '../animationcompornent/clickTable/ClickTable.css';
 
 const KeyParsonClickCount = () => {
   // 画面遷移時にスクロール制御をかける定義

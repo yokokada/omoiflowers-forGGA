@@ -3,7 +3,7 @@ import WishListTab from '../components/wishlist/WishListTab'
 
 const WishList = () => {
   return (
-    <div style={{ marginTop:'60px' }}>
+    <div style={{ marginTop:'70px' }}>
       <WishListTab/>
     </div>
   )

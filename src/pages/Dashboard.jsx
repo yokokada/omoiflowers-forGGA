@@ -1,14 +1,11 @@
 import React from 'react';
 import AnimationComponent from '../components/dashboad/animationcompornent/AnimationComponent';
 import '../App.css';
-import PatientClickCount from '../components/dashboad/clickcountPKF/PatientClickCount';
-import KeyParsonClickCount from '../components/dashboad/clickcountPKF/KeyParsonClickCount';
-import FriendsClickCount from '../components/dashboad/clickcountPKF/FriendsClickCount';
 import { useAdminFlag } from '../context/AdminFlagContext';
 import PhysicalScale from '../components/dashboad/physicalcondition/PhysicalScales';
 import Patientcondition from '../components/dashboad/patientcondition/Patientcondition';
 import OmotteruyoButton from '../components/dashboad/omotteruyobutton/OmotteruyoButton'
-import UseFirebaseClickHistory from '../components/dashboad/clickcountPKF/UseFirebaseClickHistory'; // この行を追加
+import UseFirebaseClickHistory from '../hooks/UseFirebaseClickHistory'; // この行を追加
 
 
 
@@ -33,7 +30,7 @@ function Dashboard() {
   
   return (
     <div>
-       <div style={{ marginTop:'60px' }}>
+       <div style={{ marginTop:'80px' }}>
        {(adminFlag === 3 || adminFlag === 1) && <Patientcondition />}
       </div>
       <div style={{ marginTop:'10px' }}>
@@ -46,7 +43,7 @@ function Dashboard() {
         {(adminFlag === 3 || adminFlag === 1) && <OmotteruyoButton count={count} recordClick={recordClick} />}
         
       </div>
-      <div style={{ marginTop:'30px' }}>
+      <div style={{ marginTop:'20px' }}>
       {adminFlag === 0 &&<PhysicalScale />}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CustomModal from '../../common/CustomModal';  // 忘れずにインポートしてください
 import Countdown from '../countdown/Countdown';
-import useFirebaseClickHistory from '../clickcountPKF/UseFirebaseClickHistory';
+import useFirebaseClickHistory from '../../../hooks/UseFirebaseClickHistory';
 import './omoiflowers.css'
 
 const png = () => {

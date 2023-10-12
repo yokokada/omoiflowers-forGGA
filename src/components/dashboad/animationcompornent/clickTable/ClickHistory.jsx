@@ -9,12 +9,12 @@ const ClickHistory = ({ history }) => {
             <Table isHeaderSticky aria-label="Click History">
                 <TableHeader>
                     <TableColumn key="clickNumber">クリックNo.</TableColumn>
-                    <TableColumn key="clickedAt" >日時</TableColumn>
+                    <TableColumn key="clickedAt" className="date-column">日時</TableColumn>
                     <TableColumn key="displayName" >ID</TableColumn>
                 </TableHeader>
                 <TableBody items={history}>
                     {(item) => (
-                        <TableRow key={String(item.docId)}>
+                        <TableRow key={String(item.docId)} style={{ height: "50px" }}>
                             {(columnKey) => {
                                 if (columnKey === "clickedAt") {
                                     return (
