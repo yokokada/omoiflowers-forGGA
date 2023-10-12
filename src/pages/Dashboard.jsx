@@ -36,16 +36,17 @@ function Dashboard() {
       <div style={{ marginTop:'10px' }}>
       <AnimationComponent />
       </div>
-      <div style={{ marginTop:'60px' }}>
+      <div style={{ marginTop:'30px' }}>
+      {adminFlag === 0 &&<PhysicalScale />}
+      </div>
+      <div style={{ marginTop:'50px' }}>
         {/* {adminFlag === 0 && <PatientClickCount />}
         {adminFlag === 1 && <KeyParsonClickCount />}
         {adminFlag === 3 && <KeyParsonClickCount />} */}
         {(adminFlag === 3 || adminFlag === 1) && <OmotteruyoButton count={count} recordClick={recordClick} />}
         
       </div>
-      <div style={{ marginTop:'20px' }}>
-      {adminFlag === 0 &&<PhysicalScale />}
-      </div>
+     
     </div>
   );
 }

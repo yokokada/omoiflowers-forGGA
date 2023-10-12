@@ -8,7 +8,7 @@
     background-color: white;
     border-radius: 10px;
     padding-top: 10px;
-    height: 400px;
+    height: 390px;
   }
   
   .base_flowers {
@@ -36,7 +36,7 @@
     width:90%;
     background-color: white;
     border-radius: 10px;
-    height: 400px;
+    height: 390px;
     z-index: 1000;
   }
   .dataBoxWrap h1{
