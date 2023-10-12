@@ -48,11 +48,15 @@ const ChatDisplay = () => {
     return `${dateString} ${timeString}`;
   };
 
+  const canEditMessage = (timestampInSeconds) => {
+    const currentTime = Math.floor(Date.now() / 1000); // 現在のUNIXタイムスタンプ（秒）
+    return (currentTime - timestampInSeconds) <= 300; // 5分以内（300秒）かどうか
+  };
+
   // 最後のメッセージが存在し、その送信者が相手ならば、送信欄を表示する。
 const isLastMessageFromOther = messages.length > 0 && messages[messages.length - 1].senderId !== (auth.currentUser ? auth.currentUser.uid : null);
  // adminFlagが3で、かつメッセージの数が1より大きく、最後のメッセージが相手からでない場合にtrueになる
 const hideMessageInputForAdmin = adminFlag === 3 && messages.length > 0 && !isLastMessageFromOther;
-
 
 let lastDate = null;  // 最後に表示した日付を保持する変数
 
@@ -91,6 +95,9 @@ let lastDate = null;  // 最後に表示した日付を保持する変数
             // 前のメッセージと日付が違ったらMessageSeparatorを表示
             const shouldShowSeparator = lastDate !== currentDate;
             lastDate = currentDate;  // 最後に表示した日付を更新
+
+            const isCurrentLastMessageFromOther = (index === messages.length - 1) && msg.senderId !== auth.currentUser.uid;
+
   
             return (
               <React.Fragment key={index}>
@@ -110,6 +117,7 @@ let lastDate = null;  // 最後に表示した日付を保持する変数
                           sender: direction === "outgoing" ? "You" : displayName,
                           position: "normal",
                           direction: direction,
+                          coment:'編集',
                         }}
                       />
                     ) : isCardFormat(msg) ? (
@@ -129,10 +137,22 @@ let lastDate = null;  // 最後に表示した日付を保持する変数
                         }}
                       />
                     )}
+                    {
+                   (msg.senderId !== auth.currentUser.uid) || // 現在のメッセージが自分からのものでない
+                   isCurrentLastMessageFromOther || // 最後のメッセージが相手からのものである
+                   (messages[index + 1] && messages[index + 1].senderId === auth.currentUser.uid) ||  // 次のメッセージが自分からのものである
+                   !canEditMessage(msg.timestamp?.seconds)  // 5分以上経過している
+                   ?
+                   null
+                   :
+                   (
+                        <Message.Footer className={`messageGroupFooter-${direction}`}>
+                        {sentTime}
+                        <button style={{}}>編集</button>
+                      </Message.Footer>
+                      )}
                   </MessageGroup.Messages>
-                  {/* <MessageGroup.Footer className={`messageGroupFooter-${direction}`}>
-                    {sentTime}
-                  </MessageGroup.Footer> */}
+                 
                 </MessageGroup>
                 </React.Fragment>
             );

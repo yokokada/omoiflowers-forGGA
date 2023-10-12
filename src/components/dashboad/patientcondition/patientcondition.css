@@ -50,7 +50,7 @@
     display: inline-block;
     font-size: 12px;
     line-height: 1;
-    height: 12px;  /* この値は調整が必要かもしれません */
+    height: 24px;  /* この値は調整が必要かもしれません */
     vertical-align: middle;  /* テキストを垂直方向に中央に配置 */
     
     width: 36px;
