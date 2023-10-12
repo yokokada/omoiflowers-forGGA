@@ -56,6 +56,9 @@ const MonthCalendar = () => {
     fetchEvents();
   }, []);
 
+
+  
+
   const handleDateClick = (date) => {
     // console.log("handleDateClickが呼ばれました", date);
     const dateStr = date.toLocaleDateString('en-CA');
@@ -130,6 +133,9 @@ const MonthCalendar = () => {
       return (
         <div style={{ display: 'flex', flexDirection: 'column', marginTop: '5px' }}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <span>{date.getDate()}</span> {/* ここで日付の数値のみを表示 */}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 {iconsForDate.emoji?.selected ? 
                  <Emoji fontSize={14} strokeWidth={1} /> 
                  : <div style={{ width: '14px', height: '24px' }}></div>}
@@ -154,7 +160,7 @@ return (
       value={value} 
       tileContent={renderTile} // アイコンを表示する関数をtileContentにセット
       onClickDay={handleDateClick}
-      locale="en-US"
+      locale="ja-JP"
     />
       { 
       // adminFlagが0または1の場合はEventModalを表示

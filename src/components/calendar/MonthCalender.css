@@ -69,3 +69,8 @@
     color: red;
   }
 
+  .react-calendar__month-view__days__day abbr {
+    display: none;
+  }
+  
+
