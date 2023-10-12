@@ -30,7 +30,7 @@ function Dashboard() {
   
   return (
     <div>
-       <div style={{ marginTop:'80px' }}>
+       <div style={{ marginTop:'60px' }}>
        {(adminFlag === 3 || adminFlag === 1) && <Patientcondition />}
       </div>
       <div style={{ marginTop:'10px' }}>
