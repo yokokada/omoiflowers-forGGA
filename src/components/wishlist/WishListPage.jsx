@@ -75,7 +75,7 @@ const addTodo = (newTodo) => {
   };
 
   const deleteTodo = async (index) => {
-    deleteTodoFromFirebase(index);  // Firebaseからも削除
+    await deleteTodoFromFirebase(index);  // awaitを追加
     const newTodos = todos.slice();
     newTodos.splice(index, 1);
 
