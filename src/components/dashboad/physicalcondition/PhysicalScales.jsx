@@ -74,7 +74,7 @@ export default function App() {
 
   return (
     <div className="physicalScaleWrap">
-      <h1>{adminZeroDisplayName}さんの状況報告</h1>
+      <h1>今日の調子はどうですか？</h1>
       <div className="physicalScale">
         <div className='physicalScaleTitle'>
     
