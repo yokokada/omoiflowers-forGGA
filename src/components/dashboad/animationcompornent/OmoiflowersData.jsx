@@ -115,7 +115,9 @@ const todayClickCount = todaysClicks.length;
           <Modal show={showModal} onClose={() => setShowModal(false)}>
               {omoType === 'total' && (
                 <>
+                  <div className='modalTitle'>
                   <p>累積omoってるよ</p>
+                  </div>
                   <div className='tableContainer'>
                     <ClickHistory history={clickHistory} />
                   </div>
@@ -123,7 +125,9 @@ const todayClickCount = todaysClicks.length;
               )}
               {omoType === 'today' && (
                 <>
+                  <div className='modalTitle'>
                   <p>今日のomoってるよ</p>
+                  </div>
                   <div className='tableContainer'>
                     <ClickHistory history={todaysClicks} />
                   </div>
@@ -131,7 +135,9 @@ const todayClickCount = todaysClicks.length;
               )}
               {omoType === 'mine' && (
                 <>
+                  <div className='modalTitle'>
                   <p>自分のomoってるよ履歴</p>
+                  </div>
                   <div className='tableContainer'>
                     <ClickHistory history={userClicks} />
                   </div>

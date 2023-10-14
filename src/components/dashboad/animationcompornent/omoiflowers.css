@@ -57,7 +57,7 @@
     color: #1B3672;
     margin-top: 15px;
   }
-
+ 
 
   .dataBox2{
     font-size: 14px;
@@ -90,4 +90,8 @@
     /* height: 70px;   */
     overflow-y: auto;
     margin-top: 10px;
+  }
+
+  .modalTitle{
+    margin-left: 10px;
   }
