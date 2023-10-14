@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from '../../pages/Firebase';
-import { useNavigate  } from 'react-router-dom';  // Linkコンポーネントをインポート
+import { Link, useNavigate  } from 'react-router-dom';  // Linkコンポーネントをインポート
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {Input} from "@nextui-org/react";
 import {EyeFilledIcon} from "../common/EyeFilledIcon";
@@ -193,6 +193,7 @@ const RegisterForm = () => {
                     style={{ fontSize: '17px' }}
                 />
                 <SubmitButton>登録する</SubmitButton>
+                <Link to="/login" className="underline font-extrabold"style={{ marginTop:'20px' }}>作成せずログイン画面へ戻る</Link>
                 </form>
             </main>
         </div>  
