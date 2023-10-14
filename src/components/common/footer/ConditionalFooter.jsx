@@ -18,7 +18,7 @@ const ConditionalFooter = () => {
   
 
     // ログインページではフッターを表示しない
-    if (location.pathname === '/login') {
+    if (location.pathname === '/login' || location.pathname === '/Register') {
       return null;
     }
   

@@ -7,21 +7,21 @@ import TopNavbar from './TopNavbar';
 
 const ConditionalHeader = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const location = useLocation();  // <-- 追加
+    const location = useLocation();  // <-- 追加
 
-  useEffect(() => {
+    useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      setIsLoggedIn(!!user);
-    });
+            setIsLoggedIn(!!user);
+          });
 
     return () => unsubscribe();
   }, []);
 
   // ログインページまたはレジスター画面には何も表示させないようにする
-  if (location.pathname === '/login' || location.pathname === '/register') {
+  if (location.pathname === '/login' || location.pathname === '/Register') {
     return null;
   }
-
+  
   return (
     <div>
       {isLoggedIn ? <TopNavbar /> : <TopNavbarOnlyLogo />}

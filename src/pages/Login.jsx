@@ -4,7 +4,7 @@ import { ColorContext } from '../App';
 
 const styles = {
   headerStyle: {
-    marginTop: '120px',
+    marginTop: '140px',
     marginBottom: '0px',
     color: '#1B3672',
     fontSize: '35px',
