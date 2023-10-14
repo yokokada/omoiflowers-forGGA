@@ -33,6 +33,11 @@
     width: 300px;
     margin:0 auto;
     text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important; /* 影を追加 */
+}
+
+.historytable th{
+    text-align: center;
 }
 .table3{
     margin: -10px auto;
@@ -65,7 +70,7 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 4px;
-    width: 90%;
+    width: 94%;
     max-width: 800px;  /* 最大の幅を800pxに設定 */
     position: relative;
     overflow-y: auto; /* 垂直方向にスクロールを有効に */
