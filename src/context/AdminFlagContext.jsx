@@ -8,7 +8,7 @@ export const useAdminFlag = () => {
   return useContext(AdminFlagContext);
 };
 
-export const AdminFlagProvider = ({ children }) => {
+export const AdminFlagProvider = ({ children , route }) => {
   const [adminFlag, setAdminFlag] = useState(null);
   const [uid, setUid] = useState(null);
   const [displayName, setDisplayName] = useState(null);
@@ -17,8 +17,12 @@ export const AdminFlagProvider = ({ children }) => {
   const [adminZeroDisplayName, setAdminZeroDisplayName] = useState(null); // adminFlag === 0 の人のdisplayName
   const [adminZeroId, setAdminZeroId] = useState(null); // adminFlag === 0 の人のID
 
-
   useEffect(() => {
+    // ログインやレジスターページで処理をスキップ
+    if (route === '/login' || route === '/register') {
+      return;
+    }
+
     const fetchAdminFlag = async () => {
       const currentUser = auth.currentUser;  
       if (!currentUser) return;  
@@ -37,16 +41,6 @@ export const AdminFlagProvider = ({ children }) => {
       }
     };
 
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        fetchAdminFlag();
-      } else {
-        setIsLoading(false);
-      }
-    });
-
-    return () => unsubscribe();  // cleanup function
-  }, []);
 
   const fetchAdminZeroData = async () => {
     try {
@@ -62,8 +56,21 @@ export const AdminFlagProvider = ({ children }) => {
       console.error("Error fetching adminZeroDisplayName:", error);
     }
   };
-  
+ 
+
+  const unsubscribe = auth.onAuthStateChanged(async (user) => {
+    if (user) {
+      fetchAdminFlag();
+    } else {
+      setIsLoading(false);
+    }
+  });
+
   fetchAdminZeroData(); // adminFlag === 0 の人のdisplayNameを取得
+
+  return () => unsubscribe();  // cleanup function
+}, [route]); // routeが変わったら再実行されるように
+  
 
   const value = {
     adminFlag,
