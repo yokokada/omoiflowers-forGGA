@@ -137,7 +137,7 @@ const DisplayNameSetting = () => {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             style={{ fontSize: '17px' }}
                         />
-                        <Button style={{ backgroundColor:'#1B3672',color:'white' }} type="button" onClick={handleUpdatePassword}>
+                        <Button style={{ backgroundColor:'#1B3672',color:'white' ,marginBottom:'50px'}} type="button" onClick={handleUpdatePassword}>
                             パスワードを更新
                         </Button>
                     </>
