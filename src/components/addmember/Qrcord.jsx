@@ -4,7 +4,7 @@ import { QRCodeSVG } from 'qrcode.react';
 const Qrcord = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '80px' }}>
-      <QRCodeSVG value="https://omoi-flowers-app.vercel.app/" />
+      <QRCodeSVG value="https://omoiflowers-ver-2.vercel.app/" />
     </div>
   );
 }
