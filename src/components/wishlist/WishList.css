@@ -7,14 +7,15 @@
   }
   .wishTab{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 5px;
     text-align: center;
+    margin: 0 5px;
     
     
   }
   .wishTab button{
-    font-size: 12px;
+    font-size: 11px;
     padding: 5px;
     border-radius: 8px ;
   }
