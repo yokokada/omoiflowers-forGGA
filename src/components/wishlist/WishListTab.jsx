@@ -49,7 +49,7 @@ const TodoTabs = () => {
         onClick={() => setActiveTab('todo1')}
         style={getButtonStyle('todo1')}
       >
-        欲しいもの<br/>（日用品）
+        食べたいもの
       </button>
       <button 
         onClick={() => setActiveTab('todo2')}
