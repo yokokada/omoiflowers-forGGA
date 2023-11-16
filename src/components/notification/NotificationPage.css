@@ -1,61 +1,243 @@
-/* NotificationPage.css */
+/* NotificationPage.cssの更新版 */
 
-/* お知らせ全体のスタイル */
+/* 全体のスタイル */
 .notification-container {
-    width: 90vw;  
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 auto; /* これを追加してコンテナを中央に配置 */
-    color: #1B3672;
-  }
+  width: calc(100% - 39px); /* 左右のマージンを引いた幅 */
+  margin: 0 19.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 19.5px; /* 各要素間の隙間 */
+}
 
+/* 各ボックス共通スタイル */
+.notification-box {
+  width: 100%;
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #1B3672;
+  overflow-y: auto;
+}
 
-  .notification-zone {
-    height: 150px;  /* または任意の高さ */
-    overflow-y: auto;  /* 縦方向にスクロール可能にする */
-    border: 1px solid #1B3672;  /* 枠線を追加（オプション） */
-    margin-bottom: 20px;  /* 下マージンを追加（オプション） */
-    border-radius: 10px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* お花に関する情報ボックス */
+.flower-info-box {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
 
-  }
- 
-  /* お知らせのタイトル */
-  .notification-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    
-  }
-  
-  /* お知らせリスト */
-  .notification-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  /* お知らせの項目 */
-  .notification-item {
-    width: 320px;
-    font-size: 12px;
-    padding: 5px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    background-color:#DDDDDD; /* 背景色 */
-    border-radius: 5px;
-  }
-  
-  .notification-zone h3{
-  width: 320px;
-  position: sticky;  /* 位置を固定 */
-  top: 0;  /* 上部に固定 */
-  background-color: #fff;  /* 背景色（スクロール時に他の内容が透けないように） */
-  z-index: 1;  /* z-indexを設定（他の要素より前面に） */
-  margin: 5px;
-  }
+/* お花の画像部分 */
+.flower-image {
+  flex-basis: 30%; /* お花の画像のために領域を確保 */
+  padding-right: 10px; /* 右側の余白 */
+}
+
+.flower-image img {
+  width: 100%; /* 画像をコンテナにフィットさせる */
+  height: auto;
+}
+
+/* お花の情報部分 */
+.flower-data {
+  flex-grow: 1; /* 残りのスペースを埋める */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 累積のomoiと花束の情報 */
+.flower-data-top {
+  margin-bottom: 5px; /* 下の情報との余白 */
+}
+
+/* 今日のomoiの情報 */
+.flower-data-bottom {
+  margin-top: 5px; /* 上の情報との余白 */
+}
+
+/* メッセージとカレンダーボックスを横並びにするためのコンテナ */
+.notification-row {
+  display: flex;
+  width: 100%;
+  gap: 19.5px;
+}
+
+/* お花に関する情報ボックス */
+.flower-info-box {
+  height: 150px;
+  overflow: hidden; /* 必要に応じて追加 */
+}
+
+.flower-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.flower-image {
+  display: flex; /* Flexboxを使用して中央揃えに */
+  align-items: center; /* 中央揃え */
+  height: 100%; /* 親要素の高さを100%に */
+  padding: 10px 10px 0 10px;
+}
+
+.flower-image img {
+  height: 100%;
+  width: auto; /* 幅は自動調整 */
+  object-fit: contain; /* 画像がコンテナに収まるように調整 */
+}
+
+.omoi-all {
+  font-size: 24px;
+  color: #1B3672;
+}
+
+.omoi-all > strong {
+  font-size: 32px;
+}
+
+.omoi-today {
+  font-size: 18px;
+  color: #1B3672;
+}
+
+.omoi-today > strong {
+  font-size: 24px;
+}
+
+.last-update{
+  font-size: 12px;
+  color: gray;
+  font-weight: bold;
+}
+
+.timestamp-update {
+  font-size: 12px;
+  color: gray;
+}
+
+/* ボタンの共通スタイル */
+.detail-button {
+  background-color: #1B3672;
+  color: #FFFFFF;
+  border: none;
+  padding: 5px 15px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  border-radius: 24px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.message-box:hover .detail-button, .calender-box:hover .detail-button, .wishlist-box:hover .detail-button {
+  background-color: #FFFFFF;
+  color: #1B3672;
+}
+
+.detail-button:hover,.message-box:hover .detail-button:hover, .calender-box:hover .detail-button:hover, .wishlist-box:hover .detail-button:hover {
+  background-color: #09192e; /* ホバー時の色 */
+  color: #FFFFFF;
+}
+
+/* ウィッシュリストボックス */
+.message-box, .calender-box, .wishlist-box {
+  border-radius: 10px;
+  padding: 15px;
+  overflow: hidden;
+  align-items: start;
+}
+
+.message-box:hover, .calender-box:hover, .wishlist-box:hover {
+  border-radius: 10px;
+  padding: 15px;
+  overflow: hidden;
+  align-items: start;
+  background-color: #1B3672;
+}
+
+/* 新着メッセージボックス */
+.message-box, .calender-box {
+  position: relative;
+}
+
+.wishlist-box {
+  display: flex;
+}
+
+/* ウィッシュリストボックス */
+.wishlist-box > div {
+  position: relative;
+  width: 50%;
+}
+
+/* アイコンを背景として配置 */
+.message-box-title, .calender-box-title, .wishlist-box-title {
+  position: absolute;
+  color: gray;
+  width: 60px;
+  height: 60px;
+  z-index: 1;
+}
+
+.message-box:hover .message-box-title, .calender-box:hover .calender-box-title, .wishlist-box:hover .wishlist-box-title {
+  color: #FFFFFF;
+}
+
+.message-box-title, .calender-box-title {
+  top: 10px;
+  left: 10px;
+}
+
+.message-box-title svg, .calender-box-title svg, .wishlist-box-title svg {
+  width: 80px;
+  height: 80px;
+  opacity: 0.2;
+}
+
+/* テキスト部分 */
+.message-box-text, .calender-box-text, .wishlist-box-text {
+  position: absolute; /* テキストを絶対位置で配置 */
+  z-index: 2; /* アイコンより前面に */
+}
+
+.message-box-text, .calender-box-text {
+  top: 10px; /* アイコンの上部に合わせる */
+  left: 10px; /* アイコンの左部に合わせる */
+}
+
+.message-box-text h3, .calender-box-text h3, .wishlist-box-text h3 {
+  color: #1B3672;
+  margin: 0;
+  text-align: left;
+  font-weight: bold;
+  font-size: 24px;
+  padding-top: 10px;
+  padding-left: 10px;
+  line-height: 1.25;
+}
+
+.message-box:hover .message-box-text h3, .calender-box:hover .calender-box-text h3, .wishlist-box:hover .wishlist-box-text h3 {
+  color: #FFFFFF;
+}
+
+.message-list, .calender-list {
+  margin-top: 80px; /* テキスト部分からの余白を増やす */
+  height: 200px;
+  overflow-y: auto;
+}
+
+.wishlist-list {
+  height: 120px;
+  overflow-y: auto;
+}
+
+.message-item, .calender-item, .wishlist-item {
+  background-color: #f0f0f0;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}

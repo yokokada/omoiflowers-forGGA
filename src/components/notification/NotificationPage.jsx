@@ -1,159 +1,300 @@
-import React, { useState, useEffect } from 'react';
-import { collection, doc as docRef, getDocs, getDoc, query, where ,orderBy} from 'firebase/firestore';
+import { collection, doc, getDocs, getDoc, query, where, orderBy } from 'firebase/firestore';
 import { db } from '../../pages/Firebase';
 import './NotificationPage.css'
 import { useAdminFlag } from '../../context/AdminFlagContext';
-
-   
+import CustomModal from '../common/CustomModal';  // 必要なインポート
+import Countdown from '../dashboad/countdown/Countdown';
+import useFirebaseClickHistory from '../../hooks/UseFirebaseClickHistory';
+import '../dashboad/animationcompornent/omoiflowers.css';
+import React, { useState, useEffect, useRef } from 'react';
+import FlowerCount from '../dashboad/animationcompornent/FlowerCount';
+import ClickHistory from '../dashboad/animationcompornent/clickTable/ClickHistory';
+import { Button } from '@chatscope/chat-ui-kit-react';
+import Modal from '../dashboad/animationcompornent/clickTable/ClickTableModal';
+import { ChatLines, Calendar, ClipboardCheck } from 'iconoir-react';
+import { Link } from 'react-router-dom';
 
 const NotificationPage = () => {
-  const { adminFlag, isLoading,uid,displayName,tail } = useAdminFlag(); 
-  const [omimaiNotifications, setOmimaiNotifications] = useState([]);
-  const [messageNotifications, setMessageNotifications] = useState([]);
-  const [clickNotifications, setClickNotifications] = useState([]);
+  const [flowerImage, setFlowerImage] = useState(1);
+  const { clickHistory, userDisplayName, userId, count, recordClick, countdown } = useFirebaseClickHistory();
+  const { adminFlag, isLoading, uid, displayName, tail } = useAdminFlag();
+  const scrollRef = useRef(null);
+  const [showModal, setShowModal] = useState(false);
+  const [omoType, setOmoType] = useState(null);
+  // メッセージ通知の状態を管理
+  const [messages, setMessages] = useState([]);
+  const [calendarUpdates, setCalendarUpdates] = useState([]);
+  const [wishlistUpdates, setWishlistUpdates] = useState([]);
 
 
-  // 日時のカスタムフォーマット関数
-const customFormatDate = (date) => {
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-  return date.toLocaleDateString(undefined, options);
-};
+  const customFormatDate = (date) => {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return date.toLocaleDateString('ja-JP', options); // 日本の日付形式に合わせる
+  };
 
-// 通知を日付でソートする関数
-const sortByDate = (notifications) => {
-  return notifications.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-};
+  const formatDateDiff = (date) => {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
 
-    useEffect(() => {
-      const fetchNotifications = async () => {
-        try {
-          const fetchedOmimai = [];
-        
-  
-          // お見舞いに関するお知らせ
-          const scheduleQuery = query(collection(db, 'schedules'), where('omimai', '==', 'on'));
-          const scheduleSnapshot = await getDocs(scheduleQuery);
-          scheduleSnapshot.forEach(doc => {
-            const data = doc.data();
-            fetchedOmimai.push({
-              message: 'お見舞いOKの通知があります。',
-              timestamp: customFormatDate(data.timestamp?.toDate())
-            });
-          });
-          setOmimaiNotifications(fetchedOmimai);
-  
-          // メッセージに関するお知らせ
-const messageQuery = query(collection(db, 'messages'), where('recipientId', '==', uid));
-const messageSnapshot = await getDocs(messageQuery);
+    const diffTime = today - date;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-// メッセージのdisplayNameを非同期で取得
-const fetchedMessages = await Promise.all(
-  messageSnapshot.docs.map(async (messageDoc) => {  // docをmessageDocと改名
-    const data = messageDoc.data();
-    
-    // ユーザーのドキュメントをuidで直接参照
-    const userDocRef = docRef(db, 'users', data.senderId);
-    
-    // ドキュメントのデータを取得
-    const userDoc = await getDoc(userDocRef);
-    
-    let senderData = {};
-
-    if (userDoc.exists()) {
-      senderData = userDoc.data();
+    if (date.toDateString() === today.toDateString()) {
+      return "今日";
+    } else if (date.toDateString() === yesterday.toDateString()) {
+      return "昨日";
     } else {
-      console.warn(`Sender with uid ${data.senderId} not found.`);
+      return `${diffDays}日前`;
     }
+  };
 
-    return {
-      message: `${senderData.displayName}さんからのメッセージが届きました`,
-      timestamp: customFormatDate(data.timestamp?.toDate()),
-    };
-  })
-);
+  useEffect(() => {
+    // countに基づいてflowerImageを更新
+    setFlowerImage((count % 250) || 250);
+  }, [count]);
 
-setMessageNotifications(fetchedMessages);
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      // メッセージに関するお知らせの取得
+      const messageQuery = query(collection(db, 'messages'), where('recipientId', '==', uid));
+      const messageSnapshot = await getDocs(messageQuery);
 
-  
-// クリック数に関するお知らせ
-const clicksQuery = query(
-  collection(db, 'clicks'), 
-  where('clickNumber', '>=', 250),  // 250以上のclickNumberを持つドキュメントのみを対象とする
-  orderBy('clickNumber', 'desc')  // clickNumberに基づいて降順に並べる
-);
-const clicksSnapshot = await getDocs(clicksQuery);
+      const fetchedMessages = await Promise.all(messageSnapshot.docs.map(async (docSnapshot) => {
+        const messageData = docSnapshot.data();
+        const userDocRef = doc(db, 'users', messageData.senderId);
+        const userDocSnap = await getDoc(userDocRef);
 
-const fetchedClicks = [];
-
-clicksSnapshot.forEach(doc => {
-  const clickData = doc.data();
-  if (clickData.clickNumber % 250 === 0) {  // クリック数が250の倍数である場合
-    fetchedClicks.push({
-      message: `${clickData.clickNumber}クリックに到達しました！`,
-      timestamp: customFormatDate(clickData.clickedAt?.toDate())  // ここを修正
-    });
-  }
-});
-
-setClickNotifications(fetchedClicks);
-
-          // console.log("UID: ", uid);
-          // console.log("Omimai Notifications: ", fetchedOmimai);
-          // console.log("Message Notifications: ", fetchedMessages);
-          // console.log("Click Notifications: ", fetchedClicks);
-
-                  // ソート処理を行い、状態を更新
-        setOmimaiNotifications(sortByDate(fetchedOmimai));
-        setMessageNotifications(sortByDate(fetchedMessages));
-        setClickNotifications(sortByDate(fetchedClicks));
-  
-        } catch (error) {
-          console.error("Error fetching notifications: ", error);
+        let senderName = '';
+        if (userDocSnap.exists()) {
+          senderName = userDocSnap.data().displayName;
+        } else {
+          console.warn(`Sender with uid ${messageData.senderId} not found.`);
         }
-      };
 
-    
-  
-      fetchNotifications();
-      
-    }, []);
-  
+        return {
+          name: senderName,
+          date: messageData.timestamp.toDate(),
+          message: messageData.message
+        };
+      }));
+
+      // メッセージを新着順にソート
+      fetchedMessages.sort((a, b) => b.date - a.date);
+
+      setMessages(fetchedMessages);
+    };
+
+    fetchNotifications();
+  }, [uid]);
+
+  useEffect(() => {
+    const fetchCalendarUpdates = async () => {
+      try {
+        const schedulesQuery = query(collection(db, 'schedules'), orderBy('timestamp', 'desc'));
+        const schedulesSnapshot = await getDocs(schedulesQuery);
+
+        const fetchedSchedules = schedulesSnapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            event: customFormatDate(new Date(data.date)), // Dateオブジェクトに変換してフォーマットを適用
+            updated: customFormatDate(data.timestamp?.toDate()),
+            timestamp: data.timestamp?.toDate() // ソートのための日付フィールドを追加
+          };
+        });
+
+        // fetchedSchedulesをtimestampに基づいてソート
+        fetchedSchedules.sort((a, b) => b.timestamp - a.timestamp);
+
+        setCalendarUpdates(fetchedSchedules);
+      } catch (error) {
+        console.error("Error fetching calendar updates: ", error);
+      }
+    };
+
+    fetchCalendarUpdates();
+  }, []);
+
+  useEffect(() => {
+    const fetchWishlistUpdates = async () => {
+      try {
+        const wishlistQuery = query(collection(db, 'wishes'), orderBy('timestamp', 'desc'));
+        const wishlistSnapshot = await getDocs(wishlistQuery);
+
+        const fetchedWishlist = wishlistSnapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            text: data.text,
+            updated: formatDateDiff(data.timestamp?.toDate()),
+            timestamp: data.timestamp?.toDate()
+          };
+        });
+
+        // fetchedWishlistをtimestampに基づいてソート
+        fetchedWishlist.sort((a, b) => b.timestamp - a.timestamp);
+
+        setWishlistUpdates(fetchedWishlist);
+      } catch (error) {
+        console.error("Error fetching wishlist updates: ", error);
+      }
+    };
+
+    fetchWishlistUpdates();
+  }, []);
+
+  // お花の情報表示用コンポーネント
+  const renderFlowerInfo = () => {
+    // 今日の日付を取得 (日本時間で)
+    const today = new Date();
+    const todayYear = today.getFullYear();
+    const todayMonth = today.getMonth();
+    const todayDate = today.getDate();
+
+    // 今日のデータをフィルタリング
+    const todaysClicks = clickHistory.filter((history) => {
+      const historyDate = history.clickedAt.toDate();
+      return (
+        historyDate.getFullYear() === todayYear &&
+        historyDate.getMonth() === todayMonth &&
+        historyDate.getDate() === todayDate
+      );
+    });
+
+    const todayClickCount = todaysClicks.length;
+    const userClicks = clickHistory.filter(history => history.uid === userId);
+    const userClickCount = userClicks.length;
+
     return (
-      <div className="notification-container">
-        <h2 className="notification-title">お知らせ</h2>
-
-        <div className="notification-zone">
-          <h3>メッセージ通知</h3>
-          {renderNotifications(messageNotifications)}
+      <div className="flower-info">
+        {/* お花の画像 */}
+        <div className="flower-image">
+          <img src={`images/${flowerImage}.png`} alt="Flower" />
         </div>
-  
-        <div className="notification-zone">
-          <h3>お見舞い通知</h3>
-          {renderNotifications(omimaiNotifications)}
-        </div>
-  
-        <div className="notification-zone">
-          <h3>クリック数通知</h3>
-          {renderNotifications(clickNotifications)}
+        {/* 累積のomoi/花束の数など */}
+        <div className="flower-data">
+            <p className='omoi-all'>累積<strong>{count}</strong>omoi</p>
+            <p className='omoi-today'>/ 今日<strong>{todayClickCount}</strong>omoi</p>
         </div>
       </div>
     );
   };
-  
-  const renderNotifications = (notifications) => {
-    return notifications.length > 0 ? (
-      <ul className="notification-list">
-        {notifications.map((notif, index) => (
-          <li key={index} className="notification-item">
-            {notif.message}<br/>{notif.timestamp}
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <p>新しいお知らせはありません。</p>
+
+  const renderMessages = () => {
+    return (
+        <div className="message-box">
+          <Link to="/talks">
+            <div className="message-box-title">
+              <ChatLines />
+            </div>
+            <div className="message-box-text">
+              <h3>新着トーク</h3>
+              <button className="detail-button">確認する→</button>
+            </div>
+            <div className="message-list">
+              {messages.map((msg, index) => (
+                <div className="message-item" key={index}>
+                  <p>{msg.name}さん<br /><span className='timestamp-update'>更新：{formatDateDiff(msg.date)}</span></p>
+                  {index === 0 && <p className="last-update">最終更新</p>}
+                </div>
+              ))}
+            </div>
+          </Link>
+        </div>
     );
   };
 
-  
+  const renderCalenders = () => {
+
+    return (
+      <div className="calender-box">
+        <Link to="/calendar">
+          <div className="calender-box-title">
+            <Calendar />
+          </div>
+          <div className="calender-box-text">
+            <h3>カレンダー</h3>
+            <button className="detail-button">確認する→</button>
+          </div>
+          <div className="calender-list">
+            {calendarUpdates.map((update, index) => (
+              <div className="calender-item" key={index}>
+                <p>{update.event}の<br />カレンダー追加<br /><span className='timestamp-update'>更新：{formatDateDiff(update.timestamp)}</span></p>
+                {index === 0 && <p className="last-update">最終更新</p>}
+              </div>
+            ))}
+          </div>
+        </Link>
+      </div>
+    );
+  };
+
+  const renderWishlist = () => {
+    return (
+      <div className="wishlist-box">
+          <div>
+            <div className="wishlist-box-title">
+              <ClipboardCheck />
+            </div>
+            <div className="wishlist-box-text">
+              <h3>ウィッシュ<br />リスト</h3>
+              <button className="detail-button">確認する→</button>
+            </div>
+          </div>
+          <div className="wishlist-list">
+            {wishlistUpdates.map((update, index) => (
+              <div className="wishlist-item" key={index}>
+                <p>{update.text} <span className='timestamp-update'>{update.updated}</span></p>
+                {index === 0 && <p className="last-update">最終更新</p>}
+              </div>
+            ))}
+          </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="notification-container">
+      <h2 className="notification-title">お知らせ</h2>
+
+      <div className="notification-box flower-info-box omoiFlowers">
+          {renderFlowerInfo()}
+      </div>
+
+      <div className="notification-row">
+        <div className="notification-box">
+            {/* ...他のコンポーネント部分 */}
+            {renderMessages()}
+            {/* ...他のコンポーネント部分 */}
+        </div>
+
+        <div className="notification-box">
+            {/* ...他のコンポーネント部分 */}
+            {renderCalenders()}
+            {/* ...他のコンポーネント部分 */}
+        </div>
+      </div>
+      <div className="notification-box">
+          <Link to="/wishlist">
+            {renderWishlist()}
+          </Link>
+      </div>
+    </div>
+  );
+};
+
+const renderNotifications = (notifications) => {
+  return notifications.length > 0 ? (
+    <ul className="notification-list">
+      {notifications.map((notif, index) => (
+        <li key={index} className="notification-item">
+          {notif.message}<br/>{notif.timestamp}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>新しいお知らせはありません。</p>
+  );
+};
+
+
 export default NotificationPage;
-  
